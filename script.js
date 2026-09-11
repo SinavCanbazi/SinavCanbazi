@@ -1,22 +1,4 @@
-// Beklenmeyen hatalarda sitenin çökmesini engelle
-window.addEventListener('error', function(e) {
-    console.warn('Hata yakalandı, sayfa çalışmaya devam ediyor:', e.message);
-    return true;
-});
 
-// Tıklama ve istek sınırlayıcı (Kilitlenmeyi önler)
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
-}
 // Örnek: Sayfa kaydırma (scroll) veya buton tıklama olaylarını korumaya alma
 window.addEventListener('scroll', throttle(function() {
     // Scroll işlemleri burada güvenle çalışır
