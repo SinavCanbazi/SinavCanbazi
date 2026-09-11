@@ -1986,3 +1986,88 @@ section, footer, header {
     }
 
 }
+/* ================================
+   KVKK MODAL
+================================ */
+
+.kvkk-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: rgba(2, 8, 23, 0.78);
+    backdrop-filter: blur(8px);
+
+    z-index: 99999 !important;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* KVKK kutusunun kendisi */
+.kvkk-modal-content {
+    position: relative !important;
+
+    width: min(600px, 90vw) !important;
+    max-height: 80vh !important;
+
+    margin: 0 !important;
+
+    background: #0f1c2e;
+    border: 1px solid rgba(50, 190, 240, 0.35);
+    border-radius: 18px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.55),
+        0 0 30px rgba(50, 190, 240, 0.12);
+
+    overflow: hidden;
+}
+
+/* İçerik kaydırma alanı */
+.kvkk-modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 30px;
+}
+
+/* Kapatma butonu */
+.kvkk-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #1b2a3d;
+    color: white;
+
+    cursor: pointer;
+}
+
+/* KVKK başlıkları */
+.kvkk-modal-content h2,
+.kvkk-modal-content h3 {
+    color: #38bdf8;
+}
+
+/* Mobil */
+@media (max-width: 600px) {
+    .kvkk-modal-content {
+        width: 92vw !important;
+        max-height: 85vh !important;
+    }
+
+    .kvkk-modal-body {
+        padding: 22px;
+        max-height: 68vh;
+    }
+}
