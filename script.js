@@ -1,23 +1,3 @@
-// 1. Beklenmeyen Hatalarda Sitenin Beyaz Ekranda Kalmasını Engelle
-window.addEventListener('error', function(e) {
-    console.warn('Sistem hatası yakalandı, çökme engellendi:', e.message);
-    return true; // Hatayı bastırır ve sayfanın çalışmaya devam etmesini sağlar
-});
-
-// 2. Tıklama / İstek Sınırlayıcı (Debounce / Throttle)
-// Kullanıcılar butonlara art arda yüzlerce kez bassa bile kilitlenmeyi önler
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
-}
 
 // Örnek: Sayfa kaydırma (scroll) veya buton tıklama olaylarını korumaya alma
 window.addEventListener('scroll', throttle(function() {
