@@ -171,3 +171,61 @@ if (contactForm) {
         }
     });
 }
+// ==============================
+// KVKK MODAL
+// ==============================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const kvkkLink = document.getElementById("kvkk-link");
+    const kvkkOverlay = document.getElementById("kvkk-overlay");
+    const kvkkClose = document.getElementById("kvkk-close");
+
+    if (!kvkkLink || !kvkkOverlay || !kvkkClose) return;
+
+
+    // KVKK metnine tıklayınca aç
+    kvkkLink.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        kvkkOverlay.classList.add("active");
+
+        // Sayfanın arkada kaymasını engelle
+        document.body.style.overflow = "hidden";
+    });
+
+
+    // X butonuna basınca kapat
+    kvkkClose.addEventListener("click", function () {
+
+        kvkkOverlay.classList.remove("active");
+
+        document.body.style.overflow = "";
+    });
+
+
+    // Karanlık alana basınca kapat
+    kvkkOverlay.addEventListener("click", function (e) {
+
+        if (e.target === kvkkOverlay) {
+
+            kvkkOverlay.classList.remove("active");
+
+            document.body.style.overflow = "";
+        }
+    });
+
+
+    // ESC ile kapat
+    document.addEventListener("keydown", function (e) {
+
+        if (e.key === "Escape") {
+
+            kvkkOverlay.classList.remove("active");
+
+            document.body.style.overflow = "";
+        }
+    });
+
+});
