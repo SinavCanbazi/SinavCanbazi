@@ -4288,3 +4288,92 @@ body.dark-mode #hakkimda .about-card p,
 body.dark-mode #hakkimda .about-card li {
     color: rgba(255, 255, 255, 0.75) !important;
 }
+/* =========================================
+   HAKKIMDA - GÜNDÜZ MODU
+   ========================================= */
+
+body:not(.dark-mode) #hakkimda {
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #f7f5ff 100%
+    ) !important;
+    color: #19162b !important;
+}
+
+body:not(.dark-mode) #hakkimda .section-title,
+body:not(.dark-mode) #hakkimda h2,
+body:not(.dark-mode) #hakkimda h3 {
+    color: #1b1730 !important;
+}
+
+body:not(.dark-mode) #hakkimda .section-subtitle,
+body:not(.dark-mode) #hakkimda p {
+    color: #68637a !important;
+}
+
+/* Kartlar */
+body:not(.dark-mode) #hakkimda .about-card {
+    background: linear-gradient(
+        145deg,
+        #ffffff 0%,
+        #f8f5ff 100%
+    ) !important;
+
+    border: 1px solid #e4dcfa !important;
+    box-shadow:
+        0 12px 35px rgba(72, 48, 130, 0.10),
+        0 2px 8px rgba(72, 48, 130, 0.05) !important;
+
+    color: #1b1730 !important;
+}
+
+body:not(.dark-mode) #hakkimda .about-card h3,
+body:not(.dark-mode) #hakkimda .about-card h2 {
+    color: #24194d !important;
+}
+
+body:not(.dark-mode) #hakkimda .about-card p,
+body:not(.dark-mode) #hakkimda .about-card li,
+body:not(.dark-mode) #hakkimda .about-card span {
+    color: #625d73 !important;
+}
+
+/* Check işaretleri */
+body:not(.dark-mode) #hakkimda .about-card i,
+body:not(.dark-mode) #hakkimda .about-card svg {
+    color: #7047e8 !important;
+}
+
+/* =========================================
+   HAKKIMDA - GECE MODU
+   ========================================= */
+
+body.dark-mode #hakkimda {
+    background: linear-gradient(
+        180deg,
+        #0b091c 0%,
+        #080713 100%
+    ) !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode #hakkimda .about-card {
+    background: linear-gradient(
+        145deg,
+        #321b70 0%,
+        #1b123b 100%
+    ) !important;
+
+    border: 1px solid rgba(151, 112, 255, 0.45) !important;
+}
+
+body.dark-mode #hakkimda .about-card h2,
+body.dark-mode #hakkimda .about-card h3 {
+    color: #ffffff !important;
+}
+
+body.dark-mode #hakkimda .about-card p,
+body.dark-mode #hakkimda .about-card li {
+    color: rgba(255, 255, 255, 0.76) !important;
+}
