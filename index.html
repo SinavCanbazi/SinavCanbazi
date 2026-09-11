@@ -2140,7 +2140,305 @@ footer {
             .01ms !important;
     }
 }
+/* =========================================================
+   ✨ PREMIUM DOKUNUŞLAR - 1. DENEME
+   Mevcut tasarımı bozmaz
+   ========================================================= */
 
+/* ---------- HERO ---------- */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    left: -180px;
+    top: -180px;
+    background: radial-gradient(
+        circle,
+        rgba(167, 123, 255, 0.16) 0%,
+        rgba(167, 123, 255, 0) 70%
+    );
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    right: -150px;
+    bottom: -180px;
+    background: radial-gradient(
+        circle,
+        rgba(108, 76, 220, 0.22) 0%,
+        rgba(108, 76, 220, 0) 70%
+    );
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+}
+
+
+/* ---------- HERO BUTONLARI ---------- */
+
+.hero-button {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease !important;
+}
+
+.hero-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(
+        100deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: left .6s ease;
+}
+
+.hero-button:hover::after {
+    left: 140%;
+}
+
+.hero-button:hover {
+    transform: translateY(-3px);
+}
+
+.hero-button.primary:hover {
+    box-shadow:
+        0 12px 30px rgba(130, 86, 255, 0.28);
+}
+
+.hero-button.secondary:hover {
+    border-color: #9b78ff !important;
+    box-shadow:
+        0 10px 25px rgba(130, 86, 255, 0.16);
+}
+
+
+/* ---------- HERO BALONCUKLARI ---------- */
+
+.hero-bubble {
+    transition: filter .4s ease;
+}
+
+.hero-bubble:hover {
+    filter:
+        brightness(1.12)
+        drop-shadow(0 0 18px rgba(170,130,255,.35));
+}
+
+
+/* ---------- ÇALIŞMA ALANLARI KARTLARI ---------- */
+
+#calisma-alanlari .card,
+#calisma-alanlari .feature-card,
+#calisma-alanlari .service-card,
+.calisma-card,
+.area-card {
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease !important;
+}
+
+#calisma-alanlari .card:hover,
+#calisma-alanlari .feature-card:hover,
+#calisma-alanlari .service-card:hover,
+.calisma-card:hover,
+.area-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(155, 120, 255, .45) !important;
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.22),
+        0 0 25px rgba(126,87,255,.08);
+}
+
+
+/* ---------- KART İKONLARI ---------- */
+
+#calisma-alanlari .icon-box,
+#calisma-alanlari .card-icon,
+.calisma-card i,
+.area-card i {
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+#calisma-alanlari .card:hover .icon-box,
+#calisma-alanlari .card:hover .card-icon,
+.calisma-card:hover i,
+.area-card:hover i {
+    transform: scale(1.08);
+    box-shadow:
+        0 8px 22px rgba(126,87,255,.22);
+}
+
+
+/* ---------- HAKKIMDA KARTLARI ---------- */
+
+#hakkimda .card,
+#hakkimda .about-card {
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+#hakkimda .card:hover,
+#hakkimda .about-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(155, 120, 255, .35);
+    box-shadow:
+        0 16px 35px rgba(0,0,0,.18);
+}
+
+
+/* ---------- FORM ---------- */
+
+.on-gorusme-card {
+    transition:
+        box-shadow .35s ease,
+        border-color .35s ease;
+}
+
+.on-gorusme-card:hover {
+    border-color: rgba(155, 120, 255, .30);
+    box-shadow:
+        0 20px 55px rgba(0,0,0,.22),
+        0 0 30px rgba(126,87,255,.06);
+}
+
+.on-gorusme-form input,
+.on-gorusme-form select,
+.on-gorusme-form textarea {
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+.on-gorusme-form input:focus,
+.on-gorusme-form select:focus,
+.on-gorusme-form textarea:focus {
+    outline: none;
+    border-color: #9b78ff !important;
+    box-shadow:
+        0 0 0 3px rgba(155,120,255,.10),
+        0 5px 20px rgba(0,0,0,.08);
+}
+
+
+/* ---------- GÖNDER BUTONU ---------- */
+
+.on-gorusme-form button[type="submit"] {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform .2s ease,
+        box-shadow .25s ease,
+        filter .2s ease;
+}
+
+.on-gorusme-form button[type="submit"]:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+    box-shadow:
+        0 10px 28px rgba(126,87,255,.28);
+}
+
+.on-gorusme-form button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+
+/* ---------- WHATSAPP / INSTAGRAM ---------- */
+
+#fixed-whatsapp,
+#fixed-instagram {
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease !important;
+}
+
+#fixed-whatsapp:hover,
+#fixed-instagram:hover {
+    transform: scale(1.12) !important;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.38) !important;
+}
+
+
+/* Hafif nefes alma efekti */
+
+#fixed-whatsapp {
+    animation: socialPulse 3.5s ease-in-out infinite;
+}
+
+#fixed-instagram {
+    animation: socialPulse 3.5s ease-in-out infinite 1.2s;
+}
+
+@keyframes socialPulse {
+    0%, 100% {
+        box-shadow: 0 8px 25px rgba(0,0,0,.35);
+    }
+
+    50% {
+        box-shadow:
+            0 8px 30px rgba(0,0,0,.35),
+            0 0 0 7px rgba(255,255,255,.035);
+    }
+}
+
+
+/* ---------- BAŞLIKLAR ---------- */
+
+section h2 {
+    transition: transform .25s ease;
+}
+
+section h2:hover {
+    transform: translateY(-1px);
+}
+
+
+/* ---------- HAREKET AZALTMA ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero-button,
+    #fixed-whatsapp,
+    #fixed-instagram,
+    #calisma-alanlari .card,
+    #hakkimda .card {
+        animation: none !important;
+        transition: none !important;
+    }
+}
 </style>
 
 </head>
