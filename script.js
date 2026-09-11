@@ -229,3 +229,51 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+document.addEventListener("DOMContentLoaded", () => {
+
+    const kvkkLink = document.getElementById("kvkk-link");
+    const kvkkOverlay = document.getElementById("kvkk-overlay");
+    const kvkkClose = document.getElementById("kvkk-close");
+    const kvkkOk = document.getElementById("kvkk-ok");
+
+    if (!kvkkLink || !kvkkOverlay) return;
+
+    function openKvkk(e) {
+        e.preventDefault();
+
+        kvkkOverlay.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeKvkk() {
+        kvkkOverlay.classList.remove("active");
+
+        document.body.style.overflow = "";
+    }
+
+    kvkkLink.addEventListener("click", openKvkk);
+
+    kvkkClose.addEventListener("click", closeKvkk);
+
+    kvkkOk.addEventListener("click", closeKvkk);
+
+    // Karanlık arka plana basınca da kapansın
+    kvkkOverlay.addEventListener("click", (e) => {
+
+        if (e.target === kvkkOverlay) {
+            closeKvkk();
+        }
+
+    });
+
+    // ESC ile kapatma
+    document.addEventListener("keydown", (e) => {
+
+        if (e.key === "Escape") {
+            closeKvkk();
+        }
+
+    });
+
+});
