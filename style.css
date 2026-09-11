@@ -4198,3 +4198,15 @@ body.dark-mode .cookie-box p {
     left: 85px !important;
 }
 
+/* Gündüz modu için orta bölüm ve kutu renkleri */
+body.light-mode .hakkinda-bolumu, 
+body.light-mode .section-arkaplan {
+    background: #f8f9fa !important; 
+    color: #1a1a1a !important;     
+}
+
+body.light-mode .hakkinda-kutu {
+    background: #ffffff !important; 
+    color: #333333 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important; 
+}
