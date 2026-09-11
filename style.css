@@ -4197,30 +4197,3 @@ body.dark-mode .cookie-box p {
 .floating-whatsapp {
     left: 85px !important;
 }
-/* Hakkımda kartları - okunabilirlik düzeltmesi */
-#hakkimda .about-card h3,
-#hakkimda .about-card h2 {
-    color: #ffffff !important;
-}
-
-#hakkimda .about-card p,
-#hakkimda .about-card li,
-#hakkimda .about-card span {
-    color: rgba(255, 255, 255, 0.78) !important;
-}
-
-#hakkimda .about-card li::marker {
-    color: #a98cff !important;
-}
-
-/* Mor kartların görünümü */
-#hakkimda .about-card {
-    background: linear-gradient(
-        145deg,
-        rgba(63, 35, 130, 0.95),
-        rgba(35, 20, 82, 0.98)
-    ) !important;
-
-    border: 1px solid rgba(151, 112, 255, 0.45) !important;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25) !important;
-}
