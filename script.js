@@ -1,8 +1,3 @@
-
-// Örnek: Sayfa kaydırma (scroll) veya buton tıklama olaylarını korumaya alma
-window.addEventListener('scroll', throttle(function() {
-    // Scroll işlemleri burada güvenle çalışır
-}, 100));
 // Tema değiştirme butonunu buluyoruz
 const themeToggleBtn = document.getElementById('theme-toggle');
 
