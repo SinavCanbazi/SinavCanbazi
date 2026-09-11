@@ -1839,7 +1839,39 @@ section, footer, header {
 }
 
 
+/* =========================================
+   KVKK KUTUSU
+   ========================================= */
 
+.kvkk-box {
+    position: relative;
+
+    width: min(560px, calc(100vw - 40px));
+    max-height: min(680px, calc(100vh - 80px));
+
+    padding: 30px;
+    box-sizing: border-box;
+
+    background: linear-gradient(
+        145deg,
+        #12263a,
+        #0b1726
+    );
+
+    border: 1px solid rgba(52, 189, 239, 0.45);
+    border-radius: 18px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.55),
+        0 0 35px rgba(52, 189, 239, 0.12);
+
+    color: #e5edf5;
+
+    overflow: hidden;
+
+    transform: translateY(10px) scale(0.97);
+    transition: transform 0.25s ease;
+}
 
 
 /* Açılınca kutu ortaya gelir */
