@@ -2392,7 +2392,27 @@ footer {
 }
 
 
+/* Hafif nefes alma efekti */
 
+#fixed-whatsapp {
+    animation: socialPulse 3.5s ease-in-out infinite;
+}
+
+#fixed-instagram {
+    animation: socialPulse 3.5s ease-in-out infinite 1.2s;
+}
+
+@keyframes socialPulse {
+    0%, 100% {
+        box-shadow: 0 8px 25px rgba(0,0,0,.35);
+    }
+
+    50% {
+        box-shadow:
+            0 8px 30px rgba(0,0,0,.35),
+            0 0 0 7px rgba(255,255,255,.035);
+    }
+}
 
 
 /* ---------- BAŞLIKLAR ---------- */
