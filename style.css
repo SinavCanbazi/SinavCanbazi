@@ -502,3 +502,118 @@ section, footer, header {
   will-change: auto;
   transform: translateZ(0);
 }
+.hero-form-card {
+    max-width: 420px;
+    width: 100%;
+    background: #ffffff;
+    padding: 35px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    border: 1px solid #eaeaea;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.hero-form-card h3 {
+    font-size: 1.5rem;
+    color: #111;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.input-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #444;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.hero-form-card input[type="text"],
+.hero-form-card input[type="email"],
+.hero-form-card input[type="tel"],
+.hero-form-card select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    background-color: #fff;
+    color: #111;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.hero-form-card select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+.hero-form-card input:focus,
+.hero-form-card select:focus {
+    border-color: #2dd4bf;
+}
+
+.helper-text {
+    display: block;
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 5px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 24px;
+    margin: 18px 0;
+    font-size: 0.95rem;
+    color: #222;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin-bottom: 24px;
+}
+
+.checkbox-group a {
+    color: #0d9488;
+    text-decoration: underline;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #7ee7d2;
+    color: #115e59;
+    border: none;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #5eead4;
+}
