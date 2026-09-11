@@ -341,6 +341,75 @@
     <!-- JAVASCRIPT KODLARI -->
     <script src="script.js"></script>
     <script>
+    /* =========================================
+       KVKK POPUP
+       ========================================= */
+
+    const kvkkLink = document.getElementById("kvkk-link");
+    const kvkkModal = document.getElementById("kvkk-modal");
+    const kvkkClose = document.getElementById("kvkk-close");
+    const kvkkOk = document.getElementById("kvkk-ok");
+
+    // KVKK metnine tıklama
+    if (kvkkLink) {
+
+        kvkkLink.addEventListener("click", function(e) {
+
+            e.preventDefault();
+
+            kvkkModal.classList.add("active");
+
+            document.body.style.overflow = "hidden";
+
+        });
+
+    }
+
+
+    // Kapat
+    function closeKvkk() {
+
+        kvkkModal.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    }
+
+
+    if (kvkkClose) {
+        kvkkClose.addEventListener("click", closeKvkk);
+    }
+
+    if (kvkkOk) {
+        kvkkOk.addEventListener("click", closeKvkk);
+    }
+
+
+    // Popup dışına tıklayınca kapat
+    if (kvkkModal) {
+
+        kvkkModal.addEventListener("click", function(e) {
+
+            if (e.target === kvkkModal) {
+                closeKvkk();
+            }
+
+        });
+
+    }
+
+
+    // ESC ile kapat
+    document.addEventListener("keydown", function(e) {
+
+        if (e.key === "Escape") {
+            closeKvkk();
+        }
+
+    });
+
+</script>
+    <script>
         // Form Gönderim İşlemi
         const form = document.getElementById('my-form');
         const statusBox = document.getElementById('form-status');
