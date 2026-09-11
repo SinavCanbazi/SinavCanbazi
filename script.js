@@ -1,150 +1,306 @@
-// Tema değiştirme butonunu buluyoruz
-const themeToggleBtn = document.getElementById('theme-toggle');
+document.addEventListener("DOMContentLoaded", function () {
 
-// Butona tıklandığında çalışacak fonksiyon
-themeToggleBtn.addEventListener('click', () => {
-    // Body elementine 'dark-mode' class'ını ekler veya çıkarır
-    document.body.classList.toggle('dark-mode');
-    
-    // Butondaki ikonu değiştirme (Ay / Güneş)
-    const icon = themeToggleBtn.querySelector('i');
-    if (document.body.classList.contains('dark-mode')) {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-    } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
+    const themeButton = document.getElementById("theme-toggle");
+
+    if (!themeButton) {
+        console.log("Tema butonu bulunamadı.");
+        return;
     }
-});
-// FORMSPREE HAVALI BİLDİRİM KUTUSU KODU
-const form = document.getElementById("my-form");
-const status = document.getElementById("form-status");
-const btn = document.getElementById("form-btn");
 
-if (form) {
-    async function handleSubmit(event) {
-        event.preventDefault();
-        const data = new FormData(event.target);
-        
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Gönderiliyor...';
+    const icon = themeButton.querySelector("i");
 
-        fetch(event.target.action, {
-            method: form.method,
-            body: data,
-            headers: { 'Accept': 'application/json' }
-        }).then(response => {
-            if (response.ok) {
-                status.className = "success";
-                status.innerHTML = '<i class="fa-solid fa-circle-check" style="font-size: 20px;"></i> Harika! Mesajın alındı, en kısa sürede dönüş yapacağım.';
-                form.reset();
-                btn.innerHTML = 'Mesaj Gönder';
-                btn.disabled = false;
+    // Kayıtlı temayı aç
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+
+        if (icon) {
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+        }
+    }
+
+    themeButton.addEventListener("click", function () {
+
+        document.body.classList.toggle("dark-mode");
+
+        const darkMode = document.body.classList.contains("dark-mode");
+
+        localStorage.setItem("theme", darkMode ? "dark" : "light");
+
+        if (icon) {
+
+            if (darkMode) {
+                icon.classList.remove("fa-moon");
+                icon.classList.add("fa-sun");
             } else {
-                status.className = "error";
-                status.innerHTML = '<i class="fa-solid fa-circle-exclamation" style="font-size: 20px;"></i> Bir sorun oluştu, lütfen tekrar deneyin.';
-                btn.innerHTML = 'Mesaj Gönder';
-                btn.disabled = false;
+                icon.classList.remove("fa-sun");
+                icon.classList.add("fa-moon");
             }
-        }).catch(error => {
-            status.className = "error";
-            status.innerHTML = '<i class="fa-solid fa-wifi" style="font-size: 20px;"></i> Bağlantı hatası! İnternetinizi kontrol edin.';
-            btn.innerHTML = 'Mesaj Gönder';
-            btn.disabled = false;
+
+        }
+
+    });
+
+});
+
+
+// ========================================
+// SMOOTH SCROLL
+// ========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const links = document.querySelectorAll('a[href^="#"]');
+
+    links.forEach(function (link) {
+
+        link.addEventListener("click", function (e) {
+
+            // KVKK linkini burada işleme
+            if (this.id === "kvkk-link") {
+                return;
+            }
+
+            const targetId = this.getAttribute("href");
+
+            if (!targetId || targetId === "#") {
+                return;
+            }
+
+            const targetSection = document.querySelector(targetId);
+
+            if (targetSection) {
+
+                e.preventDefault();
+
+                const navbar = document.querySelector(".navbar");
+                const navHeight = navbar ? navbar.offsetHeight : 0;
+
+                const targetPosition =
+                    targetSection.getBoundingClientRect().top +
+                    window.pageYOffset -
+                    navHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: "smooth"
+                });
+
+            }
+
         });
+
+    });
+
+});
+
+
+// ========================================
+// LOADER
+// ========================================
+
+window.addEventListener("load", function () {
+
+    const loaderWrapper = document.querySelector(".loader-wrapper");
+
+    if (loaderWrapper) {
+
+        setTimeout(function () {
+            loaderWrapper.classList.add("fade-out");
+        }, 300);
+
     }
-    
-    form.addEventListener("submit", handleSubmit);
-}
-window.addEventListener('DOMContentLoaded', () => {
-  // # ile başlayan tüm linkleri yakala
-  const links = document.querySelectorAll('a[href^="#"]');
 
-  links.forEach(link => {
-    link.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-
-      // Geçerli bir id var mı kontrol et
-      if (targetId && targetId !== '#') {
-        const targetSection = document.querySelector(targetId);
-
-        if (targetSection) {
-          e.preventDefault(); // Varsayılan hızlı atlamayı durdur
-
-          // Hedef bölümün sayfanın üstünden olan mesafesini hesapla
-          const navbar = document.querySelector('.navbar');
-          const navHeight = navbar ? navbar.offsetHeight : 0;
-          const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - navHeight;
-
-          // Smooth scroll işlemini başlat
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
-      }
-    });
-  });
 });
-<script>
-    window.addEventListener('load', () => {
-        const loaderWrapper = document.querySelector('.loader-wrapper');
-        if (loaderWrapper) {
-            setTimeout(() => {
-                loaderWrapper.classList.add('fade-out');
-            }, 300);
-        }
+
+
+
+
+// ========================================
+// KVKK MODAL
+// ========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const kvkkLink = document.getElementById("kvkk-link");
+    const kvkkOverlay = document.getElementById("kvkk-overlay");
+    const kvkkClose = document.getElementById("kvkk-close");
+    const kvkkOk = document.getElementById("kvkk-ok");
+
+    // Gerekli HTML yoksa dur
+    if (!kvkkLink || !kvkkOverlay) {
+        console.log("KVKK modal elemanları bulunamadı.");
+        return;
+    }
+
+    // -------------------------
+    // AÇ
+    // -------------------------
+
+    kvkkLink.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        kvkkOverlay.classList.add("active");
+
+        document.body.classList.add("modal-open");
+
     });
-</script>
-document.addEventListener('DOMContentLoaded', () => {
-  const contactForm = document.getElementById('my-form');
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', async function (e) {
-      e.preventDefault(); // Beyaz "Teşekkürler" sayfasına gitmeyi engeller
 
-      const formData = new FormData(this);
-      const actionUrl = this.getAttribute('action');
-      const statusText = document.getElementById('form-status');
+    // -------------------------
+    // KAPAT
+    // -------------------------
 
-      try {
-        const response = await fetch(actionUrl, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
+    function closeKvkk() {
+
+        kvkkOverlay.classList.remove("active");
+
+        document.body.classList.remove("modal-open");
+
+    }
+
+
+    // X
+    if (kvkkClose) {
+
+        kvkkClose.addEventListener("click", function () {
+            closeKvkk();
         });
 
-        if (response.ok) {
-          if (statusText) {
-            statusText.textContent = "Mesajınız başarıyla gönderildi!";
-            statusText.style.color = "#22c55e";
-          } else {
-            alert('Mesajınız başarıyla gönderildi!');
-          }
-          contactForm.reset();
-        } else {
-          if (statusText) {
-            statusText.textContent = "Bir hata oluştu. Lütfen tekrar deneyin.";
-            statusText.style.color = "#ef4444";
-          } else {
-            alert('Bir hata oluştu. Lütfen tekrar deneyin.');
-          }
-        }
-      } catch (error) {
-        alert('Bağlantı hatası oluştu.');
-      }
-    });
-  }
-});
-const contactForm = document.querySelector('.contact-form');
+    }
 
-if (contactForm) {
-    contactForm.addEventListener('submit', function() {
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        if (submitBtn) {
-            submitBtn.innerText = 'Gönderiliyor...';
+
+    // Anladım
+    if (kvkkOk) {
+
+        kvkkOk.addEventListener("click", function () {
+            closeKvkk();
+        });
+
+    }
+
+
+    // Karanlık alana tıklayınca
+    kvkkOverlay.addEventListener("click", function (e) {
+
+        if (e.target === kvkkOverlay) {
+            closeKvkk();
         }
+
     });
-}
+
+
+    // ESC
+    document.addEventListener("keydown", function (e) {
+
+        if (e.key === "Escape") {
+            closeKvkk();
+        }
+
+    });
+
+});
+// ==========================================
+// ÖN GÖRÜŞME FORMU - GOOGLE SHEETS
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form = document.getElementById("on-gorusme-form");
+
+    if (!form) return;
+
+    // FORM DAHA ÖNCE BAĞLANDIYSA TEKRAR BAĞLAMA
+    if (form.dataset.googleHandlerAttached === "true") {
+        return;
+    }
+
+    form.dataset.googleHandlerAttached = "true";
+
+    let isSubmitting = false;
+
+    form.addEventListener("submit", async function (e) {
+
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        // İKİNCİ GÖNDERİYİ ENGELLE
+        if (isSubmitting) return;
+
+        isSubmitting = true;
+
+        const button = form.querySelector('button[type="submit"]');
+
+        if (button) {
+            button.disabled = true;
+            button.textContent = "Gönderiliyor...";
+        }
+
+        try {
+
+            await fetch(form.action, {
+                method: "POST",
+                body: new FormData(form),
+                mode: "no-cors"
+            });
+
+            form.reset();
+
+            if (button) {
+                button.textContent = "Gönderildi ✓";
+            }
+
+            // BAŞARI MESAJI
+            const toast = document.createElement("div");
+
+            toast.className = "success-toast";
+
+            toast.innerHTML = `
+                <i class="fa-solid fa-circle-check"></i>
+                Mesajınız başarıyla gönderildi!
+            `;
+
+            document.body.appendChild(toast);
+
+            setTimeout(function () {
+                toast.classList.add("show");
+            }, 50);
+
+            setTimeout(function () {
+
+                toast.classList.remove("show");
+
+                setTimeout(function () {
+                    toast.remove();
+                }, 300);
+
+            }, 3000);
+
+            // BUTONU ESKİ HALİNE GETİR
+            setTimeout(function () {
+
+                if (button) {
+                    button.disabled = false;
+                    button.textContent = "Gönder!";
+                }
+
+                isSubmitting = false;
+
+            }, 2000);
+
+        } catch (error) {
+
+            console.error("Form gönderme hatası:", error);
+
+            if (button) {
+                button.disabled = false;
+                button.textContent = "Gönder!";
+            }
+
+            isSubmitting = false;
+        }
+
+    });
+
+});

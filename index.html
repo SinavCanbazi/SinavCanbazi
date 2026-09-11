@@ -1,221 +1,2768 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sınav Canbazı • Gözde Canbaz</title>
-<link rel="icon" type="image/png" href="fav.png">
-    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"
-    <!-- Tarayıcı Adres Çubuğu Rengini Sabitleme -->
-    <meta name="theme-color" content="#0f172a">
 
-    <!-- Open Graph / Sosyal Medya Paylaşım Kartı -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Sınav Canbazı | Gözde Canbaz - Rehberlik ve Koçluk">
-    <meta property="og:description" content="Hedefleri belirle, yolunu birlikte çizelim. YKS ve LGS Derece Odaklı Öğrenci Koçluğu.">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sınav Canbazı • Gözde Canbaz</title>
+
+    <meta
+        name="description"
+        content="Sınav Canbazı - Gözde Canbaz öğrenci koçluğu ve sınav hazırlık desteği."
+    >
+
+    <meta
+        name="theme-color"
+        content="#190052"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="fav.png"
+    >
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
 
-    <!-- CSS Dosyası -->
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
-    <!-- Font Awesome İkon Kütüphanesi -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+<style>
+
+/* =========================================================
+   GENEL
+   ========================================================= */
+
+:root {
+
+    --bg-main: #f5f7fb;
+    --bg-section: #ffffff;
+    --bg-card: #ffffff;
+    --bg-soft: #eef1f7;
+
+    --text-main: #181625;
+    --text-secondary: #666579;
+    --text-muted: #888697;
+
+    --primary: #5b35c9;
+    --primary-dark: #45239f;
+    --primary-soft: #eee9ff;
+
+    --border: #e4e2ec;
+
+    --hero-1: #190052;
+    --hero-2: #2d0874;
+
+    --input-bg: #ffffff;
+
+    --footer-bg: #10002f;
+
+    --shadow:
+        0 20px 60px rgba(35, 20, 75, 0.10);
+
+    --transition:
+        0.35s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    font-family: "Inter", sans-serif;
+
+    background: var(--bg-main);
+
+    color: var(--text-main);
+
+    line-height: 1.6;
+
+    overflow-x: hidden;
+
+    transition:
+        background var(--transition),
+        color var(--transition);
+}
+
+body.dark-mode {
+
+    --bg-main: #080b14;
+    --bg-section: #0e1320;
+    --bg-card: #131927;
+    --bg-soft: #171d2b;
+
+    --text-main: #f2f1f8;
+    --text-secondary: #b7b5c5;
+    --text-muted: #8d8b9d;
+
+    --primary: #9b7dff;
+    --primary-dark: #8061e8;
+    --primary-soft: #211b3d;
+
+    --border: #272e3f;
+
+    --hero-1: #0c0020;
+    --hero-2: #26005e;
+
+    --input-bg: #121827;
+
+    --footer-bg: #05060c;
+
+    --shadow:
+        0 20px 60px rgba(0, 0, 0, 0.38);
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   PRELOADER
+   ========================================================= */
+
+#preloader {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #190052;
+
+    z-index: 999999;
+
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
+}
+
+#preloader.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+.loader {
+
+    width: 52px;
+
+    height: 52px;
+
+    border: 4px solid rgba(255,255,255,.25);
+
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation:
+        loaderSpin
+        1s
+        linear
+        infinite;
+}
+
+@keyframes loaderSpin {
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    background: rgba(255,255,255,.90);
+
+    backdrop-filter: blur(16px);
+
+    -webkit-backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid var(--border);
+
+    z-index: 10000;
+
+    transition:
+        background var(--transition),
+        border-color var(--transition);
+}
+
+body.dark-mode .navbar {
+
+    background: rgba(8,11,20,.90);
+}
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--text-main);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 1.05rem;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.logo span {
+
+    color: var(--primary);
+}
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    list-style: none;
+}
+
+.nav-links a {
+
+    color: var(--text-main);
+
+    font-size: .92rem;
+
+    font-weight: 600;
+
+    transition: color .2s ease;
+}
+
+.nav-links a:hover {
+
+    color: var(--primary);
+}
+
+.nav-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+#theme-toggle {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--border);
+
+    background: var(--bg-soft);
+
+    color: var(--text-main);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+
+    transition:
+        background var(--transition),
+        color var(--transition),
+        border-color var(--transition);
+}
+
+#theme-toggle:hover {
+
+    color: var(--primary);
+
+    border-color: var(--primary);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    padding:
+        115px
+        6%
+        60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: var(--bg-main);
+}
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 430px;
+
+    height: 430px;
+
+    left: -200px;
+
+    top: 80px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(91,53,201,.08);
+
+    filter: blur(15px);
+
+    pointer-events: none;
+}
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+
+    height: 350px;
+
+    right: -150px;
+
+    bottom: -120px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(113,72,255,.10);
+
+    filter: blur(15px);
+
+    pointer-events: none;
+}
+
+.hero-content {
+
+    position: relative;
+
+    width: min(1120px, 100%);
+
+    min-height: 600px;
+
+    padding:
+        70px
+        7%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    border-radius: 34px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 88% 24%,
+            rgba(142,106,255,.23),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 8% 90%,
+            rgba(71,133,255,.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            var(--hero-1),
+            var(--hero-2)
+        );
+
+    box-shadow:
+        0 30px 80px rgba(30,0,80,.20);
+
+    isolation: isolate;
+}
+
+body.dark-mode .hero-content {
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.45);
+}
+
+.hero h1 {
+
+    position: relative;
+
+    z-index: 10;
+
+    max-width: 650px;
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: clamp(
+        3rem,
+        6vw,
+        5.8rem
+    );
+
+    line-height: 1.04;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 26px;
+}
+
+.hero h1 span {
+
+    color: #c9baff;
+}
+
+.hero p {
+
+    position: relative;
+
+    z-index: 10;
+
+    max-width: 570px;
+
+    color: rgba(255,255,255,.76);
+
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+
+    margin-bottom: 34px;
+}
+
+.hero-buttons {
+
+    position: relative;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+}
+
+.hero-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    min-height: 52px;
+
+    padding:
+        0 22px;
+
+    border-radius: 14px;
+
+    font-weight: 700;
+
+    transition:
+        transform .2s ease,
+        background .25s ease,
+        color .25s ease;
+}
+
+.hero-button:hover {
+
+    transform: translateY(-2px);
+}
+
+.hero-button.primary {
+
+    background: #ffffff;
+
+    color: #24005f;
+}
+
+.hero-button.primary:hover {
+
+    background: #f0ecff;
+}
+
+.hero-button.secondary {
+
+    border: 1px solid rgba(255,255,255,.24);
+
+    color: #ffffff;
+
+    background: rgba(255,255,255,.07);
+}
+
+.hero-button.secondary:hover {
+
+    background: rgba(255,255,255,.13);
+}
+
+
+/* =========================================================
+   HERO GÖRSEL / DEKORASYON
+   ========================================================= */
+
+.hero-visual {
+
+    position: absolute;
+
+    width: 360px;
+
+    height: 360px;
+
+    right: 5%;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+.hero-orbit {
+
+    position: absolute;
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    border-radius: 50%;
+}
+
+.orbit-1 {
+
+    inset: 30px;
+}
+
+.orbit-2 {
+
+    inset: 70px;
+
+    transform: rotate(45deg);
+}
+
+.orbit-3 {
+
+    inset: 105px;
+
+    transform: rotate(-35deg);
+}
+
+.hero-glow {
+
+    position: absolute;
+
+    width: 190px;
+
+    height: 190px;
+
+    left: 85px;
+
+    top: 85px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(128,97,255,.12);
+
+    filter: blur(30px);
+}
+
+
+/* =========================================================
+   BALONCUKLAR
+   ÇOK YAVAŞ / GÖZ YORMAYAN
+   ========================================================= */
+
+.hero-bubble {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 4;
+
+    will-change: transform;
+
+    opacity: .65;
+}
+
+.bubble-purple {
+
+    width: 125px;
+
+    height: 125px;
+
+    right: 25px;
+
+    top: 28px;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,.18),
+            transparent 25%
+        ),
+        linear-gradient(
+            135deg,
+            #a58cff,
+            #5c37d2
+        );
+
+    animation:
+        bubblePurple
+        17s
+        ease-in-out
+        infinite;
+}
+
+.bubble-green {
+
+    width: 76px;
+
+    height: 76px;
+
+    right: 110px;
+
+    bottom: 40px;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,.15),
+            transparent 25%
+        ),
+        #b8e85a;
+
+    animation:
+        bubbleGreen
+        19s
+        ease-in-out
+        infinite;
+}
+
+.bubble-yellow {
+
+    width: 47px;
+
+    height: 47px;
+
+    left: 62px;
+
+    bottom: 64px;
+
+    background: #efd05c;
+
+    animation:
+        bubbleYellow
+        16s
+        ease-in-out
+        infinite;
+}
+
+.bubble-blue {
+
+    width: 33px;
+
+    height: 33px;
+
+    left: 28px;
+
+    top: 74px;
+
+    background: #66b3e8;
+
+    animation:
+        bubbleBlue
+        18s
+        ease-in-out
+        infinite;
+}
+
+@keyframes bubblePurple {
+
+    0%,
+    100% {
+
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+    50% {
+
+        transform:
+            translate3d(9px,-13px,0)
+            scale(1.025);
+    }
+}
+
+@keyframes bubbleGreen {
+
+    0%,
+    100% {
+
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+    50% {
+
+        transform:
+            translate3d(-8px,9px,0)
+            scale(.975);
+    }
+}
+
+@keyframes bubbleYellow {
+
+    0%,
+    100% {
+
+        transform:
+            translate3d(0,0,0);
+    }
+
+    50% {
+
+        transform:
+            translate3d(6px,-8px,0);
+    }
+}
+
+@keyframes bubbleBlue {
+
+    0%,
+    100% {
+
+        transform:
+            translate3d(0,0,0);
+    }
+
+    50% {
+
+        transform:
+            translate3d(-5px,6px,0);
+    }
+}
+
+.hero-symbol {
+
+    position: absolute;
+
+    z-index: 5;
+
+    color:
+        rgba(255,255,255,.58);
+
+    font-size: 1.8rem;
+
+    font-weight: 800;
+
+    user-select: none;
+}
+
+.symbol-1 {
+
+    top: 18px;
+
+    left: 48px;
+}
+
+.symbol-2 {
+
+    top: 75px;
+
+    right: 12px;
+}
+
+.symbol-3 {
+
+    bottom: 60px;
+
+    left: 18px;
+}
+
+.symbol-4 {
+
+    bottom: 12px;
+
+    right: 72px;
+}
+
+.symbol-5 {
+
+    top: 145px;
+
+    left: 4px;
+}
+
+.hero-center {
+
+    position: absolute;
+
+    z-index: 6;
+
+    width: 96px;
+
+    height: 96px;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8c6bff,
+            #6341d2
+        );
+
+    color: #ffffff;
+
+    font-size: 2.25rem;
+
+    box-shadow:
+        0 0 50px
+        rgba(128,97,255,.35);
+}
+
+
+/* =========================================================
+   GENEL BÖLÜMLER
+   ========================================================= */
+
+.section {
+
+    padding:
+        100px 6%;
+
+    background: var(--bg-main);
+
+    transition:
+        background var(--transition);
+}
+
+.section-inner {
+
+    width: min(1100px, 100%);
+
+    margin: auto;
+}
+
+.section-title {
+
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+.section-title span {
+
+    display: block;
+
+    color: var(--primary);
+
+    font-size: .82rem;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+.section-title h2 {
+
+    font-family: "Poppins", sans-serif;
+
+    color: var(--text-main);
+
+    font-size: clamp(
+        2rem,
+        4vw,
+        3rem
+    );
+
+    line-height: 1.2;
+
+    margin-bottom: 12px;
+}
+
+.section-title p {
+
+    max-width: 650px;
+
+    margin: auto;
+
+    color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   HAKKIMDA
+   ========================================================= */
+
+.about-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 28px;
+}
+
+.about-card {
+
+    padding: 36px;
+
+    background: var(--bg-card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 24px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        background var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.about-card:hover {
+
+    box-shadow:
+        0 24px 65px
+        rgba(35,20,75,.13);
+}
+
+body.dark-mode .about-card:hover {
+
+    box-shadow:
+        0 24px 65px
+        rgba(0,0,0,.40);
+}
+
+.about-card h3 {
+
+    color: var(--text-main);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 1.35rem;
+
+    margin-bottom: 15px;
+}
+
+.about-card p {
+
+    color: var(--text-secondary);
+
+    margin-bottom: 14px;
+}
+
+.about-list {
+
+    list-style: none;
+
+    display: grid;
+
+    gap: 13px;
+
+    margin-top: 20px;
+}
+
+.about-list li {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    color: var(--text-secondary);
+}
+
+.about-list i {
+
+    color: var(--primary);
+
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   YETENEKLER
+   ========================================================= */
+
+.skills-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+.skill-card {
+
+    padding: 30px;
+
+    background: var(--bg-card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 22px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform .25s ease,
+        background var(--transition),
+        border-color var(--transition);
+}
+
+.skill-card:hover {
+
+    transform: translateY(-5px);
+}
+
+.skill-icon {
+
+    width: 54px;
+
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: var(--primary-soft);
+
+    color: var(--primary);
+
+    font-size: 1.3rem;
+
+    margin-bottom: 20px;
+}
+
+.skill-card h3 {
+
+    color: var(--text-main);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 1.12rem;
+
+    margin-bottom: 10px;
+}
+
+.skill-card p {
+
+    color: var(--text-secondary);
+
+    font-size: .94rem;
+}
+
+
+/* =========================================================
+   ÖN GÖRÜŞME
+   ========================================================= */
+
+.on-gorusme-section {
+
+    padding:
+        100px 6%;
+
+    background:
+        var(--bg-main);
+}
+
+.on-gorusme-card {
+
+    width: min(760px, 100%);
+
+    margin: auto;
+
+    padding: 48px;
+
+    background: var(--bg-card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 28px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        background var(--transition),
+        border-color var(--transition);
+}
+
+.on-gorusme-card h2 {
+
+    color: var(--text-main);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: clamp(
+        1.8rem,
+        4vw,
+        2.6rem
+    );
+
+    text-align: center;
+
+    margin-bottom: 10px;
+}
+
+.form-description {
+
+    color: var(--text-secondary);
+
+    text-align: center;
+
+    margin-bottom: 34px;
+}
+
+.on-gorusme-form {
+
+    display: grid;
+
+    gap: 19px;
+}
+
+.on-form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.on-form-group label {
+
+    color: var(--text-main);
+
+    font-size: .9rem;
+
+    font-weight: 600;
+}
+
+.on-form-group input,
+.on-form-group select,
+.on-form-group textarea {
+
+    width: 100%;
+
+    min-height: 54px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 13px;
+
+    outline: none;
+
+    background: var(--input-bg);
+
+    color: var(--text-main);
+
+    font-size: .95rem;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background var(--transition),
+        color var(--transition);
+}
+
+.on-form-group textarea {
+
+    padding:
+        15px;
+
+    min-height: 130px;
+
+    resize: vertical;
+}
+
+.on-form-group input::placeholder,
+.on-form-group textarea::placeholder {
+
+    color: var(--text-muted);
+}
+
+.on-form-group input:focus,
+.on-form-group select:focus,
+.on-form-group textarea:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(91,53,201,.10);
+}
+
+body.dark-mode
+.on-form-group input:focus,
+body.dark-mode
+.on-form-group select:focus,
+body.dark-mode
+.on-form-group textarea:focus {
+
+    box-shadow:
+        0 0 0 3px
+        rgba(155,125,255,.12);
+}
+
+.on-form-group small {
+
+    color: var(--text-muted);
+
+    font-size: .78rem;
+}
+
+.on-radio-group {
+
+    display: flex;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+
+    padding:
+        5px 0;
+}
+
+.on-radio-group label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--text-secondary);
+
+    cursor: pointer;
+}
+
+.on-radio-group input {
+
+    accent-color: var(--primary);
+}
+
+.on-kvkk {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    color: var(--text-secondary);
+
+    font-size: .86rem;
+
+    line-height: 1.5;
+
+    cursor: pointer;
+}
+
+.on-kvkk input {
+
+    margin-top: 4px;
+
+    accent-color: var(--primary);
+
+    flex-shrink: 0;
+}
+
+.on-kvkk a {
+
+    color: var(--primary);
+
+    font-weight: 700;
+
+    text-decoration: underline;
+}
+
+.on-gorusme-form button {
+
+    min-height: 56px;
+
+    margin-top: 8px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    font-size: 1rem;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+.on-gorusme-form button:hover {
+
+    background: var(--primary-dark);
+
+    transform: translateY(-2px);
+}
+
+.form-status {
+
+    display: none;
+
+    padding: 13px 16px;
+
+    border-radius: 12px;
+
+    font-size: .9rem;
+
+    text-align: center;
+}
+
+.form-status.success {
+
+    display: block;
+
+    background: rgba(46,204,113,.12);
+
+    color: #218c50;
+}
+
+.form-status.error {
+
+    display: block;
+
+    background: rgba(231,76,60,.12);
+
+    color: #c0392b;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+
+    padding:
+        60px 6% 30px;
+
+    background: var(--footer-bg);
+
+    color: rgba(255,255,255,.76);
+}
+
+.footer-inner {
+
+    width: min(1100px, 100%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr 1fr 1fr;
+
+    gap: 40px;
+}
+
+.footer-logo {
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 1.25rem;
+
+    font-weight: 800;
+
+    margin-bottom: 15px;
+}
+
+.footer-column h3 {
+
+    color: #ffffff;
+
+    font-size: 1rem;
+
+    margin-bottom: 15px;
+}
+
+.footer-column p {
+
+    color: rgba(255,255,255,.62);
+
+    font-size: .9rem;
+
+    max-width: 400px;
+}
+
+.footer-column a {
+
+    display: block;
+
+    width: fit-content;
+
+    color: rgba(255,255,255,.68);
+
+    margin-bottom: 9px;
+
+    font-size: .9rem;
+
+    transition: color .2s ease;
+}
+
+.footer-column a:hover {
+
+    color: #ffffff;
+}
+
+.footer-bottom {
+
+    width: min(1100px, 100%);
+
+    margin:
+        40px auto 0;
+
+    padding-top: 22px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.10);
+
+    color:
+        rgba(255,255,255,.48);
+
+    font-size: .82rem;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   SABİT WHATSAPP / INSTAGRAM
+   ========================================================= */
+
+#fixed-whatsapp,
+#fixed-instagram {
+
+    position: fixed !important;
+
+    right: 22px !important;
+
+    width: 54px !important;
+
+    height: 54px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    border-radius: 50% !important;
+
+    color: #ffffff !important;
+
+    text-decoration: none !important;
+
+    z-index: 2147483647 !important;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.30) !important;
+
+    transition:
+        transform .2s ease,
+        filter .2s ease !important;
+}
+
+#fixed-whatsapp {
+
+    bottom: 22px !important;
+
+    background: #25D366 !important;
+
+    font-size: 28px !important;
+}
+
+#fixed-instagram {
+
+    bottom: 88px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #833ab4,
+            #fd1d1d,
+            #fcb045
+        ) !important;
+
+    font-size: 27px !important;
+}
+
+#fixed-whatsapp:hover,
+#fixed-instagram:hover {
+
+    transform:
+        scale(1.08) !important;
+
+    filter:
+        brightness(1.05);
+}
+
+
+/* =========================================================
+   KVKK MODAL
+   ========================================================= */
+
+#kvkk-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(5,3,15,.72);
+
+    backdrop-filter: blur(5px);
+
+    z-index: 99998;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+}
+
+#kvkk-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+#kvkk-modal {
+
+    position: relative;
+
+    width: min(700px, 100%);
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    padding: 38px;
+
+    border-radius: 24px;
+
+    background: var(--bg-card);
+
+    color: var(--text-main);
+
+    border:
+        1px solid
+        var(--border);
+
+    box-shadow: var(--shadow);
+}
+
+#kvkk-modal h2 {
+
+    color: var(--text-main);
+
+    font-family: "Poppins", sans-serif;
+
+    margin-bottom: 20px;
+}
+
+#kvkk-modal h3 {
+
+    color: var(--text-main);
+
+    margin:
+        22px 0 8px;
+}
+
+#kvkk-modal p,
+#kvkk-modal li {
+
+    color: var(--text-secondary);
+
+    font-size: .92rem;
+}
+
+#kvkk-modal ul {
+
+    padding-left: 20px;
+}
+
+#kvkk-close {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 17px;
+
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--bg-soft);
+
+    color: var(--text-main);
+
+    cursor: pointer;
+
+    font-size: 1.1rem;
+}
+
+#kvkk-ok {
+
+    width: 100%;
+
+    min-height: 48px;
+
+    margin-top: 25px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   ÇEREZ
+   ========================================================= */
+
+#cookie-consent {
+
+    position: fixed;
+
+    left: 20px;
+
+    bottom: 20px;
+
+    width: min(430px, calc(100% - 40px));
+
+    padding: 22px;
+
+    background: var(--bg-card);
+
+    color: var(--text-main);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+
+    z-index: 99997;
+
+    display: none;
+}
+
+#cookie-consent.show {
+
+    display: block;
+}
+
+#cookie-consent h3 {
+
+    color: var(--text-main);
+
+    margin-bottom: 8px;
+
+    font-family: "Poppins", sans-serif;
+}
+
+#cookie-consent p {
+
+    color: var(--text-secondary);
+
+    font-size: .84rem;
+
+    margin-bottom: 15px;
+}
+
+.cookie-buttons {
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.cookie-buttons button {
+
+    min-height: 40px;
+
+    padding:
+        0 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    font-size: .82rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.cookie-buttons button.secondary {
+
+    background: var(--bg-soft);
+
+    color: var(--text-main);
+
+    border:
+        1px solid
+        var(--border);
+}
+
+
+/* =========================================================
+   MOBİL
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+
+        padding:
+            0 4%;
+    }
+
+    .nav-links {
+
+        gap: 16px;
+    }
+
+    .hero-content {
+
+        min-height: 600px;
+
+        padding:
+            60px 7%;
+    }
+
+    .hero-visual {
+
+        right: -30px;
+
+        opacity: .52;
+
+        transform:
+            translateY(-50%)
+            scale(.85);
+    }
+
+    .about-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .footer-inner {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .navbar {
+
+        height: 68px;
+    }
+
+    .logo {
+
+        font-size: .9rem;
+    }
+
+    .nav-links {
+
+        display: none;
+    }
+
+    .hero {
+
+        padding:
+            92px 4% 35px;
+    }
+
+    .hero-content {
+
+        min-height: 680px;
+
+        padding:
+            50px 28px;
+
+        border-radius: 26px;
+    }
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                2.65rem,
+                13vw,
+                4rem
+            );
+
+        letter-spacing: -2px;
+    }
+
+    .hero p {
+
+        font-size: .94rem;
+    }
+
+    .hero-visual {
+
+        width: 300px;
+
+        height: 300px;
+
+        right: -80px;
+
+        top: 67%;
+
+        opacity: .38;
+
+        transform:
+            translateY(-50%)
+            scale(.75);
+    }
+
+    .hero-buttons {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .hero-button {
+
+        width: 100%;
+    }
+
+    .section {
+
+        padding:
+            75px 5%;
+    }
+
+    .skills-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .on-gorusme-section {
+
+        padding:
+            75px 5%;
+    }
+
+    .on-gorusme-card {
+
+        padding:
+            30px 20px;
+
+        border-radius: 22px;
+    }
+
+    .footer-inner {
+
+        grid-template-columns: 1fr;
+    }
+
+    #fixed-whatsapp {
+
+        right: 15px !important;
+
+        bottom: 15px !important;
+
+        width: 50px !important;
+
+        height: 50px !important;
+
+        font-size: 25px !important;
+    }
+
+    #fixed-instagram {
+
+        right: 15px !important;
+
+        bottom: 75px !important;
+
+        width: 50px !important;
+
+        height: 50px !important;
+
+        font-size: 24px !important;
+    }
+
+    #cookie-consent {
+
+        left: 15px;
+
+        bottom: 15px;
+
+        width:
+            calc(100% - 30px);
+    }
+
+    #kvkk-modal {
+
+        padding:
+            30px 20px;
+    }
+}
+
+
+/* =========================================================
+   HAREKETİ AZALTMA
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+    }
+}
+
+</style>
+
 </head>
+
+
 <body>
-    <!-- ==============================
-     KVKK POPUP
-     ============================== -->
 
-<div id="kvkk-modal" class="kvkk-modal">
 
-    <div class="kvkk-box">
+<!-- =====================================================
+     PRELOADER
+     ===================================================== -->
 
-        <button id="kvkk-close" class="kvkk-close" type="button">
-            &times;
-        </button>
-
-        <div class="kvkk-icon">
-            <i class="fa-solid fa-shield-halved"></i>
-        </div>
-
-        <h2>KVKK Aydınlatma Metni</h2>
-
-        <div class="kvkk-content">
-
-            <p>
-                Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin
-                Korunması Kanunu ("KVKK") kapsamında kişisel
-                verilerinizin işlenmesine ilişkin olarak
-                bilgilendirme amacıyla hazırlanmıştır.
-            </p>
-
-            <h3>1. Veri Sorumlusu</h3>
-
-            <p>
-                Sınav Canbazı / Gözde Canbaz olarak, tarafınızdan
-                paylaşılan kişisel verilerin güvenliğinin korunmasına
-                önem veriyoruz.
-            </p>
-
-            <h3>2. İşlenen Kişisel Veriler</h3>
-
-            <p>
-                Ön görüşme formu aracılığıyla ad-soyad, e-posta
-                adresi, telefon numarası, sınıf bilgisi ve öğrenci/
-                veli bilgisi gibi veriler tarafınızdan
-                paylaşılabilmektedir.
-            </p>
-
-            <h3>3. Kişisel Verilerin İşlenme Amacı</h3>
-
-            <p>
-                Paylaşılan bilgiler; ücretsiz ön görüşme talebinizin
-                değerlendirilmesi, sizinle iletişime geçilmesi,
-                koçluk hizmetleri hakkında bilgi verilmesi ve
-                talebinizin yürütülmesi amacıyla kullanılmaktadır.
-            </p>
-
-            <h3>4. Verilerin Korunması</h3>
-
-            <p>
-                Kişisel verileriniz yalnızca belirtilen amaçlar
-                doğrultusunda kullanılmakta ve gerekli güvenlik
-                tedbirleri alınarak korunmaktadır.
-            </p>
-
-            <h3>5. Haklarınız</h3>
-
-            <p>
-                KVKK'nın 11. maddesi kapsamında kişisel verilerinizle
-                ilgili çeşitli haklara sahipsiniz. Kişisel
-                verilerinizle ilgili taleplerinizi veri sorumlusuna
-                iletebilirsiniz.
-            </p>
-
-        </div>
-
-        <button id="kvkk-ok" class="kvkk-ok" type="button">
-            Anladım
-        </button>
-
-    </div>
-
+<div id="preloader">
+    <div class="loader"></div>
 </div>
 
-    <!-- PRELOADER (SAYFA YÜKLENME ANİMASYONU) -->
-    <div class="loader-wrapper">
-        <div class="loader"></div>
-    </div>
 
-    <!-- NAVBAR (ÜST MENÜ) -->
-    <header class="navbar">
-        <div class="logo">Sınav<span> Canbazı </span></div>
-        
-        <nav>
-            <ul>
-                
-                <li><a href="#anasayfa">Ana Sayfa</a></li>
-                <li><a href="#hakkimda">Hakkımda</a></li>
-                <li><a href="#yetenekler">Hizmetler</a></li>
-                <li><a href="#iletisim">İletişim</a></li>
-            </ul>
-        </nav>
-        <button id="theme-toggle" class="theme-btn" aria-label="Tema Değiştir">
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<header class="navbar">
+
+    <a
+        href="#anasayfa"
+        class="logo"
+    >
+        Sınav <span>Canbazı</span>
+    </a>
+
+    <nav>
+        <ul class="nav-links">
+
+            <li>
+                <a href="#anasayfa">
+                    Ana Sayfa
+                </a>
+            </li>
+
+            <li>
+                <a href="#hakkimda">
+                    Hakkımda
+                </a>
+            </li>
+
+            <li>
+                <a href="#yetenekler">
+                    Çalışma Alanlarım
+                </a>
+            </li>
+
+            <li>
+                <a href="#on-gorusme">
+                    Ön Görüşme
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+
+    <div class="nav-right">
+
+        <button
+            id="theme-toggle"
+            type="button"
+            aria-label="Temayı değiştir"
+        >
             <i class="fa-solid fa-moon"></i>
         </button>
-    </header>
 
-    <!-- HERO / KARŞILAMA BÖLÜMÜ -->
-    <section id="anasayfa" class="hero">
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<main id="anasayfa">
+
+    <section class="hero">
+
         <div class="hero-content">
-            <img src="favicon.png.png" alt="Gözde Canbaz Profil Resmi" class="profile-img">
-            <h1>Merhaba, Ben <span class="highlight">Gözde Canbaz</span></h1>
-            <p>Hedefleri belirle, yolunu birlikte çizelim.</p>
-            <div class="hero-buttons">
-                <a href="#iletisim" class="btn btn-primary">İletişime Geç</a>
-                <a href="#yetenekler" class="btn btn-secondary">Neler Yapıyorum?</a>
-            </div>
-        </div>
-    
-        <body>
 
-    <!-- ÜCRETSİZ ÖN GÖRÜŞME FORMU -->
-    <section class="on-gorusme-section">
+
+            <!-- Yavaş hareket eden baloncuklar -->
+
+            <div
+                class="hero-visual"
+                aria-hidden="true"
+            >
+
+                <div
+                    class="hero-bubble bubble-purple"
+                ></div>
+
+                <div
+                    class="hero-bubble bubble-green"
+                ></div>
+
+                <div
+                    class="hero-bubble bubble-yellow"
+                ></div>
+
+                <div
+                    class="hero-bubble bubble-blue"
+                ></div>
+
+
+                <div
+                    class="hero-orbit orbit-1"
+                ></div>
+
+                <div
+                    class="hero-orbit orbit-2"
+                ></div>
+
+                <div
+                    class="hero-orbit orbit-3"
+                ></div>
+
+
+                <div class="hero-glow"></div>
+
+
+                <span class="hero-symbol symbol-1">
+                    +
+                </span>
+
+                <span class="hero-symbol symbol-2">
+                    π
+                </span>
+
+                <span class="hero-symbol symbol-3">
+                    %
+                </span>
+
+                <span class="hero-symbol symbol-4">
+                    ✓
+                </span>
+
+                <span class="hero-symbol symbol-5">
+                    ∞
+                </span>
+
+
+                <div class="hero-center">
+
+                    <i class="fa-solid fa-compass"></i>
+
+                </div>
+
+            </div>
+
+
+            <h1>
+
+                Merhaba, ben<br>
+
+                <span>
+                    Gözde Canbaz.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Öğrencilerin yalnızca daha fazla çalışmasını değil,
+                kendileri için doğru çalışma sistemini kurmasını
+                hedefleyen öğrenci koçuyum.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#on-gorusme"
+                    class="hero-button primary"
+                >
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                    Ücretsiz Ön Görüşme
+
+                </a>
+
+
+                <a
+                    href="#hakkimda"
+                    class="hero-button secondary"
+                >
+
+                    Beni Tanı
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         HAKKIMDA
+         ================================================= -->
+
+    <section
+        id="hakkimda"
+        class="section"
+    >
+
+        <div class="section-inner">
+
+            <div class="section-title">
+
+                <span>
+                    Hakkımda
+                </span>
+
+                <h2>
+                    Doğru sistem, doğru sonuç.
+                </h2>
+
+                <p>
+                    Öğrencinin kendi çalışma düzenini oluşturmasına
+                    ve hedeflerine daha bilinçli ilerlemesine yardımcı
+                    oluyorum.
+                </p>
+
+            </div>
+
+
+            <div class="about-grid">
+
+
+                <div class="about-card">
+
+                    <h3>
+                        Ben kimim?
+                    </h3>
+
+                    <p>
+                        Ben Gözde Canbaz. Öğrencilerin sınav
+                        süreçlerinde yalnızca ders çalışmaya değil,
+                        çalışma alışkanlıklarını doğru şekilde
+                        oluşturmaya odaklanıyorum.
+                    </p>
+
+                    <p>
+                        Her öğrencinin farklı olduğunu düşünüyorum.
+                        Bu nedenle hazır ve herkese uyan tek bir
+                        çalışma programı yerine öğrencinin ihtiyaçlarına
+                        uygun bir sistem oluşturmayı hedefliyorum.
+                    </p>
+
+                </div>
+
+
+                <div class="about-card">
+
+                    <h3>
+                        Çalışma anlayışım
+                    </h3>
+
+                    <ul class="about-list">
+
+                        <li>
+                            <i class="fa-solid fa-check"></i>
+                            <span>
+                                Öğrenciyi tanımak ve ihtiyaçlarını belirlemek
+                            </span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-check"></i>
+                            <span>
+                                Gerçekçi ve uygulanabilir çalışma sistemi oluşturmak
+                            </span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-check"></i>
+                            <span>
+                                Zaman yönetimini geliştirmek
+                            </span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-check"></i>
+                            <span>
+                                Motivasyonu sürdürülebilir hale getirmek
+                            </span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-check"></i>
+                            <span>
+                                Süreci düzenli olarak takip etmek
+                            </span>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         YETENEKLER
+         ================================================= -->
+
+    <section
+        id="yetenekler"
+        class="section"
+    >
+
+        <div class="section-inner">
+
+            <div class="section-title">
+
+                <span>
+                    Çalışma Alanlarım
+                </span>
+
+                <h2>
+                    Öğrenciye uygun bir sistem.
+                </h2>
+
+                <p>
+                    Sınav sürecini daha planlı, anlaşılır ve
+                    sürdürülebilir hale getirmek için birlikte çalışıyoruz.
+                </p>
+
+            </div>
+
+
+            <div class="skills-grid">
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+
+                    <h3>
+                        Programlama
+                    </h3>
+
+                    <p>
+                        Öğrencinin günlük ve haftalık çalışma
+                        düzenini oluşturmasına yardımcı oluyorum.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <h3>
+                        Zaman Yönetimi
+                    </h3>
+
+                    <p>
+                        Ders, tekrar, soru çözümü ve dinlenme
+                        zamanlarını dengeli şekilde planlıyoruz.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+
+                    <h3>
+                        Hedef Belirleme
+                    </h3>
+
+                    <p>
+                        Büyük hedefleri ulaşılabilir küçük adımlara
+                        bölerek ilerliyoruz.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+
+                    <h3>
+                        Takip ve Analiz
+                    </h3>
+
+                    <p>
+                        Çalışma sürecini değerlendirerek öğrencinin
+                        gelişimine göre sistemi güncelliyoruz.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+
+                    <h3>
+                        Çalışma Stratejileri
+                    </h3>
+
+                    <p>
+                        Öğrencinin kendisi için verimli çalışma
+                        yöntemlerini keşfetmesine destek oluyorum.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <h3>
+                        Motivasyon
+                    </h3>
+
+                    <p>
+                        Sınav sürecinin yalnızca akademik değil,
+                        psikolojik tarafını da dikkate alıyorum.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ÖN GÖRÜŞME FORMU
+         ================================================= -->
+
+    <section
+        id="on-gorusme"
+        class="on-gorusme-section"
+    >
 
         <div class="on-gorusme-card">
 
-            <h2>Ücretsiz Ön Görüşme Formu</h2>
+            <h2>
+                Ücretsiz Ön Görüşme
+            </h2>
 
-            <form id="on-gorusme-form"
-                  action="https://formspree.io/f/xrpgjykr"
-                  method="POST">
+            <p class="form-description">
+                Seni ve ihtiyaçlarını daha yakından tanımak
+                için aşağıdaki formu doldurabilirsin.
+            </p>
+
+
+            <form
+                action="https://script.google.com/macros/s/AKfycbxfM8xjPEQkcbtT548f3TsHYomBJdzNOL7f4Yqe4ZqBN-cCit-nHQrFdQoWd9HVwjRF/exec"
+                method="POST"
+                class="on-gorusme-form"
+                id="on-gorusme-form"
+                target="form-submit-frame"
+            >
+
 
                 <div class="on-form-group">
+
                     <input
                         type="text"
                         name="ad_soyad"
                         placeholder="Adınız Soyadınız"
+                        autocomplete="name"
                         required
                     >
+
                 </div>
 
-                <div class="on-form-group">
-                    <label>Sınıfınızı seçiniz</label>
 
-                    <select name="sinif" required>
-                        <option value="">Sınıfınızı seçiniz</option>
-                        <option>5. Sınıf</option>
-                        <option>6. Sınıf</option>
-                        <option>7. Sınıf</option>
-                        <option>8. Sınıf</option>
-                        <option>9. Sınıf</option>
-                        <option>10. Sınıf</option>
-                        <option>11. Sınıf</option>
-                        <option>12. Sınıf</option>
-                        <option>Mezun</option>
-                        <option>KPSS</option>
-                        <option>DGS</option>
-                        <option>ALES</option>
-                        <option>AGS</option>
+                <div class="on-form-group">
+
+                    <label for="sinif">
+                        Sınıfınızı seçiniz
+                    </label>
+
+                    <select
+                        id="sinif"
+                        name="sinif"
+                        required
+                    >
+
+                        <option value="">
+                            Sınıfınızı seçiniz
+                        </option>
+
+                        <option value="5. Sınıf">
+                            5. Sınıf
+                        </option>
+
+                        <option value="6. Sınıf">
+                            6. Sınıf
+                        </option>
+
+                        <option value="7. Sınıf">
+                            7. Sınıf
+                        </option>
+
+                        <option value="8. Sınıf">
+                            8. Sınıf
+                        </option>
+
+                        <option value="9. Sınıf">
+                            9. Sınıf
+                        </option>
+
+                        <option value="10. Sınıf">
+                            10. Sınıf
+                        </option>
+
+                        <option value="11. Sınıf">
+                            11. Sınıf
+                        </option>
+
+                        <option value="12. Sınıf">
+                            12. Sınıf
+                        </option>
+
+                        <option value="Mezun">
+                            Mezun
+                        </option>
+
+                        <option value="KPSS">
+                            KPSS
+                        </option>
+
+                        <option value="ALES">
+                            ALES
+                        </option>
+
+                        <option value="DGS">
+                            DGS
+                        </option>
+
+                        <option value="AGS">
+                            AGS
+                        </option>
+
                     </select>
+
                 </div>
 
+
                 <div class="on-form-group">
+
                     <input
                         type="email"
                         name="email"
                         placeholder="E-mail Adresiniz"
+                        autocomplete="email"
                         required
                     >
+
                 </div>
+
 
                 <div class="on-radio-group">
 
                     <label>
+
                         <input
                             type="radio"
                             name="kisi"
                             value="Öğrenciyim"
                             required
                         >
+
                         Öğrenciyim
+
                     </label>
 
+
                     <label>
+
                         <input
                             type="radio"
                             name="kisi"
                             value="Veliyim"
                         >
+
                         Veliyim
+
                     </label>
 
                 </div>
+
 
                 <div class="on-form-group">
 
@@ -223,6 +2770,7 @@
                         type="tel"
                         name="telefon"
                         placeholder="Telefon Numaranız"
+                        autocomplete="tel"
                         required
                     >
 
@@ -232,75 +2780,42 @@
 
                 </div>
 
-<label class="on-kvkk">
-    <input type="checkbox" name="kvkk" required>
 
-    <span>
-       <a href="javascript:void(0)" id="kvkk-link">KVKK metnini</a> okudum ve onaylıyorum.
-       
-       
-        
-    </span>
-</label>
-<!-- KVKK MODAL -->
-<div class="kvkk-overlay" id="kvkk-overlay">
+                <label class="on-kvkk">
 
-    <div class="kvkk-modal">
+                    <input
+                        type="checkbox"
+                        name="kvkk"
+                        value="Onaylandı"
+                        required
+                    >
 
-        <button class="kvkk-close" id="kvkk-close">
-            ×
-        </button>
+                    <span>
 
-        <h2>KVKK Aydınlatma Metni</h2>
+                        <a
+                            href="#"
+                            id="kvkk-link"
+                        >
+                            KVKK metnini
+                        </a>
 
-        <h3>1. Veri Sorumlusu</h3>
+                        okudum ve onaylıyorum.
 
-        <p>
-            Bu internet sitesi kapsamında elde edilen kişisel veriler,
-            6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK")
-            kapsamında veri sorumlusu tarafından işlenmektedir.
-        </p>
+                    </span>
 
-        <h3>2. İşlenen Kişisel Veriler</h3>
+                </label>
 
-        <p>
-            Ön görüşme formu aracılığıyla ad-soyad, e-posta adresi,
-            telefon numarası, sınıf bilgisi ve öğrenci/veli bilgisi
-            gibi kişisel veriler alınabilmektedir.
-        </p>
 
-        <h3>3. Kişisel Verilerin İşlenme Amacı</h3>
+                <div
+                    id="form-status"
+                    class="form-status"
+                ></div>
 
-        <p>
-            Toplanan kişisel veriler; ön görüşme talebinin
-            değerlendirilmesi, iletişim kurulması, koçluk hizmetleri
-            hakkında bilgi verilmesi ve randevu süreçlerinin
-            yürütülmesi amacıyla kullanılmaktadır.
-        </p>
-
-        <h3>4. Verilerin Saklanması</h3>
-
-        <p>
-            Kişisel veriler, ilgili mevzuatta öngörülen süreler
-            boyunca veya işleme amacı için gerekli olduğu sürece
-            güvenli şekilde saklanmaktadır.
-        </p>
-
-        <h3>5. Haklarınız</h3>
-
-        <p>
-            KVKK'nın 11. maddesi kapsamında kişisel verilerinizle
-            ilgili çeşitli haklara sahipsiniz. Detaylı bilgi ve
-            talepleriniz için iletişim kanallarından bizimle
-            iletişime geçebilirsiniz.
-        </p>
-
-    </div>
-
-</div>
 
                 <button type="submit">
+
                     Gönder!
+
                 </button>
 
             </form>
@@ -308,221 +2823,815 @@
         </div>
 
     </section>
-    </section>
 
-    <!-- HAKKIMDA BÖLÜMÜ -->
-    <section id="hakkimda" class="section">
-        <h2>Hakkımda</h2>
-        <p class="section-desc">
-            Ben Gözde Hocanız.<br><br>
-            Koçluk anlayışımın temelinde; kişiye özel planlama, düzenli takip, motivasyon ve sürdürülebilir çalışma alışkanlığı oluşturmak yer alıyor. Her bireyin hedefleri, çalışma düzeni ve ihtiyaçları farklı olduğu için hazır kalıplar yerine sana uygun bir sistem oluşturmayı hedefliyorum.<br><br>
-            Birlikte hedeflerini belirliyor, çalışma planını oluşturuyor ve süreç boyunca gelişimini düzenli olarak takip ediyoruz. Amacım yalnızca daha fazla çalışmanı sağlamak değil; daha doğru, planlı ve istikrarlı çalışmanı sağlamak.<br><br>
-            Küçük adımların zamanla büyük sonuçlara dönüşeceğine inanıyorum.<br><br>
-            Hedefini belirle, planını oluştur ve ilk adımı birlikte atalım.
-        </p>
-    </section>
+</main>
 
-    <!-- HİZMETLER VE KOÇLUK SÜRECİ -->
-    <section id="yetenekler" class="skills-section">
-        <div class="skills-container">
-            <h2 class="skills-title">Koçluk Sürecimiz</h2>
-            
-            <div class="skills-grid">
-                <!-- Kart 1 -->
-                <div class="skill-card">
-                    <div class="card-glow"></div>
-                    <div class="card-content">
-                        <div class="icon-box">
-                            <i class="fa-solid fa-calendar-check"></i>
-                        </div>
-                        <h3>Kişiye Özel Program</h3>
-                        <p>Haftalık ve günlük ders çalışma planlarının öğrencinin temposuna özel hazırlanması.</p>
-                    </div>
-                </div>
 
-                <!-- Kart 2 -->
-                <div class="skill-card">
-                    <div class="card-glow"></div>
-                    <div class="card-content">
-                        <div class="icon-box">
-                            <i class="fa-solid fa-chart-line"></i>
-                        </div>
-                        <h3>Gelişim ve Net Takibi</h3>
-                        <p>Deneme sınavı analizleri, eksik tespiti ve haftalık performans değerlendirmesi.</p>
-                    </div>
-                </div>
+<!-- =====================================================
+     FORM GİZLİ FRAME
+     ===================================================== -->
 
-                <!-- Kart 3 -->
-                <div class="skill-card">
-                    <div class="card-glow"></div>
-                    <div class="card-content">
-                        <div class="icon-box">
-                            <i class="fa-solid fa-brain"></i>
-                        </div>
-                        <h3>Motivasyon & Strateji</h3>
-                        <p>Sınav stresi yönetimi, odaklanma teknikleri ve doğru kaynak yönlendirmesi.</p>
-                    </div>
-                </div>
+<iframe
+    name="form-submit-frame"
+    id="form-submit-frame"
+    style="display:none;"
+></iframe>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer>
+
+    <div class="footer-inner">
+
+
+        <div class="footer-column">
+
+            <div class="footer-logo">
+                Sınav Canbazı
             </div>
+
+            <p>
+                Öğrencilerin kendi çalışma sistemlerini
+                oluşturmalarına yardımcı olmak için buradayım.
+            </p>
+
         </div>
-    </section>
-
-    <!-- İLETİŞİM BÖLÜMÜ -->
-    <section id="iletisim" class="section">
-        <h2>İletişim</h2>
-        <form id="my-form" class="contact-form" action="https://formspree.io/f/xrpgjykr" method="POST">
-            <input type="text" name="name" placeholder="Adınız Soyadınız" required>
-            <input type="email" name="email" placeholder="E-posta Adresiniz" required>
-            <textarea name="message" placeholder="Mesajınız..." rows="5" required></textarea>
-            <button id="form-btn" type="submit" class="btn btn-primary">Mesaj Gönder</button>
-            
-            <div id="form-status" class="status-box"></div>
-        </form>
-    </section>
 
 
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 Sınav Canbazı. Tüm Hakları Saklıdır.</p>
-        <div class="social-links">
-            <a href="https://instagram.com/sinav.canbazi" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://wa.me/905054421704" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <div class="footer-column">
+
+            <h3>
+                Menü
+            </h3>
+
+            <a href="#anasayfa">
+                Ana Sayfa
+            </a>
+
+            <a href="#hakkimda">
+                Hakkımda
+            </a>
+
+            <a href="#yetenekler">
+                Çalışma Alanlarım
+            </a>
+
+            <a href="#on-gorusme">
+                Ön Görüşme
+            </a>
+
         </div>
-    </footer>
 
-    <!-- SABİT BUTONLAR -->
-    <a href="https://wa.me/905054421704" target="_blank" class="floating-whatsapp" title="WhatsApp ile İletişime Geç">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-    <a href="https://instagram.com/sinav.canbazi" target="_blank" class="floating-insta" title="Instagram'da Takip Et">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
 
-    <!-- JAVASCRIPT KODLARI -->
-    <script src="script.js"></script>
-    <script>
-    /* =========================================
-       KVKK POPUP
-       ========================================= */
+        <div class="footer-column">
 
-    const kvkkLink = document.getElementById("kvkk-link");
-    const kvkkModal = document.getElementById("kvkk-modal");
-    const kvkkClose = document.getElementById("kvkk-close");
-    const kvkkOk = document.getElementById("kvkk-ok");
+            <h3>
+                İletişim
+            </h3>
 
-    // KVKK metnine tıklama
-    if (kvkkLink) {
+            <a
+                href="https://wa.me/905054421704"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <i class="fa-brands fa-whatsapp"></i>
+                WhatsApp
+            </a>
 
-        kvkkLink.addEventListener("click", function(e) {
+            <a
+                href="https://instagram.com/sinav.canbazi"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <i class="fa-brands fa-instagram"></i>
+                Instagram
+            </a>
 
-            e.preventDefault();
+        </div>
 
-            kvkkModal.classList.add("active");
+    </div>
 
-            document.body.style.overflow = "hidden";
 
-        });
+    <div class="footer-bottom">
+
+        © 2026 Sınav Canbazı • Gözde Canbaz
+        <br>
+        Tüm hakları saklıdır.
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     SABİT WHATSAPP
+     ===================================================== -->
+
+<a
+    href="https://wa.me/905054421704"
+    target="_blank"
+    rel="noopener noreferrer"
+    id="fixed-whatsapp"
+    aria-label="WhatsApp ile iletişime geç"
+>
+
+    <i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+
+<!-- =====================================================
+     SABİT INSTAGRAM
+     ===================================================== -->
+
+<a
+    href="https://instagram.com/sinav.canbazi"
+    target="_blank"
+    rel="noopener noreferrer"
+    id="fixed-instagram"
+    aria-label="Instagram"
+>
+
+    <i class="fa-brands fa-instagram"></i>
+
+</a>
+
+
+<!-- =====================================================
+     KVKK
+     ===================================================== -->
+
+<div
+    id="kvkk-overlay"
+    aria-hidden="true"
+>
+
+    <div
+        id="kvkk-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="kvkk-title"
+    >
+
+        <button
+            id="kvkk-close"
+            type="button"
+            aria-label="Kapat"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+
+        <h2 id="kvkk-title">
+            KVKK Aydınlatma Metni
+        </h2>
+
+
+        <p>
+
+            Bu internet sitesi üzerinden tarafınızdan paylaşılan
+            kişisel bilgiler, ücretsiz ön görüşme talebinizin
+            değerlendirilmesi ve sizinle iletişim kurulabilmesi
+            amacıyla işlenmektedir.
+
+        </p>
+
+
+        <h3>
+            İşlenen Bilgiler
+        </h3>
+
+        <ul>
+
+            <li>
+                Ad ve soyad
+            </li>
+
+            <li>
+                E-posta adresi
+            </li>
+
+            <li>
+                Telefon numarası
+            </li>
+
+            <li>
+                Sınıf / sınav bilgisi
+            </li>
+
+            <li>
+                Öğrenci / veli bilgisi
+            </li>
+
+        </ul>
+
+
+        <h3>
+            Veri İşleme Amacı
+        </h3>
+
+        <p>
+
+            Paylaşılan bilgiler ön görüşme talebinizin
+            değerlendirilmesi, iletişim kurulması ve hizmet
+            sürecinin yürütülmesi amacıyla kullanılabilir.
+
+        </p>
+
+
+        <h3>
+            Haklarınız
+        </h3>
+
+        <p>
+
+            KVKK kapsamında kişisel verilerinizle ilgili
+            sahip olduğunuz haklar hakkında bilgi almak için
+            ilgili veri sorumlusuna başvurabilirsiniz.
+
+        </p>
+
+
+        <button
+            id="kvkk-ok"
+            type="button"
+        >
+            Okudum ve Anladım
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ÇEREZ
+     ===================================================== -->
+
+<div id="cookie-consent">
+
+    <h3>
+        Çerez Kullanımı
+    </h3>
+
+    <p>
+
+        Bu internet sitesi, site deneyimini geliştirmek
+        amacıyla temel çerezleri kullanabilir.
+
+    </p>
+
+
+    <div class="cookie-buttons">
+
+        <button
+            type="button"
+            id="cookie-accept"
+        >
+            Kabul Et
+        </button>
+
+        <button
+            type="button"
+            id="cookie-reject"
+            class="secondary"
+        >
+            Reddet
+        </button>
+
+        <button
+            type="button"
+            id="cookie-settings"
+            class="secondary"
+        >
+            Ayarlar
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script>
+
+/* =========================================================
+   PRELOADER
+   ========================================================= */
+
+window.addEventListener(
+    "load",
+    function () {
+
+        const preloader =
+            document.getElementById("preloader");
+
+        setTimeout(
+            function () {
+
+                if (preloader) {
+
+                    preloader.classList.add("hide");
+
+                }
+
+            },
+            500
+        );
+
+    }
+);
+
+
+/* =========================================================
+   TEMA
+   ========================================================= */
+
+const themeToggle =
+    document.getElementById("theme-toggle");
+
+const savedTheme =
+    localStorage.getItem("theme");
+
+
+if (savedTheme === "dark") {
+
+    document.body.classList.add("dark-mode");
+
+}
+
+
+function updateThemeIcon() {
+
+    if (!themeToggle) {
+        return;
+    }
+
+    const icon =
+        themeToggle.querySelector("i");
+
+    if (!icon) {
+        return;
+    }
+
+    if (
+        document.body.classList.contains(
+            "dark-mode"
+        )
+    ) {
+
+        icon.className =
+            "fa-solid fa-sun";
+
+        themeToggle.setAttribute(
+            "aria-label",
+            "Gündüz moduna geç"
+        );
+
+    } else {
+
+        icon.className =
+            "fa-solid fa-moon";
+
+        themeToggle.setAttribute(
+            "aria-label",
+            "Gece moduna geç"
+        );
 
     }
 
+}
 
-    // Kapat
-    function closeKvkk() {
 
-        kvkkModal.classList.remove("active");
+updateThemeIcon();
 
-        document.body.style.overflow = "";
+
+if (themeToggle) {
+
+    themeToggle.addEventListener(
+        "click",
+        function () {
+
+            document.body.classList.toggle(
+                "dark-mode"
+            );
+
+            const isDark =
+                document.body.classList.contains(
+                    "dark-mode"
+                );
+
+            localStorage.setItem(
+                "theme",
+                isDark
+                    ? "dark"
+                    : "light"
+            );
+
+            updateThemeIcon();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   KVKK
+   ========================================================= */
+
+const kvkkOverlay =
+    document.getElementById(
+        "kvkk-overlay"
+    );
+
+const kvkkLink =
+    document.getElementById(
+        "kvkk-link"
+    );
+
+const kvkkClose =
+    document.getElementById(
+        "kvkk-close"
+    );
+
+const kvkkOk =
+    document.getElementById(
+        "kvkk-ok"
+    );
+
+
+function openKvkk(event) {
+
+    if (event) {
+
+        event.preventDefault();
 
     }
 
-
-    if (kvkkClose) {
-        kvkkClose.addEventListener("click", closeKvkk);
+    if (!kvkkOverlay) {
+        return;
     }
 
-    if (kvkkOk) {
-        kvkkOk.addEventListener("click", closeKvkk);
+    kvkkOverlay.classList.add(
+        "active"
+    );
+
+    kvkkOverlay.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+}
+
+
+function closeKvkk() {
+
+    if (!kvkkOverlay) {
+        return;
     }
 
+    kvkkOverlay.classList.remove(
+        "active"
+    );
 
-    // Popup dışına tıklayınca kapat
-    if (kvkkModal) {
+    kvkkOverlay.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 
-        kvkkModal.addEventListener("click", function(e) {
+    document.body.style.overflow =
+        "";
+}
 
-            if (e.target === kvkkModal) {
+
+if (kvkkLink) {
+
+    kvkkLink.addEventListener(
+        "click",
+        openKvkk
+    );
+
+}
+
+if (kvkkClose) {
+
+    kvkkClose.addEventListener(
+        "click",
+        closeKvkk
+    );
+
+}
+
+if (kvkkOk) {
+
+    kvkkOk.addEventListener(
+        "click",
+        closeKvkk
+    );
+
+}
+
+
+if (kvkkOverlay) {
+
+    kvkkOverlay.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target ===
+                kvkkOverlay
+            ) {
+
                 closeKvkk();
+
             }
 
-        });
+        }
+    );
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeKvkk();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ÇEREZ
+   ========================================================= */
+
+const cookieConsent =
+    document.getElementById(
+        "cookie-consent"
+    );
+
+const cookieAccept =
+    document.getElementById(
+        "cookie-accept"
+    );
+
+const cookieReject =
+    document.getElementById(
+        "cookie-reject"
+    );
+
+const cookieSettings =
+    document.getElementById(
+        "cookie-settings"
+    );
+
+
+const cookieChoice =
+    localStorage.getItem(
+        "cookie-consent"
+    );
+
+
+if (!cookieChoice) {
+
+    setTimeout(
+        function () {
+
+            if (cookieConsent) {
+
+                cookieConsent.classList.add(
+                    "show"
+                );
+
+            }
+
+        },
+        1200
+    );
+
+}
+
+
+function hideCookiePopup(
+    value
+) {
+
+    localStorage.setItem(
+        "cookie-consent",
+        value
+    );
+
+    if (cookieConsent) {
+
+        cookieConsent.classList.remove(
+            "show"
+        );
 
     }
 
+}
 
-    // ESC ile kapat
-    document.addEventListener("keydown", function(e) {
 
-        if (e.key === "Escape") {
-            closeKvkk();
+if (cookieAccept) {
+
+    cookieAccept.addEventListener(
+        "click",
+        function () {
+
+            hideCookiePopup(
+                "accepted"
+            );
+
         }
+    );
 
-    });
+}
+
+
+if (cookieReject) {
+
+    cookieReject.addEventListener(
+        "click",
+        function () {
+
+            hideCookiePopup(
+                "rejected"
+            );
+
+        }
+    );
+
+}
+
+
+if (cookieSettings) {
+
+    cookieSettings.addEventListener(
+        "click",
+        function () {
+
+            alert(
+                "Çerez ayarları için gerekli ayrıntılı politika metni yakında eklenecektir."
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+const consultationForm =
+    document.getElementById(
+        "on-gorusme-form"
+    );
+
+const formStatus =
+    document.getElementById(
+        "form-status"
+    );
+
+
+if (consultationForm) {
+
+    consultationForm.addEventListener(
+        "submit",
+        function () {
+
+            if (!formStatus) {
+                return;
+            }
+
+            formStatus.className =
+                "form-status success";
+
+            formStatus.textContent =
+                "Başvurunuz gönderiliyor...";
+
+            setTimeout(
+                function () {
+
+                    formStatus.textContent =
+                        "Başvurunuz alındı. En kısa sürede sizinle iletişime geçilecektir.";
+
+                },
+                1800
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MOBİLDE HERO BALONCUKLARININ HAREKETİNİ
+   DAHA DA YUMUŞAT
+   ========================================================= */
+
+const bubbles =
+    document.querySelectorAll(
+        ".hero-bubble"
+    );
+
+
+if (
+    window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches
+) {
+
+    bubbles.forEach(
+        function (bubble) {
+
+            bubble.style.animation =
+                "none";
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   NAVBAR LINKLERİ
+   ========================================================= */
+
+document
+    .querySelectorAll(
+        ".nav-links a, .hero-button"
+    )
+    .forEach(
+        function (link) {
+
+            link.addEventListener(
+                "click",
+                function () {
+
+                    const target =
+                        link.getAttribute(
+                            "href"
+                        );
+
+                    if (
+                        target &&
+                        target.startsWith("#")
+                    ) {
+
+                        const element =
+                            document.querySelector(
+                                target
+                            );
+
+                        if (element) {
+
+                            setTimeout(
+                                function () {
+
+                                    element.scrollIntoView(
+                                        {
+                                            behavior:
+                                                "smooth"
+                                        }
+                                    );
+
+                                },
+                                10
+                            );
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
+    );
 
 </script>
-    <script>
-        // Form Gönderim İşlemi
-        const form = document.getElementById('my-form');
-        const statusBox = document.getElementById('form-status');
 
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                statusBox.className = 'status-box sending show';
-                statusBox.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mesajınız iletiliyor...';
 
-                fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                }).then(response => {
-                    if (response.ok) {
-                        statusBox.className = 'status-box success show';
-                        statusBox.innerHTML = '<i class="fa-solid fa-circle-check"></i> Mesajınız başarıyla gönderildi!';
-                        form.reset();
-                        setTimeout(() => { statusBox.classList.remove('show'); }, 5000);
-                    } else {
-                        throw new Error();
-                    }
-                }).catch(() => {
-                    statusBox.className = 'status-box error show';
-                    statusBox.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Bir hata oluştu, lütfen tekrar deneyin.';
-                });
-            });
-        }
-
-        // Preloader Fonksiyonu
-        function hidePreloader() {
-            const loader = document.querySelector('.loader-wrapper');
-            if (loader && !loader.classList.contains('fade-out')) {
-                loader.classList.add('fade-out');
-            }
-        }
-        window.addEventListener('load', hidePreloader);
-        setTimeout(hidePreloader, 1500);
-
-        // Tema Değiştirici
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            if (localStorage.getItem('theme') === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
-            if (themeToggleBtn) {
-                themeToggleBtn.addEventListener('click', () => {
-                    document.body.classList.toggle('dark-mode');
-                    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-                });
-            }
-        });
-    </script>
 </body>
+
 </html>
