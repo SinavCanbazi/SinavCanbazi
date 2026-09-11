@@ -4221,7 +4221,7 @@ body:not(.dark-mode) #hakkimda .about-card li {
 }
 
 body:not(.dark-mode) #hakkimda .about-header h2 {
-    color: #171827 !important;
+    color: #e9e9eb !important;
 }
 
 body:not(.dark-mode) #hakkimda .about-intro,
