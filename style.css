@@ -1547,3 +1547,258 @@ section, footer, header {
 .hero-content h1 .highlight {
     white-space: nowrap;
 }
+/* =========================================
+   KVKK POPUP
+   ========================================= */
+
+.kvkk-modal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(2, 8, 23, 0.78);
+
+    backdrop-filter: blur(5px);
+
+    z-index: 99999;
+}
+
+
+/* Popup açıldığında */
+
+.kvkk-modal.active {
+    display: flex;
+}
+
+
+/* POPUP KUTUSU */
+
+.kvkk-box {
+    position: relative;
+
+    width: 100%;
+    max-width: 620px;
+
+    max-height: 75vh;
+
+    padding: 32px;
+
+    background: #0f1b2b;
+
+    border: 1px solid rgba(49, 182, 232, 0.45);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.55),
+        0 0 35px rgba(49, 182, 232, 0.10);
+
+    color: #e5edf5;
+
+    animation: kvkkOpen 0.25s ease;
+}
+
+
+/* AÇILIŞ ANİMASYONU */
+
+@keyframes kvkkOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* KAPATMA BUTONU */
+
+.kvkk-close {
+    position: absolute;
+
+    top: 14px;
+    right: 16px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: #ffffff;
+
+    font-size: 26px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.kvkk-close:hover {
+    background: #31b6e8;
+    color: #06111f;
+}
+
+
+/* İKON */
+
+.kvkk-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 12px;
+
+    border-radius: 14px;
+
+    background: rgba(49, 182, 232, 0.12);
+
+    color: #31b6e8;
+
+    font-size: 22px;
+}
+
+
+/* BAŞLIK */
+
+.kvkk-box h2 {
+    margin: 0 0 22px;
+
+    text-align: center;
+
+    font-size: 24px;
+
+    color: #ffffff;
+}
+
+
+/* METİN ALANI */
+
+.kvkk-content {
+
+    max-height: 48vh;
+
+    overflow-y: auto;
+
+    padding-right: 12px;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+
+    color: #b8c6d6;
+}
+
+
+/* BAŞLIKLAR */
+
+.kvkk-content h3 {
+
+    margin-top: 20px;
+    margin-bottom: 7px;
+
+    font-size: 16px;
+
+    color: #31b6e8;
+}
+
+
+/* PARAGRAFLAR */
+
+.kvkk-content p {
+    margin: 0 0 12px;
+}
+
+
+/* SCROLLBAR */
+
+.kvkk-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.kvkk-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.kvkk-content::-webkit-scrollbar-thumb {
+    background: #31b6e8;
+    border-radius: 10px;
+}
+
+
+/* ANLADIM BUTONU */
+
+.kvkk-ok {
+
+    display: block;
+
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #31b6e8;
+
+    color: #06111f;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.kvkk-ok:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 25px rgba(49, 182, 232, 0.25);
+}
+
+
+/* TELEFON */
+
+@media (max-width: 600px) {
+
+    .kvkk-box {
+        padding: 25px 20px;
+
+        max-height: 82vh;
+
+        border-radius: 16px;
+    }
+
+    .kvkk-box h2 {
+        font-size: 21px;
+    }
+
+    .kvkk-content {
+        font-size: 13px;
+        max-height: 55vh;
+    }
+
+}
