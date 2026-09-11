@@ -1,0 +1,493 @@
+/* =========================================================
+   1. GENEL SIFIRLAMA VE DEĞİŞKENLER
+   ========================================================= */
+:root {
+    /* Açık Tema (Light Mode) */
+    --bg-color: #f8fafc;
+    --bg-alt: #ffffff;
+    --text-color: #0f172a;
+    --text-muted: #475569;
+    --primary: #3b82f6;
+    --primary-hover: #1d4ed8;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --container-bg: #ffffff;
+    --heading-color: #0f172a;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Karanlık Tema (Dark Mode) */
+body.dark-mode {
+    --bg-color: #0b131e;
+    --bg-alt: rgba(15, 23, 42, 0.6);
+    --text-color: #f8fafc;
+    --text-muted: #cbd5e1;
+    --primary: #38bdf8;
+    --primary-hover: #0284c7;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --container-bg: rgba(15, 23, 42, 0.65);
+    --heading-color: #ffffff;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-weight: 450;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Başlık ve Metin Kalınlıkları */
+h1, h2, h3, .logo {
+    color: var(--heading-color);
+    font-weight: 700;
+}
+
+p, .section-desc {
+    color: var(--text-muted);
+}
+
+.highlight {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* =========================================================
+   2. NAVBAR
+   ========================================================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--card-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease;
+}
+
+.logo {
+    font-size: 24px;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 550;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--primary);
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* =========================================================
+   3. HERO SECTION & BUTONLAR
+   ========================================================= */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 4px solid var(--primary);
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Buton Stilleri */
+.btn {
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 550;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-color);
+    border: 2px solid var(--card-border);
+    backdrop-filter: blur(5px);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: var(--text-color);
+}
+
+/* =========================================================
+   4. SEKSİYONLAR & YETENEKLERİM (GLASSMORPHISM)
+   ========================================================= */
+.section {
+    padding: 80px 8%;
+    text-align: center;
+}
+
+.bg-alt {
+    background-color: var(--bg-alt);
+}
+
+.skills-section {
+    width: 100%;
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.skills-container {
+    background: var(--container-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 50px 40px 60px 40px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    width: 100%;
+    transition: background 0.3s ease;
+}
+
+.skills-title {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    letter-spacing: -0.5px;
+}
+
+.skills-grid {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.skill-card {
+    flex: 1 1 280px;
+    max-width: 320px;
+    position: relative;
+    border-radius: 18px;
+    padding: 35px 25px;
+    background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hover / Fare Üzerine Geldiğinde */
+.skill-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.25);
+}
+
+/* Kart Altı Parlama Efekti */
+.card-glow {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 35px;
+    background: #38bdf8;
+    filter: blur(20px);
+    opacity: 0.4;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.skill-card:hover .card-glow {
+    opacity: 0.8;
+    height: 50px;
+}
+
+/* İkon Renkleri */
+.icon-box {
+    margin-bottom: 20px;
+}
+
+.icon-box i {
+    font-size: 48px;
+}
+
+.html-icon { color: #e34f26; }
+.css-icon { color: #1572b6; }
+.js-icon { 
+    color: #f7df1e; 
+    border-radius: 6px; 
+    display: inline-block;
+}
+
+.skill-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.skill-card p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   5. İLETİŞİM FORMU VE BİLDİRİM KUTUSU
+   ========================================================= */
+.contact-form {
+    max-width: 500px;
+    margin: 30px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    outline: none;
+}
+
+.status-box {
+    margin-top: 20px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.status-box.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Durum Renkleri */
+.status-box.sending {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: #38bdf8;
+    backdrop-filter: blur(8px);
+}
+
+.status-box.success {
+    background: rgba(6, 78, 59, 0.3);
+    border: 1px solid rgba(52, 211, 153, 0.4);
+    color: #34d399;
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
+    backdrop-filter: blur(8px);
+}
+
+.status-box.error {
+    background: rgba(127, 29, 29, 0.3);
+    border: 1px solid rgba(248, 113, 113, 0.4);
+    color: #f87171;
+    backdrop-filter: blur(8px);
+}
+
+/* =========================================================
+   6. SABİT BUTONLAR (INSTAGRAM & WHATSAPP)
+   ========================================================= */
+.floating-insta {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-insta:hover {
+    transform: scale(1.15) rotate(8deg);
+    box-shadow: 0 6px 20px rgba(220, 39, 67, 0.4);
+}
+
+.floating-whatsapp {
+    position: fixed;
+    bottom: 25px;
+    left: 85px;
+    width: 50px;
+    height: 50px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.15) rotate(-8deg);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* =========================================================
+   7. PRELOADER (YÜKLENİYOR EKRANI)
+   ========================================================= */
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0b131e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.loader-wrapper.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(56, 189, 248, 0.15);
+    border-top: 4px solid #38bdf8;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* =========================================================
+   8. FOOTER & MOBİL UYUMLULUK
+   ========================================================= */
+footer {
+    padding: 30px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--card-border);
+    background-color: var(--bg-color);
+}
+
+.social-links a {
+    color: var(--text-color);
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; gap: 15px; }
+    nav ul { gap: 15px; }
+    .hero h1 { font-size: 30px; }
+    footer { flex-direction: column; gap: 15px; text-align: center; }
+}
