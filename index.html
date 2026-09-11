@@ -131,6 +131,149 @@
             <div id="form-status" class="status-box"></div>
         </form>
     </section>
+    <!-- ÜCRETSİZ ÖN GÖRÜŞME -->
+<section id="on-gorusme" class="on-gorusme-section">
+
+    <div class="on-gorusme-card">
+
+        <h2>Ücretsiz Ön Görüşme Formu</h2>
+
+        <form
+            id="on-gorusme-form"
+            action="https://formspree.io/f/xrpgjykr"
+            method="POST"
+        >
+
+            <div class="on-form-group">
+
+                <input
+                    type="text"
+                    name="ad_soyad"
+                    placeholder="Adınız Soyadınız"
+                    required
+                >
+
+                <span class="on-error">
+                    Lütfen bu alanı doldurunuz.
+                </span>
+
+            </div>
+
+
+            <div class="on-form-group">
+
+                <label>Sınıfınızı seçiniz</label>
+
+                <select
+                    name="sinif"
+                    required
+                >
+                    <option value="">
+                        Sınıfınızı seçiniz
+                    </option>
+
+                    <option>5. Sınıf</option>
+                    <option>6. Sınıf</option>
+                    <option>7. Sınıf</option>
+                    <option>8. Sınıf</option>
+                    <option>9. Sınıf</option>
+                    <option>10. Sınıf</option>
+                    <option>11. Sınıf</option>
+                    <option>12. Sınıf</option>
+                    <option>Mezun</option>
+
+                </select>
+
+                <span class="on-error">
+                    Lütfen bu alanı doldurunuz.
+                </span>
+
+            </div>
+
+
+            <div class="on-form-group">
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="E-mail Adresiniz"
+                    required
+                >
+
+                <span class="on-error">
+                    Lütfen bu alanı doldurunuz.
+                </span>
+
+            </div>
+
+
+            <div class="on-radio-group">
+
+                <label>
+                    <input
+                        type="radio"
+                        name="kisi"
+                        value="Öğrenciyim"
+                        required
+                    >
+                    Öğrenciyim
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="kisi"
+                        value="Veliyim"
+                    >
+                    Veliyim
+                </label>
+
+            </div>
+
+
+            <div class="on-form-group">
+
+                <input
+                    type="tel"
+                    name="telefon"
+                    placeholder="Telefon Numaranız"
+                    required
+                >
+
+                <small>
+                    Lütfen başında 0 olmadan giriniz.
+                </small>
+
+            </div>
+
+
+            <label class="on-kvkk">
+
+                <input
+                    type="checkbox"
+                    name="kvkk"
+                    required
+                >
+
+                <span>
+                    <a href="#kvkk">
+                        KVKK metnini
+                    </a>
+                    okudum ve onaylıyorum.
+                </span>
+
+            </label>
+
+
+            <button type="submit">
+                Gönder!
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
 
     <!-- FOOTER -->
     <footer>
