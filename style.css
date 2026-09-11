@@ -4309,3 +4309,17 @@ body.dark-mode .about-section .about-card p,
 body.dark-mode #hakkimda .about-card p {
     color: rgba(255,255,255,.74) !important;
 }
+/* HAKKIMDA - GÜNDÜZ ARKA PLAN */
+body:not(.dark-mode) #hakkimda {
+    background: #f5f7fb !important;
+}
+
+body:not(.dark-mode) #hakkimda::before,
+body:not(.dark-mode) #hakkimda::after {
+    background: transparent !important;
+}
+
+/* GECE */
+body.dark-mode #hakkimda {
+    background: #080719 !important;
+}
