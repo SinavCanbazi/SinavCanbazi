@@ -617,3 +617,20 @@ section, footer, header {
 .submit-btn:hover {
     background-color: #5eead4;
 }
+/* Sınıf seçimi kutusunun üstünü kesen şık etiket tasarımı */
+.input-group select {
+    padding-top: 18px;
+    padding-bottom: 12px;
+}
+
+.input-group .input-label {
+    position: absolute;
+    top: -9px;
+    left: 14px;
+    background: #ffffff;
+    padding: 0 6px;
+    font-size: 0.75rem;
+    color: #4b5563;
+    font-weight: 600;
+    z-index: 10;
+}
