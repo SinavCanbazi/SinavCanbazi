@@ -512,6 +512,399 @@ section, footer, header {
     border: 1px solid #eaeaea;
     font-family: sans-serif;
     box-sizing: border-box;
+}
+
+.hero-form-card h3 {
+    font-size: 1.5rem;
+    color: #111;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.input-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #444;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.hero-form-card input[type="text"],
+.hero-form-card input[type="email"],
+.hero-form-card input[type="tel"],
+.hero-form-card select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    background-color: #fff;
+    color: #111;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.hero-form-card select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+.hero-form-card input:focus,
+.hero-form-card select:focus {
+    border-color: #2dd4bf;
+}
+
+.helper-text {
+    display: block;
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 5px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 24px;
+    margin: 18px 0;
+    font-size: 0.95rem;
+    color: #222;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin-bottom: 24px;
+}
+
+.checkbox-group a {
+    color: #0d9488;
+    text-decoration: underline;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #7ee7d2;
+    color: #115e59;
+    border: none;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #5eead4;
+}
+/* Sınıf seçimi kutusunun üstünü kesen şık etiket tasarımı */
+.input-group select {
+    padding-top: 18px;
+    padding-bottom: 12px;
+}
+
+.input-group .input-label {
+    position: absolute;
+    top: -9px;
+    left: 14px;
+    background: #ffffff;
+    padding: 0 6px;
+    font-size: 0.75rem;
+    color: #4b5563;
+    font-weight: 600;
+    z-index: 10;
+}
+.input-group {
+    position: relative !important;
+    margin-bottom: 20px !important;
+}
+
+.input-group .input-label {
+    position: absolute !important;
+    top: -9px !important;
+    left: 14px !important;
+    background: #ffffff !important;
+    padding: 0 6px !important;
+    font-size: 0.75rem !important;
+    color: #4b5563 !important;
+    font-weight: 600 !important;
+    z-index: 10 !important;
+    pointer-events: none;
+}
+
+.input-group select {
+    width: 100% !important;
+    padding: 16px 14px !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 10px !important;
+    font-size: 0.95rem !important;
+    outline: none !important;
+    background-color: #fff !important;
+    color: #111 !important;
+    box-sizing: border-box !important;
+}
+/* =========================================
+   ÜCRETSİZ ÖN GÖRÜŞME FORMU
+   ========================================= */
+
+.on-gorusme-section {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.on-gorusme-card {
+    width: 100%;
+    max-width: 465px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e7ef;
+    border-radius: 18px;
+
+    padding: 42px 32px 38px;
+
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+}
+
+.on-gorusme-card h2 {
+    text-align: center;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #202633;
+
+    margin-bottom: 42px;
+}
+
+
+/* INPUT */
+
+.on-form-group {
+    margin-bottom: 27px;
+}
+
+.on-form-group input,
+.on-form-group select {
+
+    width: 100%;
+    height: 55px;
+
+    border: 1px solid #d8e1eb;
+    border-radius: 8px;
+
+    background: #fff;
+
+    padding: 0 16px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+
+    color: #202633;
+
+    outline: none;
+
+    transition: .2s;
+}
+
+.on-form-group input:focus,
+.on-form-group select:focus {
+
+    border-color: #68cfc1;
+
+    box-shadow:
+        0 0 0 3px rgba(104, 207, 193, .15);
+}
+
+
+/* LABEL */
+
+.on-form-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+    margin-left: 14px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #202633;
+}
+
+
+/* RADIO */
+
+.on-radio-group {
+
+    margin-bottom: 29px;
+}
+
+.on-radio-group label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 13px;
+
+    font-size: 16px;
+
+    color: #202633;
+
+    cursor: pointer;
+}
+
+.on-radio-group input {
+
+    width: 17px;
+    height: 17px;
+
+    accent-color: #68cfc1;
+}
+
+
+/* TELEFON AÇIKLAMA */
+
+.on-form-group small {
+
+    display: block;
+
+    margin-top: 9px;
+    margin-left: 8px;
+
+    font-size: 13px;
+
+    color: #374151;
+}
+
+
+/* KVKK */
+
+.on-kvkk {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    margin-top: 32px;
+    margin-bottom: 29px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    color: #374151;
+
+    cursor: pointer;
+}
+
+.on-kvkk input {
+
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
+
+    margin-top: 1px;
+
+    accent-color: #68cfc1;
+}
+
+.on-kvkk a {
+
+    color: #20bca9;
+
+    text-decoration: underline;
+}
+
+
+/* BUTON */
+
+.on-gorusme-card button {
+
+    width: 100%;
+
+    height: 60px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #68cfc1;
+
+    color: #244c4a;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+    box-shadow:
+        0 5px 12px rgba(102,207,193,.20);
+}
+
+.on-gorusme-card button:hover {
+
+    background: #55c5b6;
+
+    transform: translateY(-1px);
+}
+
+
+/* MOBİL */
+
+@media (max-width: 600px) {
+
+    .on-gorusme-section {
+        padding: 50px 15px;
+    }
+
+    .on-gorusme-card {
+        padding: 32px 20px 28px;
+    }
+
+    .on-gorusme-card h2 {
+        font-size: 21px;
+        margin-bottom: 32px;
+    }
+
+}
+/* =========================================
+   SINAV CANBAZI
+   ÜCRETSİZ ÖN GÖRÜŞME FORMU
+   ========================================= */
 
 .on-gorusme-section {
     width: 100%;
@@ -916,7 +1309,6 @@ section, footer, header {
 
     }
 }
-
 /* =========================================
    HERO ALANINI ORTALA
    ========================================= */
@@ -1155,7 +1547,446 @@ section, footer, header {
 .hero-content h1 .highlight {
     white-space: nowrap;
 }
+/* =========================================
+   KVKK POPUP
+   ========================================= */
 
+.kvkk-modal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(2, 8, 23, 0.78);
+
+    backdrop-filter: blur(5px);
+
+    z-index: 99999;
+}
+
+
+/* Popup açıldığında */
+
+.kvkk-modal.active {
+    display: flex;
+}
+
+
+/* POPUP KUTUSU */
+
+.kvkk-box {
+    position: relative;
+
+    width: 100%;
+    max-width: 620px;
+
+    max-height: 75vh;
+
+    padding: 32px;
+
+    background: #0f1b2b;
+
+    border: 1px solid rgba(49, 182, 232, 0.45);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.55),
+        0 0 35px rgba(49, 182, 232, 0.10);
+
+    color: #e5edf5;
+
+    animation: kvkkOpen 0.25s ease;
+}
+
+
+/* AÇILIŞ ANİMASYONU */
+
+@keyframes kvkkOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* KAPATMA BUTONU */
+
+.kvkk-close {
+    position: absolute;
+
+    top: 14px;
+    right: 16px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: #ffffff;
+
+    font-size: 26px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.kvkk-close:hover {
+    background: #31b6e8;
+    color: #06111f;
+}
+
+
+/* İKON */
+
+.kvkk-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 12px;
+
+    border-radius: 14px;
+
+    background: rgba(49, 182, 232, 0.12);
+
+    color: #31b6e8;
+
+    font-size: 22px;
+}
+
+
+/* BAŞLIK */
+
+.kvkk-box h2 {
+    margin: 0 0 22px;
+
+    text-align: center;
+
+    font-size: 24px;
+
+    color: #ffffff;
+}
+
+
+/* METİN ALANI */
+
+.kvkk-content {
+
+    max-height: 48vh;
+
+    overflow-y: auto;
+
+    padding-right: 12px;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+
+    color: #b8c6d6;
+}
+
+
+/* BAŞLIKLAR */
+
+.kvkk-content h3 {
+
+    margin-top: 20px;
+    margin-bottom: 7px;
+
+    font-size: 16px;
+
+    color: #31b6e8;
+}
+
+
+/* PARAGRAFLAR */
+
+.kvkk-content p {
+    margin: 0 0 12px;
+}
+
+
+/* SCROLLBAR */
+
+.kvkk-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.kvkk-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.kvkk-content::-webkit-scrollbar-thumb {
+    background: #31b6e8;
+    border-radius: 10px;
+}
+
+
+/* ANLADIM BUTONU */
+
+.kvkk-ok {
+
+    display: block;
+
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #31b6e8;
+
+    color: #06111f;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.kvkk-ok:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 25px rgba(49, 182, 232, 0.25);
+}
+
+
+/* TELEFON */
+
+@media (max-width: 600px) {
+
+    .kvkk-box {
+        padding: 25px 20px;
+
+        max-height: 82vh;
+
+        border-radius: 16px;
+    }
+
+    .kvkk-box h2 {
+        font-size: 21px;
+    }
+
+    .kvkk-content {
+        font-size: 13px;
+        max-height: 55vh;
+    }
+
+}
+/* KVKK arka plan */
+.kvkk-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 8, 23, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9998;
+}
+
+/* KVKK penceresi */
+.kvkk-modal {
+    position: fixed;
+    width: 530px;
+    max-width: calc(100vw - 30px);
+    max-height: 70vh;
+    
+    background: linear-gradient(145deg, #12263a, #0b1726);
+    border: 1px solid rgba(52, 189, 239, 0.45);
+    border-radius: 16px;
+    
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.55),
+        0 0 35px rgba(52, 189, 239, 0.12);
+
+    overflow-y: auto;
+    z-index: 9999;
+
+    /* Başlangıçta gizli */
+    display: none;
+}
+
+/* Açıldığında */
+.kvkk-modal.show {
+    display: block;
+    animation: kvkkOpen 0.22s ease;
+}
+
+@keyframes kvkkOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Mobil */
+@media (max-width: 600px) {
+    .kvkk-modal {
+        width: calc(100vw - 24px);
+        max-height: 75vh;
+    }
+}
+/* ==============================
+   KVKK MODAL
+   ============================== */
+
+.kvkk-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(2, 8, 23, 0.78);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99999;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.kvkk-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* KVKK kutusu */
+.kvkk-modal {
+    position: relative;
+
+    width: min(600px, 90%);
+    max-height: 75vh;
+
+    background: #0f1c2d;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 18px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.55),
+        0 0 35px rgba(56, 189, 248, 0.08);
+
+    overflow-y: auto;
+
+    transform: translateY(15px) scale(0.97);
+    transition: transform 0.25s ease;
+}
+
+.kvkk-overlay.active .kvkk-modal {
+    transform: translateY(0) scale(1);
+}
+
+
+/* Başlık */
+.kvkk-modal h2 {
+    color: #f8fafc;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+
+/* Metin */
+.kvkk-modal p,
+.kvkk-modal li {
+    color: #cbd5e1;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.kvkk-modal h3 {
+    color: #38bdf8;
+    font-size: 16px;
+    margin-top: 22px;
+}
+
+
+/* Kapatma butonu */
+.kvkk-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #1e293b;
+    color: white;
+
+    font-size: 20px;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.kvkk-close:hover {
+    background: #38bdf8;
+    color: #06111f;
+    transform: rotate(90deg);
+}
+
+
+/* Mobil */
+@media (max-width: 600px) {
+
+    .kvkk-modal {
+        width: 92%;
+        padding: 25px 20px;
+        max-height: 80vh;
+    }
+
+    .kvkk-modal h2 {
+        font-size: 20px;
+    }
+
+}
+/* ================================
    KVKK MODAL
 ================================ */
 
