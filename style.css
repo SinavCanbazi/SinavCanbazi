@@ -1839,28 +1839,7 @@ section, footer, header {
 }
 
 
-/* =========================================
-   KVKK KUTUSU
-   ========================================= */
 
-/* KVKK kutusu */
-.kvkk-modal {
-    position: relative;
-
-    width: min(520px, 90vw);
-    max-height: 78vh;
-
-    background: #0f1d2d;
-    border: 1px solid #2388b8;
-    border-radius: 18px;
-
-    padding: 28px;
-
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-
-    overflow-y: auto;
-    overflow-x: hidden;
-}
 
 
 /* Açılınca kutu ortaya gelir */
