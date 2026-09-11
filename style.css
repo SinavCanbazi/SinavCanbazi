@@ -4221,3 +4221,17 @@ body.light-mode #hakkinda .about-card {
 }
 ```
 ```
+html.light-mode #hakkinda,
+body.light-mode #hakkinda,
+.light-mode #hakkinda {
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
+html.light-mode #hakkinda .about-card,
+body.light-mode #hakkinda .about-card,
+.light-mode #hakkinda .about-card {
+    background: #f1f3f5 !important;
+    color: #000000 !important;
+    border: 1px solid #dee2e6 !important;
+}
