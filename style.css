@@ -663,3 +663,241 @@ section, footer, header {
     color: #111 !important;
     box-sizing: border-box !important;
 }
+/* =========================================
+   ÜCRETSİZ ÖN GÖRÜŞME FORMU
+   ========================================= */
+
+.on-gorusme-section {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.on-gorusme-card {
+    width: 100%;
+    max-width: 465px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e7ef;
+    border-radius: 18px;
+
+    padding: 42px 32px 38px;
+
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+}
+
+.on-gorusme-card h2 {
+    text-align: center;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #202633;
+
+    margin-bottom: 42px;
+}
+
+
+/* INPUT */
+
+.on-form-group {
+    margin-bottom: 27px;
+}
+
+.on-form-group input,
+.on-form-group select {
+
+    width: 100%;
+    height: 55px;
+
+    border: 1px solid #d8e1eb;
+    border-radius: 8px;
+
+    background: #fff;
+
+    padding: 0 16px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+
+    color: #202633;
+
+    outline: none;
+
+    transition: .2s;
+}
+
+.on-form-group input:focus,
+.on-form-group select:focus {
+
+    border-color: #68cfc1;
+
+    box-shadow:
+        0 0 0 3px rgba(104, 207, 193, .15);
+}
+
+
+/* LABEL */
+
+.on-form-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+    margin-left: 14px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #202633;
+}
+
+
+/* RADIO */
+
+.on-radio-group {
+
+    margin-bottom: 29px;
+}
+
+.on-radio-group label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 13px;
+
+    font-size: 16px;
+
+    color: #202633;
+
+    cursor: pointer;
+}
+
+.on-radio-group input {
+
+    width: 17px;
+    height: 17px;
+
+    accent-color: #68cfc1;
+}
+
+
+/* TELEFON AÇIKLAMA */
+
+.on-form-group small {
+
+    display: block;
+
+    margin-top: 9px;
+    margin-left: 8px;
+
+    font-size: 13px;
+
+    color: #374151;
+}
+
+
+/* KVKK */
+
+.on-kvkk {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    margin-top: 32px;
+    margin-bottom: 29px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    color: #374151;
+
+    cursor: pointer;
+}
+
+.on-kvkk input {
+
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
+
+    margin-top: 1px;
+
+    accent-color: #68cfc1;
+}
+
+.on-kvkk a {
+
+    color: #20bca9;
+
+    text-decoration: underline;
+}
+
+
+/* BUTON */
+
+.on-gorusme-card button {
+
+    width: 100%;
+
+    height: 60px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #68cfc1;
+
+    color: #244c4a;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+    box-shadow:
+        0 5px 12px rgba(102,207,193,.20);
+}
+
+.on-gorusme-card button:hover {
+
+    background: #55c5b6;
+
+    transform: translateY(-1px);
+}
+
+
+/* MOBİL */
+
+@media (max-width: 600px) {
+
+    .on-gorusme-section {
+        padding: 50px 15px;
+    }
+
+    .on-gorusme-card {
+        padding: 32px 20px 28px;
+    }
+
+    .on-gorusme-card h2 {
+        font-size: 21px;
+        margin-bottom: 32px;
+    }
+
+}
