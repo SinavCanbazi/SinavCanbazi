@@ -4210,3 +4210,13 @@ body.light-mode .hakkinda-kutu {
     color: #333333 !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important; 
 }
+```css
+body.light-mode #hakkinda {
+    background-color: #f8f9fa !important;
+    color: #1a1a1a !important;
+}
+body.light-mode #hakkinda .about-card {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+}
+```
