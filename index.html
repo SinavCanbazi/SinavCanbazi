@@ -22,191 +22,114 @@
 
     <!-- CSS Dosyası -->
     <link rel="stylesheet" href="style.css">
-<!-- İLETİŞİM BÖLÜMÜ -->
-<section id="iletisim" class="forms-section">
 
-    <h2>İletişim</h2>
+    <!-- Font Awesome İkon Kütüphanesi -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
 
-    <div class="forms-wrapper">
-
-        <!-- NORMAL İLETİŞİM FORMU -->
-        <div class="form-column">
-
-            <form id="my-form"
-                  class="contact-form"
-                  action="https://formspree.io/f/xrpgjykr"
-                  method="POST">
-
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Adınız Soyadınız"
-                    required
-                >
-
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="E-posta Adresiniz"
-                    required
-                >
-
-                <textarea
-                    name="message"
-                    placeholder="Mesajınız..."
-                    rows="5"
-                    required
-                ></textarea>
-
-                <button
-                    id="form-btn"
-                    type="submit"
-                    class="btn btn-primary"
-                >
-                    Mesaj Gönder
-                </button>
-
-                <div id="form-status" class="status-box"></div>
-
-            </form>
-
-        </div>
-
-
-        <!-- ÜCRETSİZ ÖN GÖRÜŞME FORMU -->
-        <div class="form-column">
-
-            <div class="on-gorusme-card">
-
-                <h2>Ücretsiz Ön Görüşme Formu</h2>
-
-                <form
-                    id="on-gorusme-form"
-                    action="https://formspree.io/f/xrpgjykr"
-                    method="POST"
-                >
-
-                    <div class="on-form-group">
-
-                        <input
-                            type="text"
-                            name="ad_soyad"
-                            placeholder="Adınız Soyadınız"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="on-form-group">
-
-                        <label>Sınıfınızı seçiniz</label>
-
-                        <select
-                            name="sinif"
-                            required
-                        >
-
-                            <option value="">
-                                Sınıfınızı seçiniz
-                            </option>
-
-                            <option>5. Sınıf</option>
-                            <option>6. Sınıf</option>
-                            <option>7. Sınıf</option>
-                            <option>8. Sınıf</option>
-                            <option>9. Sınıf</option>
-                            <option>10. Sınıf</option>
-                            <option>11. Sınıf</option>
-                            <option>12. Sınıf</option>
-                            <option>Mezun</option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="on-form-group">
-
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="E-mail Adresiniz"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="on-radio-group">
-
-                        <label>
-                            <input
-                                type="radio"
-                                name="kisi"
-                                value="Öğrenciyim"
-                                required
-                            >
-                            Öğrenciyim
-                        </label>
-
-                        <label>
-                            <input
-                                type="radio"
-                                name="kisi"
-                                value="Veliyim"
-                            >
-                            Veliyim
-                        </label>
-
-                    </div>
-
-
-                    <div class="on-form-group">
-
-                        <input
-                            type="tel"
-                            name="telefon"
-                            placeholder="Telefon Numaranız"
-                            required
-                        >
-
-                        <small>
-                            Lütfen başında 0 olmadan giriniz.
-                        </small>
-
-                    </div>
-
-
-                    <label class="on-kvkk">
-
-                        <input
-                            type="checkbox"
-                            name="kvkk"
-                            required
-                        >
-
-                        <span>
-                            <a href="#kvkk">KVKK metnini</a>
-                            okudum ve onaylıyorum.
-                        </span>
-
-                    </label>
-
-
-                    <button type="submit">
-                        Gönder!
-                    </button>
-
-                </form>
-
-            </div>
-
-        </div>
-
+    <!-- PRELOADER (SAYFA YÜKLENME ANİMASYONU) -->
+    <div class="loader-wrapper">
+        <div class="loader"></div>
     </div>
 
-</section>
+    <!-- NAVBAR (ÜST MENÜ) -->
+    <header class="navbar">
+        <div class="logo">Sınav<span> Canbazı </span></div>
+        <nav>
+            <ul>
+                <li><a href="#anasayfa">Ana Sayfa</a></li>
+                <li><a href="#hakkimda">Hakkımda</a></li>
+                <li><a href="#yetenekler">Hizmetler</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-btn" aria-label="Tema Değiştir">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </header>
+
+    <!-- HERO / KARŞILAMA BÖLÜMÜ -->
+    <section id="anasayfa" class="hero">
+        <div class="hero-content">
+            <img src="favicon.png.png" alt="Gözde Canbaz Profil Resmi" class="profile-img">
+            <h1>Merhaba, Ben <span class="highlight">Gözde Canbaz</span></h1>
+            <p>Hedefleri belirle, yolunu birlikte çizelim.</p>
+            <div class="hero-buttons">
+                <a href="#iletisim" class="btn btn-primary">İletişime Geç</a>
+                <a href="#yetenekler" class="btn btn-secondary">Neler Yapıyorum?</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- HAKKIMDA BÖLÜMÜ -->
+    <section id="hakkimda" class="section">
+        <h2>Hakkımda</h2>
+        <p class="section-desc">
+            Ben Gözde Hocanız.<br><br>
+            Koçluk anlayışımın temelinde; kişiye özel planlama, düzenli takip, motivasyon ve sürdürülebilir çalışma alışkanlığı oluşturmak yer alıyor. Her bireyin hedefleri, çalışma düzeni ve ihtiyaçları farklı olduğu için hazır kalıplar yerine sana uygun bir sistem oluşturmayı hedefliyorum.<br><br>
+            Birlikte hedeflerini belirliyor, çalışma planını oluşturuyor ve süreç boyunca gelişimini düzenli olarak takip ediyoruz. Amacım yalnızca daha fazla çalışmanı sağlamak değil; daha doğru, planlı ve istikrarlı çalışmanı sağlamak.<br><br>
+            Küçük adımların zamanla büyük sonuçlara dönüşeceğine inanıyorum.<br><br>
+            Hedefini belirle, planını oluştur ve ilk adımı birlikte atalım.
+        </p>
+    </section>
+
+    <!-- HİZMETLER VE KOÇLUK SÜRECİ -->
+    <section id="yetenekler" class="skills-section">
+        <div class="skills-container">
+            <h2 class="skills-title">Koçluk Sürecimiz</h2>
+            
+            <div class="skills-grid">
+                <!-- Kart 1 -->
+                <div class="skill-card">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="icon-box">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h3>Kişiye Özel Program</h3>
+                        <p>Haftalık ve günlük ders çalışma planlarının öğrencinin temposuna özel hazırlanması.</p>
+                    </div>
+                </div>
+
+                <!-- Kart 2 -->
+                <div class="skill-card">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="icon-box">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3>Gelişim ve Net Takibi</h3>
+                        <p>Deneme sınavı analizleri, eksik tespiti ve haftalık performans değerlendirmesi.</p>
+                    </div>
+                </div>
+
+                <!-- Kart 3 -->
+                <div class="skill-card">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="icon-box">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3>Motivasyon & Strateji</h3>
+                        <p>Sınav stresi yönetimi, odaklanma teknikleri ve doğru kaynak yönlendirmesi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İLETİŞİM BÖLÜMÜ -->
+    <section id="iletisim" class="section">
+        <h2>İletişim</h2>
+        <form id="my-form" class="contact-form" action="https://formspree.io/f/xrpgjykr" method="POST">
+            <input type="text" name="name" placeholder="Adınız Soyadınız" required>
+            <input type="email" name="email" placeholder="E-posta Adresiniz" required>
+            <textarea name="message" placeholder="Mesajınız..." rows="5" required></textarea>
+            <button id="form-btn" type="submit" class="btn btn-primary">Mesaj Gönder</button>
+            
+            <div id="form-status" class="status-box"></div>
+        </form>
     </section>
     <!-- ÜCRETSİZ ÖN GÖRÜŞME -->
 <section id="on-gorusme" class="on-gorusme-section">
