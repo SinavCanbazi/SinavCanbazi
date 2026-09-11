@@ -4182,3 +4182,18 @@ body.dark-mode .cookie-box p {
         grid-template-columns: 1fr !important;
     }
 }
+/* Instagram ve WhatsApp logolarını ekrana sabitler ve hiçbir şeyin ezmesine izin vermez */
+.floating-insta, 
+.floating-whatsapp {
+    position: fixed !important;
+    bottom: 25px !important;
+    z-index: 2147483647 !important;
+}
+
+.floating-insta {
+    left: 20px !important;
+}
+
+.floating-whatsapp {
+    left: 85px !important;
+}
