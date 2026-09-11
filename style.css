@@ -1543,3 +1543,7 @@ section, footer, header {
     }
 
 }
+/* Gözde Canbaz isim-soyisim ayrılmasın */
+.hero-content h1 .highlight {
+    white-space: nowrap;
+}
