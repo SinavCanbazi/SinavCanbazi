@@ -1309,3 +1309,66 @@ section, footer, header {
 
     }
 }
+/* =========================================
+   HERO ALANINI ORTALA
+   ========================================= */
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 1200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 90px;
+
+    margin: 0 auto;
+}
+
+
+/* SOL TARAFTAKİ GÖZDE BÖLÜMÜ */
+
+.hero-content > div:first-child {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* PROFİL FOTOĞRAFI */
+
+.profile-img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================
+   ÖN GÖRÜŞME FORMU
+   ========================================= */
+
+.hero-content .on-gorusme-card {
+    margin: 0;
+}
+
+
+/* =========================================
+   EKRAN KÜÇÜLÜNCE ALT ALTA
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .hero-content {
+        flex-direction: column;
+        gap: 45px;
+    }
+
+}
