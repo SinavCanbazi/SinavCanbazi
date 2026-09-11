@@ -2392,67 +2392,7 @@ footer {
 }
 
 
-/* =========================================================
-   WHATSAPP + INSTAGRAM — NEFES ALMA EFEKTİ
-   ========================================================= */
 
-#fixed-whatsapp,
-#fixed-instagram {
-    position: fixed !important;
-    isolation: isolate;
-}
-
-/* Dışarı doğru yumuşak ışık */
-#fixed-whatsapp::before,
-#fixed-instagram::before {
-    content: "";
-    position: absolute;
-    inset: -5px;
-    border-radius: 50%;
-    z-index: -1;
-    opacity: 0;
-    transform: scale(.82);
-    animation: socialBreath 3s ease-in-out infinite;
-}
-
-/* WhatsApp */
-#fixed-whatsapp::before {
-    background: rgba(37, 211, 102, .32);
-}
-
-/* Instagram */
-#fixed-instagram::before {
-    background: rgba(225, 48, 108, .32);
-    animation-delay: 1.5s;
-}
-
-@keyframes socialBreath {
-    0% {
-        opacity: 0;
-        transform: scale(.82);
-    }
-
-    45% {
-        opacity: .75;
-        transform: scale(1.12);
-    }
-
-    70% {
-        opacity: .35;
-        transform: scale(1.22);
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(1.32);
-    }
-}
-
-/* Hover yine mevcut büyüme efektini korusun */
-#fixed-whatsapp:hover,
-#fixed-instagram:hover {
-    transform: scale(1.12) !important;
-}
 
 
 /* ---------- BAŞLIKLAR ---------- */
