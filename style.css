@@ -4210,20 +4210,3 @@ body.light-mode .hakkinda-kutu {
     color: #333333 !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important; 
 }
-/* Gündüz modunda Hakkında bölümünü aydınlık yap */
-body.light-mode #hakkinda {
-    background: #f8f9fa !important;
-    color: #1a1a1a !important;
-}
-
-body.light-mode #hakkinda h2,
-body.light-mode #hakkinda p,
-body.light-mode #hakkinda h3 {
-    color: #1a1a1a !important;
-}
-
-body.light-mode .about-card {
-    background: #ffffff !important;
-    color: #333333 !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
-}
