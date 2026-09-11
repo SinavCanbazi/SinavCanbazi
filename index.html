@@ -53,7 +53,6 @@
 
 
 <style>
-    
 
 /* =========================================================
    GENEL
@@ -680,7 +679,6 @@ body.dark-mode .hero-content {
 
 /* =========================================================
    BALONCUKLAR
-   ÇOK YAVAŞ / GÖZ YORMAYAN
    ========================================================= */
 
 .hero-bubble {
@@ -2142,383 +2140,7 @@ footer {
             .01ms !important;
     }
 }
-/* =========================================================
-   SİNAV CANBAZI - GENEL TASARIM
-   Üst bölümdeki mor / koyu tasarımı tüm siteye yayar
-   ========================================================= */
 
-/* GENEL SAYFA */
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background:
-        radial-gradient(circle at 90% 20%, rgba(91, 48, 190, 0.18), transparent 28%),
-        radial-gradient(circle at 5% 70%, rgba(54, 30, 130, 0.14), transparent 30%),
-        #070914 !important;
-    color: #f7f5ff !important;
-}
-
-/* Sayfanın ana bölümleri */
-section {
-    position: relative;
-}
-
-/* =========================================================
-   BÖLÜM BAŞLIKLARI
-   ========================================================= */
-
-section h2 {
-    color: #ffffff !important;
-    font-weight: 800 !important;
-    letter-spacing: -0.03em;
-}
-
-section > div > h2,
-.section-title,
-.section-heading {
-    color: #ffffff !important;
-}
-
-section h2::selection,
-section p::selection {
-    background: #7c4dff;
-    color: white;
-}
-
-/* Küçük mor bölüm başlıkları */
-section .section-label,
-section .eyebrow,
-section .subtitle,
-section .section-kicker {
-    color: #a98cff !important;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-}
-
-/* =========================================================
-   HAKKIMDA
-   ========================================================= */
-
-#hakkimda {
-    padding: 110px 20px !important;
-    background:
-        radial-gradient(
-            circle at 15% 30%,
-            rgba(111, 70, 220, 0.12),
-            transparent 28%
-        );
-}
-
-#hakkimda .about-card,
-#hakkimda .about-content,
-#hakkimda .card {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(50, 24, 115, 0.72),
-            rgba(23, 16, 55, 0.92)
-        ) !important;
-
-    border: 1px solid rgba(166, 133, 255, 0.20) !important;
-    border-radius: 32px !important;
-    box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255,255,255,0.06) !important;
-}
-
-/* =========================================================
-   ÇALIŞMA ALANLARIM
-   ========================================================= */
-
-#calisma-alanlarim {
-    padding: 110px 20px !important;
-    position: relative;
-    overflow: hidden;
-}
-
-#calisma-alanlarim::before {
-    content: "";
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    right: -150px;
-    top: 100px;
-    background: rgba(92, 48, 190, 0.18);
-    filter: blur(100px);
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-#calisma-alanlarim .card,
-#calisma-alanlarim .skill-card,
-#calisma-alanlarim .work-card {
-    background:
-        linear-gradient(
-            145deg,
-            rgba(48, 24, 110, 0.85),
-            rgba(15, 13, 35, 0.95)
-        ) !important;
-
-    border: 1px solid rgba(169, 140, 255, 0.18) !important;
-    border-radius: 28px !important;
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.28),
-        inset 0 1px 0 rgba(255,255,255,.05) !important;
-
-    transition:
-        transform .3s ease,
-        border-color .3s ease,
-        box-shadow .3s ease !important;
-}
-
-#calisma-alanlarim .card:hover,
-#calisma-alanlarim .skill-card:hover,
-#calisma-alanlarim .work-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(169, 140, 255, 0.42) !important;
-
-    box-shadow:
-        0 30px 70px rgba(0,0,0,.40),
-        0 0 35px rgba(103, 65, 220, .12) !important;
-}
-
-/* =========================================================
-   ÖN GÖRÜŞME FORMU
-   ========================================================= */
-
-#on-gorusme {
-    padding: 110px 20px !important;
-    position: relative;
-    overflow: hidden;
-}
-
-#on-gorusme::before {
-    content: "";
-    position: absolute;
-    width: 450px;
-    height: 450px;
-    left: -220px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(104, 61, 215, 0.16);
-    filter: blur(110px);
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-#on-gorusme .on-gorusme-card {
-    position: relative;
-
-    background:
-        radial-gradient(
-            circle at 100% 0%,
-            rgba(126, 83, 255, 0.25),
-            transparent 32%
-        ),
-        linear-gradient(
-            135deg,
-            #32166f,
-            #170d38 72%
-        ) !important;
-
-    border: 1px solid rgba(180, 155, 255, 0.25) !important;
-    border-radius: 34px !important;
-
-    box-shadow:
-        0 35px 90px rgba(0,0,0,.40),
-        inset 0 1px 0 rgba(255,255,255,.07) !important;
-}
-
-/* Form alanları */
-#on-gorusme input,
-#on-gorusme select {
-    background: rgba(255,255,255,.07) !important;
-    color: #ffffff !important;
-    border: 1px solid rgba(255,255,255,.14) !important;
-    border-radius: 15px !important;
-}
-
-#on-gorusme input::placeholder {
-    color: rgba(255,255,255,.55) !important;
-}
-
-#on-gorusme input:focus,
-#on-gorusme select:focus {
-    outline: none !important;
-    border-color: #9d7cff !important;
-    box-shadow: 0 0 0 4px rgba(125,77,255,.12) !important;
-}
-
-#on-gorusme select option {
-    background: #211044;
-    color: #ffffff;
-}
-
-/* Gönder butonu */
-#on-gorusme button {
-    background: #ffffff !important;
-    color: #32166f !important;
-    border: none !important;
-    border-radius: 15px !important;
-    font-weight: 800 !important;
-    box-shadow: 0 12px 30px rgba(0,0,0,.20);
-    transition: all .25s ease !important;
-}
-
-#on-gorusme button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 18px 35px rgba(0,0,0,.30);
-}
-
-/* =========================================================
-   TÜM KARTLAR
-   ========================================================= */
-
-.card,
-.about-card,
-.skill-card,
-.work-card,
-.info-card {
-    position: relative;
-    overflow: hidden;
-}
-
-.card::before,
-.about-card::before,
-.skill-card::before,
-.work-card::before,
-.info-card::before {
-    content: "";
-    position: absolute;
-    width: 140px;
-    height: 140px;
-    right: -70px;
-    top: -70px;
-
-    background: rgba(141, 103, 255, .12);
-    border-radius: 50%;
-    filter: blur(5px);
-
-    pointer-events: none;
-}
-
-/* =========================================================
-   BUTONLAR
-   ========================================================= */
-
-.hero-button,
-button {
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        filter .25s ease !important;
-}
-
-.hero-button:hover,
-button:hover {
-    transform: translateY(-3px);
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-footer {
-    position: relative;
-    background:
-        radial-gradient(
-            circle at 80% 0%,
-            rgba(94, 52, 190, .18),
-            transparent 30%
-        ),
-        #060812 !important;
-
-    border-top: 1px solid rgba(150,120,255,.12);
-}
-
-footer a {
-    color: #b8a2ff !important;
-}
-
-footer a:hover {
-    color: #ffffff !important;
-}
-
-/* =========================================================
-   SAYFA GENELİNDE MOR IŞIKLAR
-   ========================================================= */
-
-#anasayfa,
-#hakkimda,
-#calisma-alanlarim,
-#on-gorusme {
-    isolation: isolate;
-}
-
-#hakkimda::after,
-#calisma-alanlarim::after {
-    content: "";
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    right: -140px;
-    bottom: 50px;
-
-    background: rgba(87, 44, 180, .15);
-    filter: blur(90px);
-    border-radius: 50%;
-
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* =========================================================
-   HAREKETLİ DEKORATİF IŞIK
-   ========================================================= */
-
-@keyframes sectionGlow {
-    0%, 100% {
-        transform: translate3d(0, 0, 0);
-        opacity: .45;
-    }
-
-    50% {
-        transform: translate3d(20px, -15px, 0);
-        opacity: .7;
-    }
-}
-
-#hakkimda::before,
-#calisma-alanlarim::before,
-#on-gorusme::before {
-    animation: sectionGlow 12s ease-in-out infinite alternate;
-}
-
-/* =========================================================
-   MOBİL
-   ========================================================= */
-
-@media (max-width: 768px) {
-
-    #hakkimda,
-    #calisma-alanlarim,
-    #on-gorusme {
-        padding: 80px 16px !important;
-    }
-
-    #hakkimda .about-card,
-    #hakkimda .about-content,
-    #hakkimda .card,
-    #calisma-alanlarim .card,
-    #calisma-alanlarim .skill-card,
-    #calisma-alanlarim .work-card,
-    #on-gorusme .on-gorusme-card {
-        border-radius: 24px !important;
-    }
-}
 </style>
 
 </head>
@@ -2550,6 +2172,7 @@ footer a:hover {
     </a>
 
     <nav>
+
         <ul class="nav-links">
 
             <li>
@@ -2577,6 +2200,7 @@ footer a:hover {
             </li>
 
         </ul>
+
     </nav>
 
     <div class="nav-right">
@@ -2586,7 +2210,9 @@ footer a:hover {
             type="button"
             aria-label="Temayı değiştir"
         >
+
             <i class="fa-solid fa-moon"></i>
+
         </button>
 
     </div>
@@ -2604,8 +2230,6 @@ footer a:hover {
 
         <div class="hero-content">
 
-
-            <!-- Yavaş hareket eden baloncuklar -->
 
             <div
                 class="hero-visual"
@@ -2791,6 +2415,7 @@ footer a:hover {
 
                         <li>
                             <i class="fa-solid fa-check"></i>
+
                             <span>
                                 Öğrenciyi tanımak ve ihtiyaçlarını belirlemek
                             </span>
@@ -2798,6 +2423,7 @@ footer a:hover {
 
                         <li>
                             <i class="fa-solid fa-check"></i>
+
                             <span>
                                 Gerçekçi ve uygulanabilir çalışma sistemi oluşturmak
                             </span>
@@ -2805,6 +2431,7 @@ footer a:hover {
 
                         <li>
                             <i class="fa-solid fa-check"></i>
+
                             <span>
                                 Zaman yönetimini geliştirmek
                             </span>
@@ -2812,6 +2439,7 @@ footer a:hover {
 
                         <li>
                             <i class="fa-solid fa-check"></i>
+
                             <span>
                                 Motivasyonu sürdürülebilir hale getirmek
                             </span>
@@ -2819,6 +2447,7 @@ footer a:hover {
 
                         <li>
                             <i class="fa-solid fa-check"></i>
+
                             <span>
                                 Süreci düzenli olarak takip etmek
                             </span>
@@ -2997,8 +2626,10 @@ footer a:hover {
             </h2>
 
             <p class="form-description">
+
                 Seni ve ihtiyaçlarını daha yakından tanımak
                 için aşağıdaki formu doldurabilirsin.
+
             </p>
 
 
@@ -3274,8 +2905,11 @@ footer a:hover {
                 target="_blank"
                 rel="noopener noreferrer"
             >
+
                 <i class="fa-brands fa-whatsapp"></i>
+
                 WhatsApp
+
             </a>
 
             <a
@@ -3283,8 +2917,11 @@ footer a:hover {
                 target="_blank"
                 rel="noopener noreferrer"
             >
+
                 <i class="fa-brands fa-instagram"></i>
+
                 Instagram
+
             </a>
 
         </div>
@@ -3295,7 +2932,9 @@ footer a:hover {
     <div class="footer-bottom">
 
         © 2026 Sınav Canbazı • Gözde Canbaz
+
         <br>
+
         Tüm hakları saklıdır.
 
     </div>
@@ -3358,7 +2997,9 @@ footer a:hover {
             type="button"
             aria-label="Kapat"
         >
+
             <i class="fa-solid fa-xmark"></i>
+
         </button>
 
 
@@ -3436,7 +3077,9 @@ footer a:hover {
             id="kvkk-ok"
             type="button"
         >
+
             Okudum ve Anladım
+
         </button>
 
     </div>
@@ -3699,6 +3342,7 @@ if (kvkkLink) {
 
 }
 
+
 if (kvkkClose) {
 
     kvkkClose.addEventListener(
@@ -3707,6 +3351,7 @@ if (kvkkClose) {
     );
 
 }
+
 
 if (kvkkOk) {
 
@@ -3922,8 +3567,7 @@ if (consultationForm) {
 
 
 /* =========================================================
-   MOBİLDE HERO BALONCUKLARININ HAREKETİNİ
-   DAHA DA YUMUŞAT
+   HAREKET AZALTMA
    ========================================================= */
 
 const bubbles =
