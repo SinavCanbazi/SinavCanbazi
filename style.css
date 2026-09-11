@@ -4197,3 +4197,34 @@ body.dark-mode .cookie-box p {
 .floating-whatsapp {
     left: 85px !important;
 }
+/* ===== GÜNDÜZ MODU - HAKKIMDA ===== */
+
+body:not(.dark-mode) #hakkimda {
+    background: #f5f7fb !important;
+    background-image: none !important;
+}
+
+body:not(.dark-mode) #hakkimda .about-card {
+    background: #ffffff !important;
+    background-image: none !important;
+    border-color: #e3e7ef !important;
+    box-shadow: 0 10px 30px rgba(30, 35, 60, 0.08) !important;
+}
+
+body:not(.dark-mode) #hakkimda .about-card h3 {
+    color: #171827 !important;
+}
+
+body:not(.dark-mode) #hakkimda .about-card p,
+body:not(.dark-mode) #hakkimda .about-card li {
+    color: #626b7b !important;
+}
+
+body:not(.dark-mode) #hakkimda .about-header h2 {
+    color: #171827 !important;
+}
+
+body:not(.dark-mode) #hakkimda .about-intro,
+body:not(.dark-mode) #hakkimda .about-text p {
+    color: #626b7b !important;
+}
