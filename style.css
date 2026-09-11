@@ -1806,33 +1806,29 @@ section, footer, header {
    KVKK POPUP - TEK VE TEMİZ SÜRÜM
    ========================================= */
 
-/* Ekranı kaplayan karanlık arka plan */
+/* KVKK arka plan */
 .kvkk-overlay {
     position: fixed;
     inset: 0;
     width: 100%;
     height: 100%;
+    background: rgba(2, 10, 22, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
-    display: flex;
-    align-items: center;
+    display: none;
+    align-items: flex-start;
     justify-content: center;
 
-    padding: 20px;
-    box-sizing: border-box;
-
-    background: rgba(2, 8, 23, 0.78);
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
-
+    padding-top: 8vh;
     z-index: 99999;
 
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+    overflow: hidden;
+}
 
-    transition:
-        opacity 0.25s ease,
-        visibility 0.25s ease;
+/* Açıldığında */
+.kvkk-overlay.active {
+    display: flex;
 }
 
 /* Açık hali */
