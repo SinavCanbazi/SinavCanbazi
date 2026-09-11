@@ -3977,7 +3977,68 @@ document
         }
     );
 
+/* =========================================================
+   WHATSAPP + INSTAGRAM — NEFES ALMA EFEKTİ
+   ========================================================= */
 
+(function () {
+
+    const whatsapp = document.getElementById("fixed-whatsapp");
+    const instagram = document.getElementById("fixed-instagram");
+
+    if (!whatsapp || !instagram) return;
+
+    let startTime = null;
+
+    function breathe(timestamp) {
+
+        if (!startTime) {
+            startTime = timestamp;
+        }
+
+        const elapsed = timestamp - startTime;
+
+        /* 3 saniyelik yumuşak nefes döngüsü */
+        const whatsappProgress =
+            (elapsed % 3000) / 3000;
+
+        /* Instagram yarım saniye geriden gelsin */
+        const instagramProgress =
+            ((elapsed + 1500) % 3000) / 3000;
+
+        /*
+           Sinüs eğrisi:
+           1.00 → 1.07 → 1.00
+           Çok yumuşak büyüyüp küçülür.
+        */
+        const whatsappScale =
+            1 + Math.sin(
+                whatsappProgress * Math.PI * 2
+            ) * 0.055;
+
+        const instagramScale =
+            1 + Math.sin(
+                instagramProgress * Math.PI * 2
+            ) * 0.055;
+
+        whatsapp.style.setProperty(
+            "transform",
+            `scale(${whatsappScale})`,
+            "important"
+        );
+
+        instagram.style.setProperty(
+            "transform",
+            `scale(${instagramScale})`,
+            "important"
+        );
+
+        requestAnimationFrame(breathe);
+    }
+
+    requestAnimationFrame(breathe);
+
+})();
 </script>
 
 
