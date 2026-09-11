@@ -4279,33 +4279,4 @@ body:not(.dark-mode) #hakkimda .about-card:hover {
 }
 
 
-/* =========================================================
-   GECE MODU - ESKİ KOYU GÖRÜNÜM
-   ========================================================= */
-
-body.dark-mode .about-section,
-body.dark-mode section#hakkimda {
-    background: #080719 !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode .about-section .about-card,
-body.dark-mode #hakkimda .about-card {
-    background: linear-gradient(
-        145deg,
-        #321b70,
-        #1b123b
-    ) !important;
-
-    border-color: rgba(151, 112, 255, 0.45) !important;
-}
-
-body.dark-mode .about-section .about-card h3,
-body.dark-mode #hakkimda .about-card h3 {
-    color: #ffffff !important;
-}
-
-body.dark-mode .about-section .about-card p,
-body.dark-mode #hakkimda .about-card p {
-    color: rgba(255,255,255,.74) !important;
-}
+/
