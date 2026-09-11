@@ -4197,3 +4197,115 @@ body.dark-mode .cookie-box p {
 .floating-whatsapp {
     left: 85px !important;
 }
+/* =========================================================
+   HAKKIMDA - GÜNDÜZ MODUNDA TAMAMEN AÇIK TASARIM
+   ========================================================= */
+
+body:not(.dark-mode) .about-section,
+body:not(.dark-mode) section#hakkimda {
+    background: #f5f7fb !important;
+    background-image: none !important;
+    color: #171827 !important;
+}
+
+/* Hakkımda başlığı */
+body:not(.dark-mode) .about-section .about-header h2,
+body:not(.dark-mode) #hakkimda .about-header h2 {
+    color: #171827 !important;
+}
+
+body:not(.dark-mode) .about-section .about-label,
+body:not(.dark-mode) #hakkimda .about-label {
+    color: #6941d9 !important;
+}
+
+body:not(.dark-mode) .about-section .about-intro,
+body:not(.dark-mode) #hakkimda .about-intro {
+    color: #687083 !important;
+}
+
+/* Hakkımda kartları */
+body:not(.dark-mode) .about-section .about-card,
+body:not(.dark-mode) #hakkimda .about-card {
+    background: #ffffff !important;
+    background-image: none !important;
+
+    border: 1px solid #e2e6ee !important;
+
+    box-shadow:
+        0 10px 30px rgba(35, 42, 60, 0.08) !important;
+
+    color: #171827 !important;
+}
+
+/* Kart başlıkları */
+body:not(.dark-mode) .about-section .about-card h3,
+body:not(.dark-mode) #hakkimda .about-card h3 {
+    color: #171827 !important;
+}
+
+/* Kart yazıları */
+body:not(.dark-mode) .about-section .about-card p,
+body:not(.dark-mode) #hakkimda .about-card p {
+    color: #626b7b !important;
+}
+
+/* Liste yazıları */
+body:not(.dark-mode) .about-section .about-card li,
+body:not(.dark-mode) #hakkimda .about-card li {
+    color: #626b7b !important;
+}
+
+/* Mor ikon kutuları */
+body:not(.dark-mode) .about-section .about-card > i,
+body:not(.dark-mode) #hakkimda .about-card > i {
+    color: #6941d9 !important;
+    background: #eee9ff !important;
+}
+
+/* Check ikonları */
+body:not(.dark-mode) .about-section .about-card li i,
+body:not(.dark-mode) #hakkimda .about-card li i {
+    color: #6941d9 !important;
+}
+
+/* Hover */
+body:not(.dark-mode) .about-section .about-card:hover,
+body:not(.dark-mode) #hakkimda .about-card:hover {
+    background: #ffffff !important;
+    border-color: #d9cff8 !important;
+    box-shadow:
+        0 16px 40px rgba(105, 65, 217, 0.12) !important;
+}
+
+
+/* =========================================================
+   GECE MODU - ESKİ KOYU GÖRÜNÜM
+   ========================================================= */
+
+body.dark-mode .about-section,
+body.dark-mode section#hakkimda {
+    background: #080719 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .about-section .about-card,
+body.dark-mode #hakkimda .about-card {
+    background: linear-gradient(
+        145deg,
+        #321b70,
+        #1b123b
+    ) !important;
+
+    border-color: rgba(151, 112, 255, 0.45) !important;
+}
+
+body.dark-mode .about-section .about-card h3,
+body.dark-mode #hakkimda .about-card h3 {
+    color: #ffffff !important;
+}
+
+body.dark-mode .about-section .about-card p,
+body.dark-mode #hakkimda .about-card p {
+    color: rgba(255,255,255,.74) !important;
+}
