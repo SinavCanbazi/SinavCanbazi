@@ -491,3 +491,14 @@ footer {
     .hero h1 { font-size: 30px; }
     footer { flex-direction: column; gap: 15px; text-align: center; }
 }
+/* Ekran dışındaki ağır içerikleri tarayıcı belleğinden düşürür */
+section, footer, header {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 400px;
+}
+
+/* Animasyonların işlemci (CPU) yerine ekran kartını (GPU) kullanmasını sağlar */
+* {
+  will-change: auto;
+  transform: translateZ(0);
+}
