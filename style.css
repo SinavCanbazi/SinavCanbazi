@@ -1839,38 +1839,23 @@ section, footer, header {
 }
 
 
-/* =========================================
-   KVKK KUTUSU
-   ========================================= */
-
-.kvkk-box {
+/* KVKK kutusu */
+.kvkk-modal {
     position: relative;
 
-    width: min(560px, calc(100vw - 40px));
-    max-height: min(680px, calc(100vh - 80px));
+    width: min(520px, 90vw);
+    max-height: 78vh;
 
-    padding: 30px;
-    box-sizing: border-box;
-
-    background: linear-gradient(
-        145deg,
-        #12263a,
-        #0b1726
-    );
-
-    border: 1px solid rgba(52, 189, 239, 0.45);
+    background: #0f1d2d;
+    border: 1px solid #2388b8;
     border-radius: 18px;
 
-    box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.55),
-        0 0 35px rgba(52, 189, 239, 0.12);
+    padding: 28px;
 
-    color: #e5edf5;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 
-    overflow: hidden;
-
-    transform: translateY(10px) scale(0.97);
-    transition: transform 0.25s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 
