@@ -1372,3 +1372,174 @@ section, footer, header {
     }
 
 }
+/* =========================================
+   ANA SAYFA - HER ŞEYİ ORTALA
+   ========================================= */
+
+.hero {
+    min-height: calc(100vh - 80px);
+
+    display: grid;
+    grid-template-columns: minmax(420px, 520px) minmax(400px, 500px);
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 70px;
+
+    padding: 60px 30px;
+}
+
+
+/* GÖZDE CANBAZ TARAFI */
+
+.hero-content {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    margin: 0;
+}
+
+
+/* FOTOĞRAF */
+
+.hero-content .profile-img {
+    margin: 0 auto 25px;
+}
+
+
+/* BAŞLIK */
+
+.hero-content h1 {
+    width: 100%;
+    margin: 0 0 15px;
+
+    text-align: center;
+}
+
+
+/* AÇIKLAMA */
+
+.hero-content p {
+    width: 100%;
+    margin: 0 0 25px;
+
+    text-align: center;
+}
+
+
+/* BUTONLAR */
+
+.hero-content .hero-buttons {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+}
+
+
+/* =========================================
+   ÜCRETSİZ ÖN GÖRÜŞME FORMU
+   ========================================= */
+
+.hero .on-gorusme-section {
+
+    width: 100%;
+
+    padding: 0;
+
+    margin: 0;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+.hero .on-gorusme-card {
+
+    width: 100%;
+
+    max-width: 500px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 1000px) {
+
+    .hero {
+
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+
+        padding: 50px 20px;
+    }
+
+    .hero-content {
+
+        max-width: 600px;
+
+        margin: 0 auto;
+    }
+
+    .hero .on-gorusme-section {
+
+        max-width: 550px;
+
+        margin: 0 auto;
+    }
+
+}
+
+
+/* =========================================
+   TELEFON
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .hero {
+
+        padding: 40px 15px;
+
+        gap: 40px;
+    }
+
+    .hero-content h1 {
+
+        font-size: 38px;
+    }
+
+    .hero-content .hero-buttons {
+
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .hero-content .hero-buttons .btn {
+
+        width: 100%;
+
+        max-width: 300px;
+    }
+
+}
