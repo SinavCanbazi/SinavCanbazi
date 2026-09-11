@@ -663,3 +663,301 @@ section, footer, header {
     color: #111 !important;
     box-sizing: border-box !important;
 }
+/* =========================================
+   ÜCRETSİZ ÖN GÖRÜŞME FORMU
+   ========================================= */
+
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+}
+
+.form-card {
+    width: 100%;
+    max-width: 465px;
+
+    background: #ffffff;
+
+    border: 1px solid #e0e7ef;
+    border-radius: 18px;
+
+    padding: 42px 32px 38px;
+
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+}
+
+.form-card h2 {
+    text-align: center;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #202633;
+
+    margin-bottom: 42px;
+}
+
+
+/* FORM GRUBU */
+
+.form-group {
+    margin-bottom: 27px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 55px;
+
+    border: 1px solid #d8e1eb;
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    padding: 0 16px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+
+    color: #202633;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #202633;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #68cfc1;
+
+    box-shadow:
+        0 0 0 3px rgba(104, 207, 193, 0.15);
+}
+
+
+/* SINIF LABEL */
+
+.form-group label {
+    display: block;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    margin: 0 0 7px 14px;
+
+    color: #202633;
+}
+
+
+/* SELECT */
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+/* HATA MESAJLARI */
+
+.error-message {
+    display: none;
+
+    color: #ff3f3f;
+
+    font-size: 13px;
+
+    margin-top: 8px;
+    margin-left: 8px;
+}
+
+
+/* ÖĞRENCİ / VELİ */
+
+.radio-group {
+    margin-top: -3px;
+    margin-bottom: 29px;
+}
+
+.radio-option {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 13px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    color: #202633;
+}
+
+.radio-option input {
+    width: 17px;
+    height: 17px;
+
+    accent-color: #68cfc1;
+
+    cursor: pointer;
+}
+
+
+/* TELEFON AÇIKLAMA */
+
+.form-group small {
+    display: block;
+
+    margin-top: 9px;
+    margin-left: 8px;
+
+    font-size: 13px;
+
+    color: #374151;
+}
+
+
+/* KVKK */
+
+.kvkk {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    margin-top: 32px;
+    margin-bottom: 29px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    color: #374151;
+
+    cursor: pointer;
+}
+
+.kvkk input {
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
+
+    margin-top: 1px;
+
+    accent-color: #68cfc1;
+
+    cursor: pointer;
+}
+
+.kvkk a {
+    color: #20bca9;
+
+    text-decoration: underline;
+}
+
+
+/* GÖNDER BUTONU */
+
+.form-card button {
+    width: 100%;
+
+    height: 60px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #68cfc1;
+
+    color: #244c4a;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+    box-shadow:
+        0 5px 12px rgba(102, 207, 193, 0.20);
+}
+
+.form-card button:hover {
+    background: #55c5b6;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 18px rgba(102, 207, 193, 0.25);
+}
+
+.form-card button:active {
+    transform: translateY(0);
+}
+
+
+/* FORM DURUMU */
+
+.status-box {
+    margin-top: 18px;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+.status-box.success {
+    color: #059669;
+}
+
+.status-box.error {
+    color: #dc2626;
+}
+
+.status-box.sending {
+    color: #374151;
+}
+
+
+/* MOBİL */
+
+@media (max-width: 600px) {
+
+    .contact-section {
+        padding: 50px 15px;
+    }
+
+    .form-card {
+        padding: 32px 20px 28px;
+
+        border-radius: 15px;
+    }
+
+    .form-card h2 {
+        font-size: 21px;
+
+        margin-bottom: 32px;
+    }
+
+    .form-group input,
+    .form-group select {
+        height: 53px;
+    }
+
+    .form-card button {
+        height: 56px;
+    }
+}
