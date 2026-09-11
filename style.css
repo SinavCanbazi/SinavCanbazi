@@ -901,3 +901,411 @@ section, footer, header {
     }
 
 }
+/* =========================================
+   SINAV CANBAZI
+   ÜCRETSİZ ÖN GÖRÜŞME FORMU
+   ========================================= */
+
+.on-gorusme-section {
+    width: 100%;
+    padding: 90px 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: transparent;
+}
+
+
+/* FORM KARTI */
+
+.on-gorusme-card {
+    position: relative;
+
+    width: 100%;
+    max-width: 470px;
+
+    padding: 42px 32px 38px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20, 34, 53, 0.96),
+            rgba(10, 23, 39, 0.98)
+        );
+
+    border: 1px solid rgba(64, 184, 235, 0.25);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,0.02),
+        0 20px 60px rgba(0,0,0,0.35),
+        0 0 35px rgba(45, 180, 240, 0.08);
+
+    overflow: hidden;
+}
+
+
+/* ÜST IŞIK EFEKTİ */
+
+.on-gorusme-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: -100px;
+    left: 50%;
+
+    width: 260px;
+    height: 180px;
+
+    transform: translateX(-50%);
+
+    background: rgba(43, 183, 239, 0.13);
+
+    filter: blur(55px);
+
+    pointer-events: none;
+}
+
+
+/* BAŞLIK */
+
+.on-gorusme-card h2 {
+
+    position: relative;
+
+    margin: 0 0 38px;
+
+    text-align: center;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #f4f8fc;
+
+    letter-spacing: -0.3px;
+}
+
+
+/* INPUT GRUBU */
+
+.on-form-group {
+    position: relative;
+
+    margin-bottom: 24px;
+}
+
+
+/* INPUT VE SELECT */
+
+.on-form-group input,
+.on-form-group select {
+
+    width: 100%;
+    height: 56px;
+
+    padding: 0 16px;
+
+    border-radius: 9px;
+
+    border: 1px solid rgba(125, 155, 180, 0.28);
+
+    background: rgba(255,255,255,0.035);
+
+    color: #edf4f8;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+
+/* PLACEHOLDER */
+
+.on-form-group input::placeholder {
+
+    color: #a9b7c5;
+
+    opacity: 1;
+}
+
+
+/* FOCUS */
+
+.on-form-group input:focus,
+.on-form-group select:focus {
+
+    background: rgba(255,255,255,0.055);
+
+    border-color: #35bdf2;
+
+    box-shadow:
+        0 0 0 3px rgba(53,189,242,0.10),
+        0 0 18px rgba(53,189,242,0.08);
+}
+
+
+/* SELECT */
+
+.on-form-group select {
+
+    cursor: pointer;
+
+    appearance: auto;
+}
+
+
+/* SELECT OPTIONS */
+
+.on-form-group select option {
+
+    background: #101d2c;
+
+    color: #ffffff;
+}
+
+
+/* LABEL */
+
+.on-form-group label {
+
+    display: block;
+
+    margin: 0 0 8px 4px;
+
+    color: #dce8f0;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* HATA MESAJI */
+
+.on-error {
+
+    display: none;
+
+    margin-top: 7px;
+    margin-left: 5px;
+
+    color: #ff6b6b;
+
+    font-size: 12px;
+}
+
+
+/* ÖĞRENCİ / VELİ */
+
+.on-radio-group {
+
+    margin-top: 3px;
+
+    margin-bottom: 26px;
+}
+
+
+.on-radio-group label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 13px;
+
+    color: #dce6ee;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+.on-radio-group input {
+
+    width: 17px;
+    height: 17px;
+
+    accent-color: #38bdf8;
+
+    cursor: pointer;
+}
+
+
+/* TELEFON AÇIKLAMASI */
+
+.on-form-group small {
+
+    display: block;
+
+    margin-top: 8px;
+    margin-left: 5px;
+
+    color: #8fa3b5;
+
+    font-size: 12px;
+}
+
+
+/* KVKK */
+
+.on-kvkk {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-top: 30px;
+    margin-bottom: 28px;
+
+    color: #b8c6d2;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    cursor: pointer;
+}
+
+
+.on-kvkk input {
+
+    width: 18px;
+    height: 18px;
+
+    flex-shrink: 0;
+
+    margin-top: 1px;
+
+    accent-color: #38c4e8;
+
+    cursor: pointer;
+}
+
+
+.on-kvkk a {
+
+    color: #43d0c0;
+
+    text-decoration: underline;
+
+    text-underline-offset: 2px;
+}
+
+
+/* GÖNDER BUTONU */
+
+.on-gorusme-card button {
+
+    width: 100%;
+    height: 58px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #32b8ee,
+            #35c4df
+        );
+
+    color: #06202d;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(40,185,235,0.18);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease;
+}
+
+
+.on-gorusme-card button:hover {
+
+    transform: translateY(-2px);
+
+    filter: brightness(1.08);
+
+    box-shadow:
+        0 12px 30px rgba(40,185,235,0.30),
+        0 0 20px rgba(40,185,235,0.12);
+}
+
+
+.on-gorusme-card button:active {
+
+    transform: translateY(0);
+}
+
+
+/* MOBİL */
+
+@media (max-width: 600px) {
+
+    .on-gorusme-section {
+
+        padding: 60px 15px;
+
+    }
+
+    .on-gorusme-card {
+
+        padding: 32px 20px 28px;
+
+        border-radius: 15px;
+
+    }
+
+    .on-gorusme-card h2 {
+
+        font-size: 21px;
+
+        margin-bottom: 32px;
+
+    }
+
+    .on-form-group input,
+    .on-form-group select {
+
+        height: 53px;
+
+    }
+
+    .on-gorusme-card button {
+
+        height: 56px;
+
+    }
+}
