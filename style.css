@@ -1802,3 +1802,60 @@ section, footer, header {
     }
 
 }
+/* KVKK arka plan */
+.kvkk-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 8, 23, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9998;
+}
+
+/* KVKK penceresi */
+.kvkk-modal {
+    position: fixed;
+    width: 530px;
+    max-width: calc(100vw - 30px);
+    max-height: 70vh;
+    
+    background: linear-gradient(145deg, #12263a, #0b1726);
+    border: 1px solid rgba(52, 189, 239, 0.45);
+    border-radius: 16px;
+    
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.55),
+        0 0 35px rgba(52, 189, 239, 0.12);
+
+    overflow-y: auto;
+    z-index: 9999;
+
+    /* Başlangıçta gizli */
+    display: none;
+}
+
+/* Açıldığında */
+.kvkk-modal.show {
+    display: block;
+    animation: kvkkOpen 0.22s ease;
+}
+
+@keyframes kvkkOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Mobil */
+@media (max-width: 600px) {
+    .kvkk-modal {
+        width: calc(100vw - 24px);
+        max-height: 75vh;
+    }
+}
