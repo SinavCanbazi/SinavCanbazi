@@ -1667,6 +1667,7 @@ footer {
 }
 
 
+
 /* =========================================================
    KVKK MODAL
    ========================================================= */
@@ -2567,16 +2568,43 @@ section h2:hover {
                     Çalışma Alanlarım
                 </a>
             </li>
+<li style="position: relative;" class="dropdown-item">
+    <a href="#" id="toolsDropdownBtn" style="display: flex; align-items: center; gap: 4px;">
+        Ücretsiz Araçlar <span style="font-size: 10px;">▼</span>
+    </a>
+    <div id="toolsDropdownMenu" style="display: none; position: absolute; top: 100%; left: 0; background: #13111c; border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 6px 0; min-width: 170px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 1000;">
+        <a href="sayac.html" style="display: block; padding: 10px 16px; color: #fff; text-decoration: none; font-size: 14px; transition: 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.15)'" onmouseout="this.style.background='transparent'">
+            ⏱️ Süre Tut (Sayaç)
+        </a>
+        <a href="#" id="openExamCalendar" style="display: block; padding: 10px 16px; color: #fff; text-decoration: none; font-size: 14px; transition: 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.15)'" onmouseout="this.style.background='transparent'">
+            📅 Sınav Takvimi
+        </a>
+        <a href="yks-hesaplama.html" style="display: block; padding: 10px 16px; color: #fff; text-decoration: none; font-size: 14px; transition: 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.15)'" onmouseout="this.style.background='transparent'">
+    🧮 YKS Puan Hesaplama
+</a>
+    </div>
+</li>
 
-            <li>
-                <a href="#on-gorusme">
-                    Ön Görüşme
-                </a>
-            </li>
+<script>
+    const dropdownBtn = document.getElementById('toolsDropdownBtn');
+    const dropdownMenu = document.getElementById('toolsDropdownMenu');
+
+    dropdownBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'block' : 'none';
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+            dropdownMenu.style.display = 'none';
+        }
+    });
+</script>
 
         </ul>
 
     </nav>
+    
 
     <div class="nav-right">
 
@@ -3428,9 +3456,7 @@ section h2:hover {
 
         <p>
 
-            Paylaşılan bilgiler ön görüşme talebinizin
-            değerlendirilmesi, iletişim kurulması ve hizmet
-            sürecinin yürütülmesi amacıyla kullanılabilir.
+          Toplanan kişisel verileriniz; ücretsiz ön görüşme talebinizin değerlendirilmesi, sizinle iletişim kurulması, rehberlik ve eğitim sürecinin yürütülmesi ve hizmet kalitemizin artırılması amacıyla işlenmektedir.
 
         </p>
 
@@ -3441,11 +3467,19 @@ section h2:hover {
 
         <p>
 
-            KVKK kapsamında kişisel verilerinizle ilgili
-            sahip olduğunuz haklar hakkında bilgi almak için
-            ilgili veri sorumlusuna başvurabilirsiniz.
+            KVKK'nın 11. maddesi gereğince veri sahibi olarak; verilerinizin işlenip işlenmediğini öğrenme, bilgi talep etme, düzeltilmesini veya silinmesini isteme haklarına sahipsiniz. Taleplerinizi web sitemiz üzerinden bize iletebilirsiniz.
 
         </p>
+        <h3>
+            Kişisel Verilerin Aktarımı
+        </h3>
+
+        <p>
+
+          Toplanan kişisel verileriniz, kanunen yetkili kamu kurum ve kuruluşları hariç olmak üzere üçüncü şahıslarla paylaşılmamakta ve yurt dışına aktarılmamaktadır.
+
+        </p>
+
 
 
         <button
@@ -4090,6 +4124,265 @@ document
 </script>
 
 
+<!-- Modern Sınav Takvimi Pop-Up -->
+<div id="sinavModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5, 4, 10, 0.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 999999; justify-content: center; align-items: center; padding: 20px;">
+    
+    <div style="background: linear-gradient(145deg, rgba(26, 21, 46, 0.95), rgba(15, 12, 28, 0.98)); border: 1px solid rgba(168, 85, 247, 0.25); width: 100%; max-width: 720px; max-height: 85vh; border-radius: 24px; padding: 28px; color: #ffffff; box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(168, 85, 247, 0.15); display: flex; flex-direction: column; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+        
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 18px; margin-bottom: 22px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="width: 10px; height: 10px; background-color: #a855f7; border-radius: 50%; box-shadow: 0 0 12px #a855f7; display: inline-block;"></span>
+                <h3 style="margin: 0; font-size: 21px; font-weight: 700; color: #ffffff; letter-spacing: -0.3px;">Sınav Takvimi & Canlı Sayaç</h3>
+            </div>
+            <span id="modalKapat" style="font-size: 24px; cursor: pointer; color: #94a3b8; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255, 255, 255, 0.05); transition: 0.2s;" onmouseover="this.style.color='#fff'; this.style.background='rgba(255,255,255,0.1)';" onmouseout="this.style.color='#94a3b8'; this.style.background='rgba(255,255,255,0.05)';">&times;</span>
+        </div>
+
+        <!-- Body / Sınav Kartları -->
+        <div style="overflow-y: auto; padding-right: 6px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px;">
+            
+            <!-- YKS -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">YKS (TYT-AYT)</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">19 Haziran 2027</span>
+                </div>
+                <div id="timer-yks" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- LGS -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">LGS</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">6 Haziran 2027</span>
+                </div>
+                <div id="timer-lgs" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- KPSS Lisans -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">KPSS Lisans</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">18 Temmuz 2027</span>
+                </div>
+                <div id="timer-kpss-lisans" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- KPSS Ön Lisans -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">KPSS Ön Lisans</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">4 Ekim 2026</span>
+                </div>
+                <div id="timer-kpss-onlisans" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- KPSS Ortaöğretim -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">KPSS Ortaöğretim</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">25 Ekim 2026</span>
+                </div>
+                <div id="timer-kpss-ortaoğretim" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- ALES -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">ALES</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">29 Kasım 2026</span>
+                </div>
+                <div id="timer-ales" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- DGS -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">DGS</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">4 Temmuz 2027</span>
+                </div>
+                <div id="timer-dgs" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- AGS -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">AGS</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">12 Eylül 2027</span>
+                </div>
+                <div id="timer-ags" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- SINAV TAKVİMİ POPUP SCRIPT (GARANTİ ÇÖZÜM) -->
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('sinavModal');
+    const btn = document.getElementById('openExamCalendar');
+    const closeBtn = document.getElementById('modalKapat');
+
+    // Sınav Takvimi butonuna basınca aç
+    if (btn) {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (modal) modal.style.display = 'flex';
+        });
+    }
+
+    // X butonuna basınca kapat
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            if (modal) modal.style.display = 'none';
+        });
+    }
+
+    // Dış siyah alana basınca kapat
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Canlı Sayaç Motoru
+    const sinavTarihleri = {
+        'yks': '2027-06-20T10:15:00',
+        'lgs': '2027-06-06T09:30:00',
+        'kpss-lisans': '2027-07-18T10:15:00',
+        'kpss-onlisans': '2026-10-04T10:15:00',
+        'kpss-ortaoğretim': '2026-10-25T10:15:00',
+        'ales': '2026-11-22T10:15:00',
+        'dgs': '2027-07-04T10:15:00',
+        'ags': '2027-09-12T10:15:00'
+    };
+
+    function sayaciGuncelle() {
+        const simdi = new Date().getTime();
+
+        for (const [key, tarihStr] of Object.entries(sinavTarihleri)) {
+            const hedefTarih = new Date(tarihStr).getTime();
+            const fark = hedefTarih - simdi;
+
+            const el = document.getElementById(`timer-${key}`);
+            if (!el) continue;
+
+            if (fark <= 0) {
+                el.innerHTML = "Sınav Tamamlandı";
+                continue;
+            }
+
+            const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+            const saat = Math.floor((fark % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
+            const saniye = Math.floor((fark % (1000 * 60)) / 1000);
+
+            el.innerHTML = `${gun}g ${saat}s ${dakika}d ${saniye}s`;
+        }
+    }
+
+    setInterval(sayaciGuncelle, 1000);
+    sayaciGuncelle();
+});
+</script>
+<head>
+    <!-- Var olan diğer kodlar... -->
+
+    <style>
+        /* 2. Adımdaki CSS kodları buraya gelecek */
+    </style>
+</head>
+<body>
+
+    <!-- Sayfanın diğer kodları... -->
+
+    <!-- 1. ADIMDAKİ HTML KODUNU BURAYA (</body> BİTİMİNDEN HEMEN ÖNCE) YAPIŞTIR -->
+    <div id="sinavModal" ...>
+        ...
+    </div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('sinavModal');
+    const btn = document.getElementById('openExamCalendar');
+    const closeBtn = document.getElementById('modalKapat');
+
+    if (btn) {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (modal) modal.style.display = 'flex';
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            if (modal) modal.style.display = 'none';
+        });
+    }
+
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    const sinavTarihleri = {
+        'yks': '2027-06-19T10:00:00',
+        'lgs': '2027-06-06T09:30:00',
+        'kpss-lisans': '2027-07-18T10:15:00',
+        'kpss-onlisans': '2026-10-04T10:15:00',
+        'kpss-ortaoğretim': '2026-10-25T10:15:00',
+        'ales': '2026-11-29T10:15:00',
+        'dgs': '2027-07-04T10:15:00',
+        'ags': '2027-09-12T10:15:00'
+    };
+
+    function kutuOlustur(deger, etiket) {
+        return `
+            <div class="timer-box">
+                <div class="timer-value">${deger}</div>
+                <div class="timer-label">${etiket}</div>
+            </div>
+        `;
+    }
+
+    function sayaciGuncelle() {
+        const simdi = new Date().getTime();
+
+        for (const [key, tarihStr] of Object.entries(sinavTarihleri)) {
+            const hedefTarih = new Date(tarihStr).getTime();
+            const fark = hedefTarih - simdi;
+
+            const el = document.getElementById(`timer-${key}`);
+            if (!el) continue;
+
+            if (fark <= 0) {
+                el.innerHTML = `<div style="width:100%; text-align:center; color:#94a3b8; font-size:13px; padding:8px;">Sınav Tamamlandı</div>`;
+                continue;
+            }
+
+            const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+            const saat = Math.floor((fark % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
+            const saniye = Math.floor((fark % (1000 * 60)) / 1000);
+
+            el.innerHTML = 
+                kutuOlustur(gun, 'GÜN') +
+                kutuOlustur(saat < 10 ? '0' + saat : saat, 'SAAT') +
+                kutuOlustur(dakika < 10 ? '0' + dakika : dakika, 'DK') +
+                kutuOlustur(saniye < 10 ? '0' + saniye : saniye, 'SN');
+        }
+    }
+
+    setInterval(sayaciGuncelle, 1000);
+    sayaciGuncelle();
+});
+</script>
+</body>
 </body>
 
 </html>
