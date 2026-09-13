@@ -2282,6 +2282,27 @@
         window.addEventListener('load', buildMobileDistributions);
         setTimeout(buildMobileDistributions, 300);
         setTimeout(buildMobileDistributions, 1000);
+
+        /* Arama alanı, mobildeki yıl-kutu görünümünü de filtreler. */
+        const mobileDistributionSearch = document.getElementById('topic-search');
+        if (mobileDistributionSearch) {
+            mobileDistributionSearch.addEventListener('input', function () {
+                const query = this.value
+                    .trim()
+                    .replace(/İ/g, 'i')
+                    .replace(/I/g, 'ı')
+                    .toLocaleLowerCase('tr-TR');
+
+                document.querySelectorAll('.mobile-distribution .distribution-topic').forEach((topicCard) => {
+                    const title = topicCard.querySelector('.distribution-topic-name')?.textContent
+                        .replace(/İ/g, 'i')
+                        .replace(/I/g, 'ı')
+                        .toLocaleLowerCase('tr-TR') || '';
+
+                    topicCard.style.display = !query || title.includes(query) ? '' : 'none';
+                });
+            });
+        }
     </script>
 
 </body>
