@@ -2220,53 +2220,68 @@
 
     <script>
         /* Masaüstü tablosundaki verileri mobilde yıl kartlarına dönüştürür. */
-        document.querySelectorAll('.table-container').forEach((container) => {
-            const table = container.querySelector('table');
-            if (!table || container.nextElementSibling?.classList.contains('mobile-distribution')) return;
+        function buildMobileDistributions() {
+            document.querySelectorAll('.table-container').forEach((container) => {
+                const table = container.querySelector('table');
+                const rows = table ? Array.from(table.querySelectorAll('tbody tr')) : [];
+                if (!table || !rows.length) return;
 
-            const years = Array.from(table.querySelectorAll('thead th'))
-                .slice(1)
-                .map((heading) => heading.textContent.trim());
+                const years = Array.from(table.querySelectorAll('thead th'))
+                    .slice(1)
+                    .map((heading) => heading.textContent.trim());
 
-            const mobileView = document.createElement('div');
-            mobileView.className = 'mobile-distribution';
+                let mobileView = container.nextElementSibling;
+                if (!mobileView || !mobileView.classList.contains('mobile-distribution')) {
+                    mobileView = document.createElement('div');
+                    mobileView.className = 'mobile-distribution';
+                    container.insertAdjacentElement('afterend', mobileView);
+                }
 
-            Array.from(table.querySelectorAll('tbody tr')).forEach((row) => {
-                const cells = Array.from(row.querySelectorAll('td'));
-                if (!cells.length) return;
+                /* Tablo verisi daha sonra oluştuğunda eski boş görünümü yeniler. */
+                if (mobileView.dataset.rowCount === String(rows.length)) return;
+                mobileView.innerHTML = '';
+                mobileView.dataset.rowCount = String(rows.length);
 
-                const topicCell = cells[0];
-                const number = topicCell.querySelector('.table-topic-num')?.textContent.trim() || '';
-                const topic = topicCell.querySelector('.table-topic-cell span:last-child')?.textContent.trim() || topicCell.textContent.trim();
+                rows.forEach((row) => {
+                    const cells = Array.from(row.querySelectorAll('td'));
+                    if (!cells.length) return;
 
-                const topicCard = document.createElement('article');
-                topicCard.className = 'distribution-topic';
-                topicCard.innerHTML = `
-                    <h3 class="distribution-topic-name">
-                        <span class="distribution-topic-number">${number}</span>
-                        <span>${topic}</span>
-                    </h3>
-                    <div class="year-count-grid"></div>
-                `;
+                    const topicCell = cells[0];
+                    const number = topicCell.querySelector('.table-topic-num')?.textContent.trim() || '';
+                    const topic = topicCell.querySelector('.table-topic-cell span:last-child')?.textContent.trim() || topicCell.textContent.trim();
 
-                const grid = topicCard.querySelector('.year-count-grid');
-                cells.slice(1).forEach((cell, index) => {
-                    const value = cell.textContent.trim() || '-';
-                    const hasQuestion = value !== '-';
-                    const yearCard = document.createElement('div');
-                    yearCard.className = `year-count${hasQuestion ? ' has-question' : ''}`;
-                    yearCard.innerHTML = `
-                        <span class="year-count-year">${years[index] || ''}</span>
-                        <span class="year-count-value">${hasQuestion ? value : '•'}</span>
+                    const topicCard = document.createElement('article');
+                    topicCard.className = 'distribution-topic';
+                    topicCard.innerHTML = `
+                        <h3 class="distribution-topic-name">
+                            <span class="distribution-topic-number">${number}</span>
+                            <span>${topic}</span>
+                        </h3>
+                        <div class="year-count-grid"></div>
                     `;
-                    grid.appendChild(yearCard);
+
+                    const grid = topicCard.querySelector('.year-count-grid');
+                    cells.slice(1).forEach((cell, index) => {
+                        const value = cell.textContent.trim() || '-';
+                        const hasQuestion = value !== '-';
+                        const yearCard = document.createElement('div');
+                        yearCard.className = `year-count${hasQuestion ? ' has-question' : ''}`;
+                        yearCard.innerHTML = `
+                            <span class="year-count-year">${years[index] || ''}</span>
+                            <span class="year-count-value">${hasQuestion ? value : '•'}</span>
+                        `;
+                        grid.appendChild(yearCard);
+                    });
+
+                    mobileView.appendChild(topicCard);
                 });
-
-                mobileView.appendChild(topicCard);
             });
+        }
 
-            container.insertAdjacentElement('afterend', mobileView);
-        });
+        buildMobileDistributions();
+        window.addEventListener('load', buildMobileDistributions);
+        setTimeout(buildMobileDistributions, 300);
+        setTimeout(buildMobileDistributions, 1000);
     </script>
 
 </body>
