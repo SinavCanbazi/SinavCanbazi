@@ -7,7 +7,7 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
     <title>Sınav Canbazı • Gözde Canbaz</title>
@@ -2517,6 +2517,57 @@ section h2:hover {
         opacity: .6;
     }
 }
+
+/* =========================================================
+   iPHONE / SAFARI GÜVENLİ ALAN VE HERO DÜZELTMELERİ
+   ========================================================= */
+
+@supports (padding-top: env(safe-area-inset-top)) {
+    .navbar {
+        height: calc(76px + env(safe-area-inset-top));
+        padding-top: env(safe-area-inset-top);
+    }
+
+    .hero {
+        padding-top: calc(115px + env(safe-area-inset-top));
+    }
+
+    #fixed-whatsapp {
+        bottom: calc(22px + env(safe-area-inset-bottom)) !important;
+    }
+
+    #fixed-instagram {
+        bottom: calc(92px + env(safe-area-inset-bottom)) !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .hero {
+        /* Safari'de adres çubuğu açılıp kapandığında gerçek görünür alanı kullanır. */
+        min-height: 100svh;
+        min-height: 100dvh;
+        padding-top: calc(92px + env(safe-area-inset-top));
+        padding-bottom: max(35px, env(safe-area-inset-bottom));
+        align-items: flex-start;
+    }
+
+    .hero-content {
+        min-height: min(680px, calc(100dvh - 127px - env(safe-area-inset-top)));
+        min-height: min(680px, calc(100svh - 127px - env(safe-area-inset-top)));
+    }
+
+    .navbar {
+        height: calc(68px + env(safe-area-inset-top));
+    }
+
+    #fixed-whatsapp {
+        bottom: calc(15px + env(safe-area-inset-bottom)) !important;
+    }
+
+    #fixed-instagram {
+        bottom: calc(75px + env(safe-area-inset-bottom)) !important;
+    }
+}
 </style>
 
 </head>
@@ -4291,7 +4342,7 @@ window.addEventListener('DOMContentLoaded', () => {
     sayaciGuncelle();
 });
 </script>
-<head>
+<template hidden>
     <!-- Var olan diğer kodlar... -->
 
     <style>
@@ -4419,4 +4470,6 @@ window.addEventListener('DOMContentLoaded', () => {
 </body>
 </body>
 
+</template>
+</body>
 </html>
