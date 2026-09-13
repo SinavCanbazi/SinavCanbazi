@@ -1,0 +1,4812 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <title>Sınav Canbazı • Gözde Canbaz</title>
+
+    <meta
+        name="description"
+        content="Sınav Canbazı - Gözde Canbaz öğrenci koçluğu ve sınav hazırlık desteği."
+    >
+
+    <meta
+        name="theme-color"
+        content="#190052"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="fav.png"
+    >
+
+    <!-- Google Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+<style>
+
+/* =========================================================
+   GENEL
+   ========================================================= */
+
+:root {
+
+    --bg-main: #f5f7fb;
+    --bg-section: #ffffff;
+    --bg-card: #ffffff;
+    --bg-soft: #eef1f7;
+
+    --text-main: #181625;
+    --text-secondary: #666579;
+    --text-muted: #888697;
+
+    --primary: #5b35c9;
+    --primary-dark: #45239f;
+    --primary-soft: #eee9ff;
+
+    --border: #e4e2ec;
+
+    --hero-1: #190052;
+    --hero-2: #2d0874;
+
+    --input-bg: #ffffff;
+
+    --footer-bg: #10002f;
+
+    --shadow:
+        0 20px 60px rgba(35, 20, 75, 0.10);
+
+    --transition:
+        0.35s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    font-family: "Inter", sans-serif;
+
+    background: var(--bg-main);
+
+    color: var(--text-main);
+
+    line-height: 1.6;
+
+    overflow-x: hidden;
+
+    transition:
+        background var(--transition),
+        color var(--transition);
+}
+
+body.dark-mode {
+
+    --bg-main: #080b14;
+    --bg-section: #0e1320;
+    --bg-card: #131927;
+    --bg-soft: #171d2b;
+
+    --text-main: #f2f1f8;
+    --text-secondary: #b7b5c5;
+    --text-muted: #8d8b9d;
+
+    --primary: #9b7dff;
+    --primary-dark: #8061e8;
+    --primary-soft: #211b3d;
+
+    --border: #272e3f;
+
+    --hero-1: #0c0020;
+    --hero-2: #26005e;
+
+    --input-bg: #121827;
+
+    --footer-bg: #05060c;
+
+    --shadow:
+        0 20px 60px rgba(0, 0, 0, 0.38);
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   PRELOADER
+   ========================================================= */
+
+#preloader {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #190052;
+
+    z-index: 999999;
+
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
+}
+
+#preloader.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+.loader {
+
+    width: 52px;
+
+    height: 52px;
+
+    border: 4px solid rgba(255,255,255,.25);
+
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation:
+        loaderSpin
+        1s
+        linear
+        infinite;
+}
+
+@keyframes loaderSpin {
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    background: rgba(255,255,255,.90);
+
+    backdrop-filter: blur(16px);
+
+    -webkit-backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid var(--border);
+
+    z-index: 10000;
+
+    transition:
+        background var(--transition),
+        border-color var(--transition);
+}
+
+body.dark-mode .navbar {
+
+    background: rgba(8,11,20,.90);
+}
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--text-main);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 1.05rem;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.logo span {
+
+    color: var(--primary);
+}
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    list-style: none;
+}
+
+.nav-links a {
+
+    color: var(--text-main);
+
+    font-size: .92rem;
+
+    font-weight: 600;
+
+    transition: color .2s ease;
+}
+
+.nav-links a:hover {
+
+    color: var(--primary);
+}
+
+.nav-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+#theme-toggle {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--border);
+
+    background: var(--bg-soft);
+
+    color: var(--text-main);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+
+    transition:
+        background var(--transition),
+        color var(--transition),
+        border-color var(--transition);
+}
+
+#theme-toggle:hover {
+
+    color: var(--primary);
+
+    border-color: var(--primary);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    padding:
+        115px
+        6%
+        60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: var(--bg-main);
+}
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 430px;
+
+    height: 430px;
+
+    left: -200px;
+
+    top: 80px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(91,53,201,.08);
+
+    filter: blur(15px);
+
+    pointer-events: none;
+}
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+
+    height: 350px;
+
+    right: -150px;
+
+    bottom: -120px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(113,72,255,.10);
+
+    filter: blur(15px);
+
+    pointer-events: none;
+}
+
+.hero-content {
+
+    position: relative;
+
+    width: min(1120px, 100%);
+
+    min-height: 600px;
+
+    padding:
+        70px
+        7%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    border-radius: 34px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 88% 24%,
+            rgba(142,106,255,.23),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 8% 90%,
+            rgba(71,133,255,.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            var(--hero-1),
+            var(--hero-2)
+        );
+
+    box-shadow:
+        0 30px 80px rgba(30,0,80,.20);
+
+    isolation: isolate;
+}
+
+body.dark-mode .hero-content {
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.45);
+}
+
+.hero h1 {
+
+    position: relative;
+
+    z-index: 10;
+
+    max-width: 650px;
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: clamp(
+        3rem,
+        6vw,
+        5.8rem
+    );
+
+    line-height: 1.04;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 26px;
+}
+
+.hero h1 span {
+
+    color: #c9baff;
+}
+
+.hero p {
+
+    position: relative;
+
+    z-index: 10;
+
+    max-width: 570px;
+
+    color: rgba(255,255,255,.76);
+
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+
+    margin-bottom: 34px;
+}
+
+.hero-buttons {
+
+    position: relative;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+}
+
+.hero-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    min-height: 52px;
+
+    padding:
+        0 22px;
+
+    border-radius: 14px;
+
+    font-weight: 700;
+
+    transition:
+        transform .2s ease,
+        background .25s ease,
+        color .25s ease;
+}
+
+.hero-button:hover {
+
+    transform: translateY(-2px);
+}
+
+.hero-button.primary {
+
+    background: #ffffff;
+
+    color: #24005f;
+}
+
+.hero-button.primary:hover {
+
+    background: #f0ecff;
+}
+
+.hero-button.secondary {
+
+    border: 1px solid rgba(255,255,255,.24);
+
+    color: #ffffff;
+
+    background: rgba(255,255,255,.07);
+}
+
+.hero-button.secondary:hover {
+
+    background: rgba(255,255,255,.13);
+}
+
+
+/* =========================================================
+   HERO GÖRSEL / DEKORASYON
+   ========================================================= */
+
+.hero-visual {
+
+    position: absolute;
+
+    width: 360px;
+
+    height: 360px;
+
+    right: 5%;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+.hero-orbit {
+
+    position: absolute;
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    border-radius: 50%;
+}
+
+.orbit-1 {
+
+    inset: 30px;
+}
+
+.orbit-2 {
+
+    inset: 70px;
+
+    transform: rotate(45deg);
+}
+
+.orbit-3 {
+
+    inset: 105px;
+
+    transform: rotate(-35deg);
+}
+
+.hero-glow {
+
+    position: absolute;
+
+    width: 190px;
+
+    height: 190px;
+
+    left: 85px;
+
+    top: 85px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(128,97,255,.12);
+
+    filter: blur(30px);
+}
+
+
+/* =========================================================
+   BALONCUKLAR
+   ========================================================= */
+
+.hero-bubble {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 4;
+
+    will-change: transform;
+
+    opacity: .65;
+}
+
+.bubble-purple {
+
+    width: 125px;
+
+    height: 125px;
+
+    right: 25px;
+
+    top: 28px;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,.18),
+            transparent 25%
+        ),
+        linear-gradient(
+            135deg,
+            #a58cff,
+            #5c37d2
+        );
+
+    animation:
+        bubblePurple
+        17s
+        ease-in-out
+        infinite;
+}
+
+.bubble-green {
+
+    width: 76px;
+
+    height: 76px;
+
+    right: 110px;
+
+    bottom: 40px;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,.15),
+            transparent 25%
+        ),
+        #b8e85a;
+
+    animation:
+        bubbleGreen
+        19s
+        ease-in-out
+        infinite;
+}
+
+.bubble-yellow {
+
+    width: 47px;
+
+    height: 47px;
+
+    left: 62px;
+
+    bottom: 64px;
+
+    background: #efd05c;
+
+    animation:
+        bubbleYellow
+        16s
+        ease-in-out
+        infinite;
+}
+
+.bubble-blue {
+
+    width: 33px;
+
+    height: 33px;
+
+    left: 28px;
+
+    top: 74px;
+
+    background: #66b3e8;
+
+    animation:
+        bubbleBlue
+        18s
+        ease-in-out
+        infinite;
+}
+
+@keyframes bubblePurple {
+
+    0%,
+    100% {
+
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+    50% {
+
+        transform:
+            translate3d(9px,-13px,0)
+            scale(1.025);
+    }
+}
+
+@keyframes bubbleGreen {
+
+    0%,
+    100% {
+
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+    50% {
+
+        transform:
+            translate3d(-8px,9px,0)
+            scale(.975);
+    }
+}
+
+@keyframes bubbleYellow {
+
+    0%,
+    100% {
+
+        transform:
+            translate3d(0,0,0);
+    }
+
+    50% {
+
+        transform:
+            translate3d(6px,-8px,0);
+    }
+}
+
+@keyframes bubbleBlue {
+
+    0%,
+    100% {
+
+        transform:
+            translate3d(0,0,0);
+    }
+
+    50% {
+
+        transform:
+            translate3d(-5px,6px,0);
+    }
+}
+
+.hero-symbol {
+
+    position: absolute;
+
+    z-index: 5;
+
+    color:
+        rgba(255,255,255,.58);
+
+    font-size: 1.8rem;
+
+    font-weight: 800;
+
+    user-select: none;
+}
+
+.symbol-1 {
+
+    top: 18px;
+
+    left: 48px;
+}
+
+.symbol-2 {
+
+    top: 75px;
+
+    right: 12px;
+}
+
+.symbol-3 {
+
+    bottom: 60px;
+
+    left: 18px;
+}
+
+.symbol-4 {
+
+    bottom: 12px;
+
+    right: 72px;
+}
+
+.symbol-5 {
+
+    top: 145px;
+
+    left: 4px;
+}
+
+.hero-center {
+
+    position: absolute;
+
+    z-index: 6;
+
+    width: 96px;
+
+    height: 96px;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8c6bff,
+            #6341d2
+        );
+
+    color: #ffffff;
+
+    font-size: 2.25rem;
+
+    box-shadow:
+        0 0 50px
+        rgba(128,97,255,.35);
+}
+
+
+/* =========================================================
+   GENEL BÖLÜMLER
+   ========================================================= */
+
+.section {
+
+    padding:
+        100px 6%;
+
+    background: var(--bg-main);
+
+    transition:
+        background var(--transition);
+}
+
+.section-inner {
+
+    width: min(1100px, 100%);
+
+    margin: auto;
+}
+
+.section-title {
+
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+.section-title span {
+
+    display: block;
+
+    color: var(--primary);
+
+    font-size: .82rem;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+.section-title h2 {
+
+    font-family: "Poppins", sans-serif;
+
+    color: var(--text-main);
+
+    font-size: clamp(
+        2rem,
+        4vw,
+        3rem
+    );
+
+    line-height: 1.2;
+
+    margin-bottom: 12px;
+}
+
+.section-title p {
+
+    max-width: 650px;
+
+    margin: auto;
+
+    color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   HAKKIMDA
+   ========================================================= */
+
+.about-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 28px;
+}
+
+.about-card {
+
+    padding: 36px;
+
+    background: var(--bg-card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 24px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        background var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.about-card:hover {
+
+    box-shadow:
+        0 24px 65px
+        rgba(35,20,75,.13);
+}
+
+body.dark-mode .about-card:hover {
+
+    box-shadow:
+        0 24px 65px
+        rgba(0,0,0,.40);
+}
+
+.about-card h3 {
+
+    color: var(--text-main);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 1.35rem;
+
+    margin-bottom: 15px;
+}
+
+.about-card p {
+
+    color: var(--text-secondary);
+
+    margin-bottom: 14px;
+}
+
+.about-list {
+
+    list-style: none;
+
+    display: grid;
+
+    gap: 13px;
+
+    margin-top: 20px;
+}
+
+.about-list li {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    color: var(--text-secondary);
+}
+
+.about-list i {
+
+    color: var(--primary);
+
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   YETENEKLER
+   ========================================================= */
+
+.skills-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+.skill-card {
+
+    padding: 30px;
+
+    background: var(--bg-card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 22px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform .25s ease,
+        background var(--transition),
+        border-color var(--transition);
+}
+
+.skill-card:hover {
+
+    transform: translateY(-5px);
+}
+
+.skill-icon {
+
+    width: 54px;
+
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: var(--primary-soft);
+
+    color: var(--primary);
+
+    font-size: 1.3rem;
+
+    margin-bottom: 20px;
+}
+
+.skill-card h3 {
+
+    color: var(--text-main);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 1.12rem;
+
+    margin-bottom: 10px;
+}
+
+.skill-card p {
+
+    color: var(--text-secondary);
+
+    font-size: .94rem;
+}
+
+
+/* =========================================================
+   ÖN GÖRÜŞME
+   ========================================================= */
+
+.on-gorusme-section {
+
+    padding:
+        100px 6%;
+
+    background:
+        var(--bg-main);
+}
+
+.on-gorusme-card {
+
+    width: min(760px, 100%);
+
+    margin: auto;
+
+    padding: 48px;
+
+    background: var(--bg-card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 28px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        background var(--transition),
+        border-color var(--transition);
+}
+
+.on-gorusme-card h2 {
+
+    color: var(--text-main);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: clamp(
+        1.8rem,
+        4vw,
+        2.6rem
+    );
+
+    text-align: center;
+
+    margin-bottom: 10px;
+}
+
+.form-description {
+
+    color: var(--text-secondary);
+
+    text-align: center;
+
+    margin-bottom: 34px;
+}
+
+.on-gorusme-form {
+
+    display: grid;
+
+    gap: 19px;
+}
+
+.on-form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.on-form-group label {
+
+    color: var(--text-main);
+
+    font-size: .9rem;
+
+    font-weight: 600;
+}
+
+.on-form-group input,
+.on-form-group select,
+.on-form-group textarea {
+
+    width: 100%;
+
+    min-height: 54px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 13px;
+
+    outline: none;
+
+    background: var(--input-bg);
+
+    color: var(--text-main);
+
+    font-size: .95rem;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background var(--transition),
+        color var(--transition);
+}
+
+.on-form-group textarea {
+
+    padding:
+        15px;
+
+    min-height: 130px;
+
+    resize: vertical;
+}
+
+.on-form-group input::placeholder,
+.on-form-group textarea::placeholder {
+
+    color: var(--text-muted);
+}
+
+.on-form-group input:focus,
+.on-form-group select:focus,
+.on-form-group textarea:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(91,53,201,.10);
+}
+
+body.dark-mode
+.on-form-group input:focus,
+body.dark-mode
+.on-form-group select:focus,
+body.dark-mode
+.on-form-group textarea:focus {
+
+    box-shadow:
+        0 0 0 3px
+        rgba(155,125,255,.12);
+}
+
+.on-form-group small {
+
+    color: var(--text-muted);
+
+    font-size: .78rem;
+}
+
+.on-radio-group {
+
+    display: flex;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+
+    padding:
+        5px 0;
+}
+
+.on-radio-group label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--text-secondary);
+
+    cursor: pointer;
+}
+
+.on-radio-group input {
+
+    accent-color: var(--primary);
+}
+
+.on-kvkk {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    color: var(--text-secondary);
+
+    font-size: .86rem;
+
+    line-height: 1.5;
+
+    cursor: pointer;
+}
+
+.on-kvkk input {
+
+    margin-top: 4px;
+
+    accent-color: var(--primary);
+
+    flex-shrink: 0;
+}
+
+.on-kvkk a {
+
+    color: var(--primary);
+
+    font-weight: 700;
+
+    text-decoration: underline;
+}
+
+.on-gorusme-form button {
+
+    min-height: 56px;
+
+    margin-top: 8px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    font-size: 1rem;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+.on-gorusme-form button:hover {
+
+    background: var(--primary-dark);
+
+    transform: translateY(-2px);
+}
+
+.form-status {
+
+    display: none;
+
+    padding: 13px 16px;
+
+    border-radius: 12px;
+
+    font-size: .9rem;
+
+    text-align: center;
+}
+
+.form-status.success {
+
+    display: block;
+
+    background: rgba(46,204,113,.12);
+
+    color: #218c50;
+}
+
+.form-status.error {
+
+    display: block;
+
+    background: rgba(231,76,60,.12);
+
+    color: #c0392b;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+
+    padding:
+        60px 6% 30px;
+
+    background: var(--footer-bg);
+
+    color: rgba(255,255,255,.76);
+}
+
+.footer-inner {
+
+    width: min(1100px, 100%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr 1fr 1fr;
+
+    gap: 40px;
+}
+
+.footer-logo {
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 1.25rem;
+
+    font-weight: 800;
+
+    margin-bottom: 15px;
+}
+
+.footer-column h3 {
+
+    color: #ffffff;
+
+    font-size: 1rem;
+
+    margin-bottom: 15px;
+}
+
+.footer-column p {
+
+    color: rgba(255,255,255,.62);
+
+    font-size: .9rem;
+
+    max-width: 400px;
+}
+
+.footer-column a {
+
+    display: block;
+
+    width: fit-content;
+
+    color: rgba(255,255,255,.68);
+
+    margin-bottom: 9px;
+
+    font-size: .9rem;
+
+    transition: color .2s ease;
+}
+
+.footer-column a:hover {
+
+    color: #ffffff;
+}
+
+.footer-bottom {
+
+    width: min(1100px, 100%);
+
+    margin:
+        40px auto 0;
+
+    padding-top: 22px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.10);
+
+    color:
+        rgba(255,255,255,.48);
+
+    font-size: .82rem;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   SABİT WHATSAPP / INSTAGRAM
+   ========================================================= */
+
+#fixed-whatsapp,
+#fixed-instagram {
+
+    position: fixed !important;
+
+    right: 22px !important;
+
+    width: 54px !important;
+
+    height: 54px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    border-radius: 50% !important;
+
+    color: #ffffff !important;
+
+    text-decoration: none !important;
+
+    z-index: 2147483647 !important;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.30) !important;
+
+    transition:
+        transform .2s ease,
+        filter .2s ease !important;
+}
+
+#fixed-whatsapp {
+
+    bottom: 22px !important;
+
+    background: #25D366 !important;
+
+    font-size: 28px !important;
+}
+
+#fixed-instagram {
+
+    bottom: 88px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #833ab4,
+            #fd1d1d,
+            #fcb045
+        ) !important;
+
+    font-size: 27px !important;
+}
+
+#fixed-whatsapp:hover,
+#fixed-instagram:hover {
+
+    transform:
+        scale(1.08) !important;
+
+    filter:
+        brightness(1.05);
+}
+
+
+
+/* =========================================================
+   KVKK MODAL
+   ========================================================= */
+
+#kvkk-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(5,3,15,.72);
+
+    backdrop-filter: blur(5px);
+
+    z-index: 99998;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+}
+
+#kvkk-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+#kvkk-modal {
+
+    position: relative;
+
+    width: min(700px, 100%);
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    padding: 38px;
+
+    border-radius: 24px;
+
+    background: var(--bg-card);
+
+    color: var(--text-main);
+
+    border:
+        1px solid
+        var(--border);
+
+    box-shadow: var(--shadow);
+}
+
+#kvkk-modal h2 {
+
+    color: var(--text-main);
+
+    font-family: "Poppins", sans-serif;
+
+    margin-bottom: 20px;
+}
+
+#kvkk-modal h3 {
+
+    color: var(--text-main);
+
+    margin:
+        22px 0 8px;
+}
+
+#kvkk-modal p,
+#kvkk-modal li {
+
+    color: var(--text-secondary);
+
+    font-size: .92rem;
+}
+
+#kvkk-modal ul {
+
+    padding-left: 20px;
+}
+
+#kvkk-close {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 17px;
+
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--bg-soft);
+
+    color: var(--text-main);
+
+    cursor: pointer;
+
+    font-size: 1.1rem;
+}
+
+#kvkk-ok {
+
+    width: 100%;
+
+    min-height: 48px;
+
+    margin-top: 25px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   ÇEREZ
+   ========================================================= */
+
+#cookie-consent {
+
+    position: fixed;
+
+    left: 20px;
+
+    bottom: 20px;
+
+    width: min(430px, calc(100% - 40px));
+
+    padding: 22px;
+
+    background: var(--bg-card);
+
+    color: var(--text-main);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+
+    z-index: 99997;
+
+    display: none;
+}
+
+#cookie-consent.show {
+
+    display: block;
+}
+
+#cookie-consent h3 {
+
+    color: var(--text-main);
+
+    margin-bottom: 8px;
+
+    font-family: "Poppins", sans-serif;
+}
+
+#cookie-consent p {
+
+    color: var(--text-secondary);
+
+    font-size: .84rem;
+
+    margin-bottom: 15px;
+}
+
+.cookie-buttons {
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.cookie-buttons button {
+
+    min-height: 40px;
+
+    padding:
+        0 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    font-size: .82rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.cookie-buttons button.secondary {
+
+    background: var(--bg-soft);
+
+    color: var(--text-main);
+
+    border:
+        1px solid
+        var(--border);
+}
+
+
+/* =========================================================
+   MOBİL
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+
+        padding:
+            0 4%;
+    }
+
+    .nav-links {
+
+        gap: 16px;
+    }
+
+    .hero-content {
+
+        min-height: 600px;
+
+        padding:
+            60px 7%;
+    }
+
+    .hero-visual {
+
+        right: -30px;
+
+        opacity: .52;
+
+        transform:
+            translateY(-50%)
+            scale(.85);
+    }
+
+    .about-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .footer-inner {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .navbar {
+
+        height: 68px;
+    }
+
+    .logo {
+
+        font-size: .9rem;
+    }
+
+    .nav-links {
+
+        display: none;
+    }
+
+    .hero {
+
+        padding:
+            92px 4% 35px;
+    }
+
+    .hero-content {
+
+        min-height: 680px;
+
+        padding:
+            50px 28px;
+
+        border-radius: 26px;
+    }
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                2.65rem,
+                13vw,
+                4rem
+            );
+
+        letter-spacing: -2px;
+    }
+
+    .hero p {
+
+        font-size: .94rem;
+    }
+
+    .hero-visual {
+
+        width: 300px;
+
+        height: 300px;
+
+        right: -80px;
+
+        top: 67%;
+
+        opacity: .38;
+
+        transform:
+            translateY(-50%)
+            scale(.75);
+    }
+
+    .hero-buttons {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .hero-button {
+
+        width: 100%;
+    }
+
+    .section {
+
+        padding:
+            75px 5%;
+    }
+
+    .skills-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .on-gorusme-section {
+
+        padding:
+            75px 5%;
+    }
+
+    .on-gorusme-card {
+
+        padding:
+            30px 20px;
+
+        border-radius: 22px;
+    }
+
+    .footer-inner {
+
+        grid-template-columns: 1fr;
+    }
+
+    #fixed-whatsapp {
+
+        right: 15px !important;
+
+        bottom: 15px !important;
+
+        width: 50px !important;
+
+        height: 50px !important;
+
+        font-size: 25px !important;
+    }
+
+    #fixed-instagram {
+
+        right: 15px !important;
+
+        bottom: 75px !important;
+
+        width: 50px !important;
+
+        height: 50px !important;
+
+        font-size: 24px !important;
+    }
+
+    #cookie-consent {
+
+        left: 15px;
+
+        bottom: 15px;
+
+        width:
+            calc(100% - 30px);
+    }
+
+    #kvkk-modal {
+
+        padding:
+            30px 20px;
+    }
+}
+
+
+/* =========================================================
+   HAREKETİ AZALTMA
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+    }
+}
+/* =========================================================
+   ✨ PREMIUM DOKUNUŞLAR - 1. DENEME
+   Mevcut tasarımı bozmaz
+   ========================================================= */
+
+/* ---------- HERO ---------- */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    left: -180px;
+    top: -180px;
+    background: radial-gradient(
+        circle,
+        rgba(167, 123, 255, 0.16) 0%,
+        rgba(167, 123, 255, 0) 70%
+    );
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    right: -150px;
+    bottom: -180px;
+    background: radial-gradient(
+        circle,
+        rgba(108, 76, 220, 0.22) 0%,
+        rgba(108, 76, 220, 0) 70%
+    );
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+}
+
+
+/* ---------- HERO BUTONLARI ---------- */
+
+.hero-button {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease !important;
+}
+
+.hero-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(
+        100deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: left .6s ease;
+}
+
+.hero-button:hover::after {
+    left: 140%;
+}
+
+.hero-button:hover {
+    transform: translateY(-3px);
+}
+
+.hero-button.primary:hover {
+    box-shadow:
+        0 12px 30px rgba(130, 86, 255, 0.28);
+}
+
+.hero-button.secondary:hover {
+    border-color: #9b78ff !important;
+    box-shadow:
+        0 10px 25px rgba(130, 86, 255, 0.16);
+}
+
+
+/* ---------- HERO BALONCUKLARI ---------- */
+
+.hero-bubble {
+    transition: filter .4s ease;
+}
+
+.hero-bubble:hover {
+    filter:
+        brightness(1.12)
+        drop-shadow(0 0 18px rgba(170,130,255,.35));
+}
+
+
+/* ---------- ÇALIŞMA ALANLARI KARTLARI ---------- */
+
+#calisma-alanlari .card,
+#calisma-alanlari .feature-card,
+#calisma-alanlari .service-card,
+.calisma-card,
+.area-card {
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease !important;
+}
+
+#calisma-alanlari .card:hover,
+#calisma-alanlari .feature-card:hover,
+#calisma-alanlari .service-card:hover,
+.calisma-card:hover,
+.area-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(155, 120, 255, .45) !important;
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.22),
+        0 0 25px rgba(126,87,255,.08);
+}
+
+
+/* ---------- KART İKONLARI ---------- */
+
+#calisma-alanlari .icon-box,
+#calisma-alanlari .card-icon,
+.calisma-card i,
+.area-card i {
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+#calisma-alanlari .card:hover .icon-box,
+#calisma-alanlari .card:hover .card-icon,
+.calisma-card:hover i,
+.area-card:hover i {
+    transform: scale(1.08);
+    box-shadow:
+        0 8px 22px rgba(126,87,255,.22);
+}
+
+
+/* ---------- HAKKIMDA KARTLARI ---------- */
+
+#hakkimda .card,
+#hakkimda .about-card {
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+#hakkimda .card:hover,
+#hakkimda .about-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(155, 120, 255, .35);
+    box-shadow:
+        0 16px 35px rgba(0,0,0,.18);
+}
+
+
+/* ---------- FORM ---------- */
+
+.on-gorusme-card {
+    transition:
+        box-shadow .35s ease,
+        border-color .35s ease;
+}
+
+.on-gorusme-card:hover {
+    border-color: rgba(155, 120, 255, .30);
+    box-shadow:
+        0 20px 55px rgba(0,0,0,.22),
+        0 0 30px rgba(126,87,255,.06);
+}
+
+.on-gorusme-form input,
+.on-gorusme-form select,
+.on-gorusme-form textarea {
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+.on-gorusme-form input:focus,
+.on-gorusme-form select:focus,
+.on-gorusme-form textarea:focus {
+    outline: none;
+    border-color: #9b78ff !important;
+    box-shadow:
+        0 0 0 3px rgba(155,120,255,.10),
+        0 5px 20px rgba(0,0,0,.08);
+}
+
+
+/* ---------- GÖNDER BUTONU ---------- */
+
+.on-gorusme-form button[type="submit"] {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform .2s ease,
+        box-shadow .25s ease,
+        filter .2s ease;
+}
+
+.on-gorusme-form button[type="submit"]:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+    box-shadow:
+        0 10px 28px rgba(126,87,255,.28);
+}
+
+.on-gorusme-form button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+
+/* ---------- WHATSAPP / INSTAGRAM ---------- */
+
+#fixed-whatsapp,
+#fixed-instagram {
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease !important;
+}
+
+#fixed-whatsapp:hover,
+#fixed-instagram:hover {
+    transform: scale(1.12) !important;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.38) !important;
+}
+
+
+/* =========================================================
+   WHATSAPP + INSTAGRAM — GERÇEK NEFES ALMA EFEKTİ
+   ========================================================= */
+
+#fixed-whatsapp {
+    animation: whatsappBreath 2.8s ease-in-out infinite !important;
+    transform-origin: center center;
+}
+
+#fixed-instagram {
+    animation: instagramBreath 2.8s ease-in-out infinite 1.4s !important;
+    transform-origin: center center;
+}
+
+@keyframes whatsappBreath {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.09);
+    }
+}
+
+@keyframes instagramBreath {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.09);
+    }
+}
+
+/* Mouse üzerine gelince biraz daha büyüsün */
+#fixed-whatsapp:hover,
+#fixed-instagram:hover {
+    transform: scale(1.14) !important;
+}
+
+/* Hareket azaltma tercihi */
+@media (prefers-reduced-motion: reduce) {
+    #fixed-whatsapp,
+    #fixed-instagram {
+        animation: none !important;
+    }
+}
+
+
+
+/* ---------- BAŞLIKLAR ---------- */
+
+section h2 {
+    transition: transform .25s ease;
+}
+
+section h2:hover {
+    transform: translateY(-1px);
+}
+
+
+/* ---------- HAREKET AZALTMA ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero-button,
+    #fixed-whatsapp,
+    #fixed-instagram,
+    #calisma-alanlari .card,
+    #hakkimda .card {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+/* =========================================
+   SAĞ TARAFTAKİ DEKORATİF ŞEKİL - DÜZELTME
+   ========================================= */
+
+.hero::after {
+    content: "";
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    right: -90px;
+    top: 50%;
+
+    transform: translateY(-50%) rotate(-8deg);
+
+    border: 1px solid rgba(91, 53, 201, 0.10);
+    border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%;
+
+    background:
+        radial-gradient(
+            circle at 65% 60%,
+            rgba(91, 53, 201, 0.07),
+            transparent 62%
+        );
+
+    box-shadow:
+        0 0 70px rgba(91, 53, 201, 0.04);
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Hero içeriği şeklin üzerinde kalsın */
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Mobilde daha küçük ve daha geride */
+@media (max-width: 700px) {
+    .hero::after {
+        width: 180px;
+        height: 180px;
+        right: -80px;
+        opacity: .6;
+    }
+}
+
+/* =========================================================
+   iPHONE / SAFARI GÜVENLİ ALAN VE HERO DÜZELTMELERİ
+   ========================================================= */
+
+@supports (padding-top: env(safe-area-inset-top)) {
+    .navbar {
+        height: calc(76px + env(safe-area-inset-top));
+        padding-top: env(safe-area-inset-top);
+    }
+
+    .hero {
+        padding-top: calc(115px + env(safe-area-inset-top));
+    }
+
+    #fixed-whatsapp {
+        bottom: calc(22px + env(safe-area-inset-bottom)) !important;
+    }
+
+    #fixed-instagram {
+        bottom: calc(92px + env(safe-area-inset-bottom)) !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .hero {
+        /* Safari'de adres çubuğu açılıp kapandığında gerçek görünür alanı kullanır. */
+        min-height: 100svh;
+        min-height: 100dvh;
+        padding-top: calc(92px + env(safe-area-inset-top));
+        padding-bottom: max(35px, env(safe-area-inset-bottom));
+        align-items: flex-start;
+    }
+
+    .hero-content {
+        min-height: min(680px, calc(100dvh - 127px - env(safe-area-inset-top)));
+        min-height: min(680px, calc(100svh - 127px - env(safe-area-inset-top)));
+    }
+
+    .navbar {
+        height: calc(68px + env(safe-area-inset-top));
+    }
+
+    #fixed-whatsapp {
+        bottom: calc(15px + env(safe-area-inset-bottom)) !important;
+    }
+
+    #fixed-instagram {
+        bottom: calc(75px + env(safe-area-inset-bottom)) !important;
+    }
+}
+
+/* =========================================================
+   MOBİL AÇILIR MENÜ
+   ========================================================= */
+
+.mobile-nav-actions,
+.mobile-menu-overlay {
+    display: none;
+}
+
+@media (max-width: 650px) {
+    .navbar {
+        padding-right: 4%;
+    }
+
+    .nav-right {
+        display: none;
+    }
+
+    .mobile-nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .mobile-call,
+    .mobile-menu-toggle,
+    .mobile-menu-close {
+        width: 48px;
+        height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+    .mobile-call {
+        background: var(--primary);
+        color: #ffffff;
+        box-shadow: 0 8px 20px rgba(91, 53, 201, .25);
+    }
+
+    .mobile-menu-toggle,
+    .mobile-menu-close {
+        background: var(--bg-card);
+        color: var(--text-main);
+        font-size: 1.3rem;
+    }
+
+    .mobile-menu-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 20000;
+        background: rgba(15, 9, 35, .46);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .28s ease;
+    }
+
+    .mobile-menu-overlay.is-open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .mobile-menu-panel {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: min(88vw, 380px);
+        height: 100%;
+        min-height: 100dvh;
+        padding: calc(24px + env(safe-area-inset-top)) 22px calc(28px + env(safe-area-inset-bottom));
+        overflow-y: auto;
+        background: var(--bg-card);
+        box-shadow: -18px 0 55px rgba(15, 5, 45, .18);
+        transform: translateX(100%);
+        transition: transform .32s ease;
+    }
+
+    .mobile-menu-overlay.is-open .mobile-menu-panel {
+        transform: translateX(0);
+    }
+
+    .mobile-menu-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+
+    .mobile-menu-eyebrow {
+        color: var(--primary);
+        font-size: .75rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+
+    .mobile-menu-brand {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 800;
+        color: var(--text-main);
+        margin-bottom: 8px;
+    }
+
+    .mobile-menu-brand span {
+        color: var(--primary);
+    }
+
+    .mobile-menu-description {
+        color: var(--text-secondary);
+        margin-bottom: 28px;
+    }
+
+    .mobile-menu-links {
+        display: grid;
+        gap: 12px;
+        list-style: none;
+    }
+
+    .mobile-menu-links a,
+    .mobile-theme-button {
+        width: 100%;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 0 17px;
+        border: 1px solid var(--border);
+        border-radius: 17px;
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-weight: 700;
+    }
+
+    .mobile-menu-links i,
+    .mobile-theme-button i {
+        width: 28px;
+        color: var(--primary);
+        text-align: center;
+    }
+
+    .mobile-tools summary {
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 17px;
+        border: 1px solid var(--border);
+        border-radius: 17px;
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-weight: 700;
+        cursor: pointer;
+        list-style: none;
+    }
+
+    .mobile-tools summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .mobile-tools summary span {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .mobile-tools summary > i {
+        color: var(--primary);
+        transition: transform .2s ease;
+    }
+
+    .mobile-tools[open] summary > i {
+        transform: rotate(180deg);
+    }
+
+    .mobile-tools-panel {
+        display: grid;
+        gap: 9px;
+        margin: 10px 0 2px;
+        padding: 10px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--bg-main);
+    }
+
+    .mobile-menu-links .mobile-tools-panel a {
+        min-height: 48px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 11px;
+        background: transparent;
+        font-size: .91rem;
+    }
+
+    .mobile-menu-links .mobile-tools-panel a:hover {
+        background: var(--primary-soft);
+    }
+
+    .mobile-theme-button {
+        margin-top: 20px;
+        font-family: inherit;
+        font-size: 1rem;
+        cursor: pointer;
+        text-align: left;
+    }
+
+    body.mobile-menu-open {
+        overflow: hidden;
+    }
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     PRELOADER
+     ===================================================== -->
+
+<div id="preloader">
+    <div class="loader"></div>
+</div>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<header class="navbar">
+
+    <a
+        href="#anasayfa"
+        class="logo"
+    >
+        Sınav <span>Canbazı</span>
+    </a>
+
+    <nav>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="#anasayfa">
+                    Ana Sayfa
+                </a>
+            </li>
+
+            <li>
+                <a href="#hakkimda">
+                    Hakkımda
+                </a>
+            </li>
+
+            <li>
+                <a href="#yetenekler">
+                    Çalışma Alanlarım
+                </a>
+            </li>
+<li style="position: relative;" class="dropdown-item">
+    <a href="#" id="toolsDropdownBtn" style="display: flex; align-items: center; gap: 4px;">
+        Ücretsiz Araçlar <span style="font-size: 10px;">▼</span>
+    </a>
+    <div id="toolsDropdownMenu" style="display: none; position: absolute; top: 100%; left: 0; background: #13111c; border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 6px 0; min-width: 170px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 1000;">
+        <a href="sayac.html" style="display: block; padding: 10px 16px; color: #fff; text-decoration: none; font-size: 14px; transition: 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.15)'" onmouseout="this.style.background='transparent'">
+            ⏱️ Süre Tut (Sayaç)
+        </a>
+        <a href="#" id="openExamCalendar" style="display: block; padding: 10px 16px; color: #fff; text-decoration: none; font-size: 14px; transition: 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.15)'" onmouseout="this.style.background='transparent'">
+            📅 Sınav Takvimi
+        </a>
+        <a href="yks-hesaplama.html" style="display: block; padding: 10px 16px; color: #fff; text-decoration: none; font-size: 14px; transition: 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.15)'" onmouseout="this.style.background='transparent'">
+    🧮 YKS Puan Hesaplama
+</a>
+<a href="konu-soru-dağılımı.html" style="display: block; padding: 10px 16px; color: #fff; text-decoration: none; font-size: 14px; transition: 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.15)'" onmouseout="this.style.background='transparent'">
+    🧮 Konu-Soru Dağılımı
+</a>
+
+
+<script>
+    const dropdownBtn = document.getElementById('toolsDropdownBtn');
+    const dropdownMenu = document.getElementById('toolsDropdownMenu');
+
+    dropdownBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'block' : 'none';
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+            dropdownMenu.style.display = 'none';
+        }
+    });
+</script>
+
+        </ul>
+
+    </nav>
+    
+
+    <div class="nav-right">
+
+        <button
+            id="theme-toggle"
+            type="button"
+            aria-label="Temayı değiştir"
+        >
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+    </div>
+
+    <div class="mobile-nav-actions">
+        <a
+            class="mobile-call"
+            href="#on-gorusme"
+            aria-label="Ücretsiz ön görüşme formuna git"
+        >
+            <i class="fa-solid fa-phone"></i>
+        </a>
+
+        <button
+            class="mobile-menu-toggle"
+            type="button"
+            aria-label="Menüyü aç"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+        >
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+
+</header>
+
+<div
+    id="mobile-menu"
+    class="mobile-menu-overlay"
+    aria-hidden="true"
+>
+    <aside class="mobile-menu-panel" aria-label="Mobil menü">
+        <div class="mobile-menu-top">
+            <span class="mobile-menu-eyebrow">MENÜ</span>
+            <button class="mobile-menu-close" type="button" aria-label="Menüyü kapat">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu-brand">Sınav <span>Canbazı</span></div>
+        <p class="mobile-menu-description">Hedefine doğru planla, istikrarlı ilerle.</p>
+
+        <ul class="mobile-menu-links">
+            <li><a href="#anasayfa"><i class="fa-solid fa-house"></i> Ana Sayfa</a></li>
+            <li><a href="#hakkimda"><i class="fa-solid fa-user"></i> Hakkımda</a></li>
+            <li><a href="#yetenekler"><i class="fa-solid fa-graduation-cap"></i> Çalışma Alanlarım</a></li>
+            <li><a href="#on-gorusme"><i class="fa-solid fa-phone"></i> Ücretsiz Ön Görüşme</a></li>
+            <li class="mobile-tools">
+                <details>
+                    <summary>
+                        <span><i class="fa-solid fa-grip"></i> Ücretsiz Araçlar</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="mobile-tools-panel">
+                        <a href="sayac.html"><i class="fa-solid fa-stopwatch"></i> Süre Tut</a>
+                        <a href="yks-hesaplama.html"><i class="fa-solid fa-calculator"></i> YKS Puan Hesaplama</a>
+                        <a href="#" data-open-exam-calendar><i class="fa-solid fa-calendar-days"></i> Sınav Takvimi</a>
+                        <a href="konu-soru-dağılımı.html"><i class="fa-solid fa-list-check"></i> Konu-Soru Dağılımı</a>
+                    </div>
+                </details>
+            </li>
+        </ul>
+
+        <button class="mobile-theme-button" type="button">
+            <i class="fa-solid fa-moon"></i> Koyu temayı değiştir
+        </button>
+    </aside>
+</div>
+
+<script>
+    (function () {
+        const menu = document.getElementById("mobile-menu");
+        const openButton = document.querySelector(".mobile-menu-toggle");
+        const closeButton = document.querySelector(".mobile-menu-close");
+        const menuLinks = document.querySelectorAll(".mobile-menu-links a");
+        const mobileThemeButton = document.querySelector(".mobile-theme-button");
+
+        if (!menu || !openButton || !closeButton) return;
+
+        function closeMobileMenu() {
+            menu.classList.remove("is-open");
+            menu.setAttribute("aria-hidden", "true");
+            openButton.setAttribute("aria-expanded", "false");
+            document.body.classList.remove("mobile-menu-open");
+        }
+
+        function openMobileMenu() {
+            menu.classList.add("is-open");
+            menu.setAttribute("aria-hidden", "false");
+            openButton.setAttribute("aria-expanded", "true");
+            document.body.classList.add("mobile-menu-open");
+            closeButton.focus();
+        }
+
+        openButton.addEventListener("click", openMobileMenu);
+        closeButton.addEventListener("click", closeMobileMenu);
+
+        menu.addEventListener("click", function (event) {
+            if (event.target === menu) closeMobileMenu();
+        });
+
+        menuLinks.forEach(function (link) {
+            link.addEventListener("click", closeMobileMenu);
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") closeMobileMenu();
+        });
+
+        document.querySelectorAll("[data-open-exam-calendar]").forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                closeMobileMenu();
+                const examModal = document.getElementById("sinavModal");
+                if (examModal) examModal.style.display = "flex";
+            });
+        });
+
+        if (mobileThemeButton) {
+            mobileThemeButton.addEventListener("click", function () {
+                const themeButton = document.getElementById("theme-toggle");
+                if (themeButton) themeButton.click();
+            });
+        }
+    })();
+</script>
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<main id="anasayfa">
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+
+            <div
+                class="hero-visual"
+                aria-hidden="true"
+            >
+
+                <div
+                    class="hero-bubble bubble-purple"
+                ></div>
+
+                <div
+                    class="hero-bubble bubble-green"
+                ></div>
+
+                <div
+                    class="hero-bubble bubble-yellow"
+                ></div>
+
+                <div
+                    class="hero-bubble bubble-blue"
+                ></div>
+
+
+                <div
+                    class="hero-orbit orbit-1"
+                ></div>
+
+                <div
+                    class="hero-orbit orbit-2"
+                ></div>
+
+                <div
+                    class="hero-orbit orbit-3"
+                ></div>
+
+
+                <div class="hero-glow"></div>
+
+
+                <span class="hero-symbol symbol-1">
+                    +
+                </span>
+
+                <span class="hero-symbol symbol-2">
+                    π
+                </span>
+
+                <span class="hero-symbol symbol-3">
+                    %
+                </span>
+
+                <span class="hero-symbol symbol-4">
+                    ✓
+                </span>
+
+                <span class="hero-symbol symbol-5">
+                    ∞
+                </span>
+
+
+                <div class="hero-center">
+
+                    <i class="fa-solid fa-compass"></i>
+
+                </div>
+
+            </div>
+
+
+            <h1>
+
+                Merhaba, ben<br>
+
+                <span>
+                    Gözde Canbaz.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Öğrencilerin yalnızca daha fazla çalışmasını değil,
+                kendileri için doğru çalışma sistemini kurmasını
+                hedefleyen öğrenci koçuyum.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#on-gorusme"
+                    class="hero-button primary"
+                >
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                    Ücretsiz Ön Görüşme
+
+                </a>
+
+
+                <a
+                    href="#hakkimda"
+                    class="hero-button secondary"
+                >
+
+                    Beni Tanı
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         HAKKIMDA
+         ================================================= -->
+
+    <section
+        id="hakkimda"
+        class="section"
+    >
+
+        <div class="section-inner">
+
+            <div class="section-title">
+
+                <span>
+                    Hakkımda
+                </span>
+
+                <h2>
+                    Doğru sistem, doğru sonuç.
+                </h2>
+
+                <p>
+                    Öğrencinin kendi çalışma düzenini oluşturmasına
+                    ve hedeflerine daha bilinçli ilerlemesine yardımcı
+                    oluyorum.
+                </p>
+
+            </div>
+
+
+            <div class="about-grid">
+
+
+                <div class="about-card">
+
+                    <h3>
+                        Ben kimim?
+                    </h3>
+
+                    <p>
+                        Ben Gözde Canbaz. Öğrencilerin sınav
+                        süreçlerinde yalnızca ders çalışmaya değil,
+                        çalışma alışkanlıklarını doğru şekilde
+                        oluşturmaya odaklanıyorum.
+                    </p>
+
+                    <p>
+                        Her öğrencinin farklı olduğunu düşünüyorum.
+                        Bu nedenle hazır ve herkese uyan tek bir
+                        çalışma programı yerine öğrencinin ihtiyaçlarına
+                        uygun bir sistem oluşturmayı hedefliyorum.
+                    </p>
+
+                </div>
+
+
+                <div class="about-card">
+
+                    <h3>
+                        Çalışma anlayışım
+                    </h3>
+
+                    <ul class="about-list">
+
+                        <li>
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Öğrenciyi tanımak ve ihtiyaçlarını belirlemek
+                            </span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Gerçekçi ve uygulanabilir çalışma sistemi oluşturmak
+                            </span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Zaman yönetimini geliştirmek
+                            </span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Motivasyonu sürdürülebilir hale getirmek
+                            </span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Süreci düzenli olarak takip etmek
+                            </span>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         YETENEKLER
+         ================================================= -->
+
+    <section
+        id="yetenekler"
+        class="section"
+    >
+
+        <div class="section-inner">
+
+            <div class="section-title">
+
+                <span>
+                    Çalışma Alanlarım
+                </span>
+
+                <h2>
+                    Öğrenciye uygun bir sistem.
+                </h2>
+
+                <p>
+                    Sınav sürecini daha planlı, anlaşılır ve
+                    sürdürülebilir hale getirmek için birlikte çalışıyoruz.
+                </p>
+
+            </div>
+
+
+            <div class="skills-grid">
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+
+                    <h3>
+                        Programlama
+                    </h3>
+
+                    <p>
+                        Öğrencinin günlük ve haftalık çalışma
+                        düzenini oluşturmasına yardımcı oluyorum.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <h3>
+                        Zaman Yönetimi
+                    </h3>
+
+                    <p>
+                        Ders, tekrar, soru çözümü ve dinlenme
+                        zamanlarını dengeli şekilde planlıyoruz.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+
+                    <h3>
+                        Hedef Belirleme
+                    </h3>
+
+                    <p>
+                        Büyük hedefleri ulaşılabilir küçük adımlara
+                        bölerek ilerliyoruz.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+
+                    <h3>
+                        Takip ve Analiz
+                    </h3>
+
+                    <p>
+                        Çalışma sürecini değerlendirerek öğrencinin
+                        gelişimine göre sistemi güncelliyoruz.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+
+                    <h3>
+                        Çalışma Stratejileri
+                    </h3>
+
+                    <p>
+                        Öğrencinin kendisi için verimli çalışma
+                        yöntemlerini keşfetmesine destek oluyorum.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <h3>
+                        Motivasyon
+                    </h3>
+
+                    <p>
+                        Sınav sürecinin yalnızca akademik değil,
+                        psikolojik tarafını da dikkate alıyorum.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ÖN GÖRÜŞME FORMU
+         ================================================= -->
+
+    <section
+        id="on-gorusme"
+        class="on-gorusme-section"
+    >
+
+        <div class="on-gorusme-card">
+
+            <h2>
+                Ücretsiz Ön Görüşme
+            </h2>
+
+            <p class="form-description">
+
+                Seni ve ihtiyaçlarını daha yakından tanımak
+                için aşağıdaki formu doldurabilirsin.
+
+            </p>
+
+
+            <form
+                action="https://script.google.com/macros/s/AKfycbxfM8xjPEQkcbtT548f3TsHYomBJdzNOL7f4Yqe4ZqBN-cCit-nHQrFdQoWd9HVwjRF/exec"
+                method="POST"
+                class="on-gorusme-form"
+                id="on-gorusme-form"
+                target="form-submit-frame"
+            >
+
+
+                <div class="on-form-group">
+
+                    <input
+                        type="text"
+                        name="ad_soyad"
+                        placeholder="Adınız Soyadınız"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="on-form-group">
+
+                    <label for="sinif">
+                        Sınıfınızı seçiniz
+                    </label>
+
+                    <select
+                        id="sinif"
+                        name="sinif"
+                        required
+                    >
+
+                        <option value="">
+                            Sınıfınızı seçiniz
+                        </option>
+
+                        <option value="5. Sınıf">
+                            5. Sınıf
+                        </option>
+
+                        <option value="6. Sınıf">
+                            6. Sınıf
+                        </option>
+
+                        <option value="7. Sınıf">
+                            7. Sınıf
+                        </option>
+
+                        <option value="8. Sınıf">
+                            8. Sınıf
+                        </option>
+
+                        <option value="9. Sınıf">
+                            9. Sınıf
+                        </option>
+
+                        <option value="10. Sınıf">
+                            10. Sınıf
+                        </option>
+
+                        <option value="11. Sınıf">
+                            11. Sınıf
+                        </option>
+
+                        <option value="12. Sınıf">
+                            12. Sınıf
+                        </option>
+
+                        <option value="Mezun">
+                            Mezun
+                        </option>
+
+                        <option value="KPSS">
+                            KPSS
+                        </option>
+
+                        <option value="ALES">
+                            ALES
+                        </option>
+
+                        <option value="DGS">
+                            DGS
+                        </option>
+
+                        <option value="AGS">
+                            AGS
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="on-form-group">
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="E-mail Adresiniz"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="on-radio-group">
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="kisi"
+                            value="Öğrenciyim"
+                            required
+                        >
+
+                        Öğrenciyim
+
+                    </label>
+
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="kisi"
+                            value="Veliyim"
+                        >
+
+                        Veliyim
+
+                    </label>
+
+                </div>
+
+
+                <div class="on-form-group">
+
+                    <input
+                        type="tel"
+                        name="telefon"
+                        placeholder="Telefon Numaranız"
+                        autocomplete="tel"
+                        required
+                    >
+
+                    <small>
+                        Lütfen başında 0 olmadan giriniz.
+                    </small>
+
+                </div>
+
+
+                <label class="on-kvkk">
+
+                    <input
+                        type="checkbox"
+                        name="kvkk"
+                        value="Onaylandı"
+                        required
+                    >
+
+                    <span>
+
+                        <a
+                            href="#"
+                            id="kvkk-link"
+                        >
+                            KVKK metnini
+                        </a>
+
+                        okudum ve onaylıyorum.
+
+                    </span>
+
+                </label>
+
+
+                <div
+                    id="form-status"
+                    class="form-status"
+                ></div>
+
+
+                <button type="submit">
+
+                    Gönder!
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     FORM GİZLİ FRAME
+     ===================================================== -->
+
+<iframe
+    name="form-submit-frame"
+    id="form-submit-frame"
+    style="display:none;"
+></iframe>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer>
+
+    <div class="footer-inner">
+
+
+        <div class="footer-column">
+
+            <div class="footer-logo">
+                Sınav Canbazı
+            </div>
+
+            <p>
+                Öğrencilerin kendi çalışma sistemlerini
+                oluşturmalarına yardımcı olmak için buradayım.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Menü
+            </h3>
+
+            <a href="#anasayfa">
+                Ana Sayfa
+            </a>
+
+            <a href="#hakkimda">
+                Hakkımda
+            </a>
+
+            <a href="#yetenekler">
+                Çalışma Alanlarım
+            </a>
+
+            <a href="#on-gorusme">
+                Ön Görüşme
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                İletişim
+            </h3>
+
+            <a
+                href="https://wa.me/905054421704"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+                WhatsApp
+
+            </a>
+
+            <a
+                href="https://instagram.com/sinav.canbazi"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <i class="fa-brands fa-instagram"></i>
+
+                Instagram
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 Sınav Canbazı • Gözde Canbaz
+
+        <br>
+
+        Tüm hakları saklıdır.
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     SABİT WHATSAPP
+     ===================================================== -->
+
+<a
+    href="https://wa.me/905054421704"
+    target="_blank"
+    rel="noopener noreferrer"
+    id="fixed-whatsapp"
+    aria-label="WhatsApp ile iletişime geç"
+>
+
+    <i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+
+<!-- =====================================================
+     SABİT INSTAGRAM
+     ===================================================== -->
+
+<a
+    href="https://instagram.com/sinav.canbazi"
+    target="_blank"
+    rel="noopener noreferrer"
+    id="fixed-instagram"
+    aria-label="Instagram"
+>
+
+    <i class="fa-brands fa-instagram"></i>
+
+</a>
+
+
+<!-- =====================================================
+     KVKK
+     ===================================================== -->
+
+<div
+    id="kvkk-overlay"
+    aria-hidden="true"
+>
+
+    <div
+        id="kvkk-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="kvkk-title"
+    >
+
+        <button
+            id="kvkk-close"
+            type="button"
+            aria-label="Kapat"
+        >
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+        <h2 id="kvkk-title">
+            KVKK Aydınlatma Metni
+        </h2>
+
+
+        <p>
+
+            Bu internet sitesi üzerinden tarafınızdan paylaşılan
+            kişisel bilgiler, ücretsiz ön görüşme talebinizin
+            değerlendirilmesi ve sizinle iletişim kurulabilmesi
+            amacıyla işlenmektedir.
+
+        </p>
+
+
+        <h3>
+            İşlenen Bilgiler
+        </h3>
+
+        <ul>
+
+            <li>
+                Ad ve soyad
+            </li>
+
+            <li>
+                E-posta adresi
+            </li>
+
+            <li>
+                Telefon numarası
+            </li>
+
+            <li>
+                Sınıf / sınav bilgisi
+            </li>
+
+            <li>
+                Öğrenci / veli bilgisi
+            </li>
+
+        </ul>
+
+
+        <h3>
+            Veri İşleme Amacı
+        </h3>
+
+        <p>
+
+          Toplanan kişisel verileriniz; ücretsiz ön görüşme talebinizin değerlendirilmesi, sizinle iletişim kurulması, rehberlik ve eğitim sürecinin yürütülmesi ve hizmet kalitemizin artırılması amacıyla işlenmektedir.
+
+        </p>
+
+
+        <h3>
+            Haklarınız
+        </h3>
+
+        <p>
+
+            KVKK'nın 11. maddesi gereğince veri sahibi olarak; verilerinizin işlenip işlenmediğini öğrenme, bilgi talep etme, düzeltilmesini veya silinmesini isteme haklarına sahipsiniz. Taleplerinizi web sitemiz üzerinden bize iletebilirsiniz.
+
+        </p>
+        <h3>
+            Kişisel Verilerin Aktarımı
+        </h3>
+
+        <p>
+
+          Toplanan kişisel verileriniz, kanunen yetkili kamu kurum ve kuruluşları hariç olmak üzere üçüncü şahıslarla paylaşılmamakta ve yurt dışına aktarılmamaktadır.
+
+        </p>
+
+
+
+        <button
+            id="kvkk-ok"
+            type="button"
+        >
+
+            Okudum ve Anladım
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ÇEREZ
+     ===================================================== -->
+
+<div id="cookie-consent">
+
+    <h3>
+        Çerez Kullanımı
+    </h3>
+
+    <p>
+
+        Bu internet sitesi, site deneyimini geliştirmek
+        amacıyla temel çerezleri kullanabilir.
+
+    </p>
+
+
+    <div class="cookie-buttons">
+
+        <button
+            type="button"
+            id="cookie-accept"
+        >
+            Kabul Et
+        </button>
+
+        <button
+            type="button"
+            id="cookie-reject"
+            class="secondary"
+        >
+            Reddet
+        </button>
+
+        <button
+            type="button"
+            id="cookie-settings"
+            class="secondary"
+        >
+            Ayarlar
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script>
+
+/* =========================================================
+   PRELOADER
+   ========================================================= */
+
+window.addEventListener(
+    "load",
+    function () {
+
+        const preloader =
+            document.getElementById("preloader");
+
+        setTimeout(
+            function () {
+
+                if (preloader) {
+
+                    preloader.classList.add("hide");
+
+                }
+
+            },
+            500
+        );
+
+    }
+);
+
+
+/* =========================================================
+   TEMA
+   ========================================================= */
+
+const themeToggle =
+    document.getElementById("theme-toggle");
+
+const savedTheme =
+    localStorage.getItem("theme");
+
+
+if (savedTheme === "dark") {
+
+    document.body.classList.add("dark-mode");
+
+}
+
+
+function updateThemeIcon() {
+
+    if (!themeToggle) {
+        return;
+    }
+
+    const icon =
+        themeToggle.querySelector("i");
+
+    if (!icon) {
+        return;
+    }
+
+    if (
+        document.body.classList.contains(
+            "dark-mode"
+        )
+    ) {
+
+        icon.className =
+            "fa-solid fa-sun";
+
+        themeToggle.setAttribute(
+            "aria-label",
+            "Gündüz moduna geç"
+        );
+
+    } else {
+
+        icon.className =
+            "fa-solid fa-moon";
+
+        themeToggle.setAttribute(
+            "aria-label",
+            "Gece moduna geç"
+        );
+
+    }
+
+}
+
+
+updateThemeIcon();
+
+
+if (themeToggle) {
+
+    themeToggle.addEventListener(
+        "click",
+        function () {
+
+            document.body.classList.toggle(
+                "dark-mode"
+            );
+
+            const isDark =
+                document.body.classList.contains(
+                    "dark-mode"
+                );
+
+            localStorage.setItem(
+                "theme",
+                isDark
+                    ? "dark"
+                    : "light"
+            );
+
+            updateThemeIcon();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   KVKK
+   ========================================================= */
+
+const kvkkOverlay =
+    document.getElementById(
+        "kvkk-overlay"
+    );
+
+const kvkkLink =
+    document.getElementById(
+        "kvkk-link"
+    );
+
+const kvkkClose =
+    document.getElementById(
+        "kvkk-close"
+    );
+
+const kvkkOk =
+    document.getElementById(
+        "kvkk-ok"
+    );
+
+
+function openKvkk(event) {
+
+    if (event) {
+
+        event.preventDefault();
+
+    }
+
+    if (!kvkkOverlay) {
+        return;
+    }
+
+    kvkkOverlay.classList.add(
+        "active"
+    );
+
+    kvkkOverlay.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+}
+
+
+function closeKvkk() {
+
+    if (!kvkkOverlay) {
+        return;
+    }
+
+    kvkkOverlay.classList.remove(
+        "active"
+    );
+
+    kvkkOverlay.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "";
+}
+
+
+if (kvkkLink) {
+
+    kvkkLink.addEventListener(
+        "click",
+        openKvkk
+    );
+
+}
+
+
+if (kvkkClose) {
+
+    kvkkClose.addEventListener(
+        "click",
+        closeKvkk
+    );
+
+}
+
+
+if (kvkkOk) {
+
+    kvkkOk.addEventListener(
+        "click",
+        closeKvkk
+    );
+
+}
+
+
+if (kvkkOverlay) {
+
+    kvkkOverlay.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target ===
+                kvkkOverlay
+            ) {
+
+                closeKvkk();
+
+            }
+
+        }
+    );
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeKvkk();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ÇEREZ
+   ========================================================= */
+
+const cookieConsent =
+    document.getElementById(
+        "cookie-consent"
+    );
+
+const cookieAccept =
+    document.getElementById(
+        "cookie-accept"
+    );
+
+const cookieReject =
+    document.getElementById(
+        "cookie-reject"
+    );
+
+const cookieSettings =
+    document.getElementById(
+        "cookie-settings"
+    );
+
+
+const cookieChoice =
+    localStorage.getItem(
+        "cookie-consent"
+    );
+
+
+if (!cookieChoice) {
+
+    setTimeout(
+        function () {
+
+            if (cookieConsent) {
+
+                cookieConsent.classList.add(
+                    "show"
+                );
+
+            }
+
+        },
+        1200
+    );
+
+}
+
+
+function hideCookiePopup(
+    value
+) {
+
+    localStorage.setItem(
+        "cookie-consent",
+        value
+    );
+
+    if (cookieConsent) {
+
+        cookieConsent.classList.remove(
+            "show"
+        );
+
+    }
+
+}
+
+
+if (cookieAccept) {
+
+    cookieAccept.addEventListener(
+        "click",
+        function () {
+
+            hideCookiePopup(
+                "accepted"
+            );
+
+        }
+    );
+
+}
+
+
+if (cookieReject) {
+
+    cookieReject.addEventListener(
+        "click",
+        function () {
+
+            hideCookiePopup(
+                "rejected"
+            );
+
+        }
+    );
+
+}
+
+
+if (cookieSettings) {
+
+    cookieSettings.addEventListener(
+        "click",
+        function () {
+
+            alert(
+                "Çerez ayarları için gerekli ayrıntılı politika metni yakında eklenecektir."
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+const consultationForm =
+    document.getElementById(
+        "on-gorusme-form"
+    );
+
+const formStatus =
+    document.getElementById(
+        "form-status"
+    );
+
+
+if (consultationForm) {
+
+    consultationForm.addEventListener(
+        "submit",
+        function () {
+
+            if (!formStatus) {
+                return;
+            }
+
+            formStatus.className =
+                "form-status success";
+
+            formStatus.textContent =
+                "Başvurunuz gönderiliyor...";
+
+            setTimeout(
+                function () {
+
+                    formStatus.textContent =
+                        "Başvurunuz alındı. En kısa sürede sizinle iletişime geçilecektir.";
+
+                },
+                1800
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   HAREKET AZALTMA
+   ========================================================= */
+
+const bubbles =
+    document.querySelectorAll(
+        ".hero-bubble"
+    );
+
+
+if (
+    window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches
+) {
+
+    bubbles.forEach(
+        function (bubble) {
+
+            bubble.style.animation =
+                "none";
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   NAVBAR LINKLERİ
+   ========================================================= */
+
+document
+    .querySelectorAll(
+        ".nav-links a, .hero-button"
+    )
+    .forEach(
+        function (link) {
+
+            link.addEventListener(
+                "click",
+                function () {
+
+                    const target =
+                        link.getAttribute(
+                            "href"
+                        );
+
+                    if (
+                        target &&
+                        target.startsWith("#")
+                    ) {
+
+                        const element =
+                            document.querySelector(
+                                target
+                            );
+
+                        if (element) {
+
+                            setTimeout(
+                                function () {
+
+                                    element.scrollIntoView(
+                                        {
+                                            behavior:
+                                                "smooth"
+                                        }
+                                    );
+
+                                },
+                                10
+                            );
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+/* =========================================================
+   WHATSAPP + INSTAGRAM — NEFES ALMA EFEKTİ
+   ========================================================= */
+
+(function () {
+
+    const whatsapp = document.getElementById("fixed-whatsapp");
+    const instagram = document.getElementById("fixed-instagram");
+
+    if (!whatsapp || !instagram) return;
+
+    let startTime = null;
+
+    function breathe(timestamp) {
+
+        if (!startTime) {
+            startTime = timestamp;
+        }
+
+        const elapsed = timestamp - startTime;
+
+        /* 3 saniyelik yumuşak nefes döngüsü */
+        const whatsappProgress =
+            (elapsed % 3000) / 3000;
+
+        /* Instagram yarım saniye geriden gelsin */
+        const instagramProgress =
+            ((elapsed + 1500) % 3000) / 3000;
+
+        /*
+           Sinüs eğrisi:
+           1.00 → 1.07 → 1.00
+           Çok yumuşak büyüyüp küçülür.
+        */
+        const whatsappScale =
+            1 + Math.sin(
+                whatsappProgress * Math.PI * 2
+            ) * 0.055;
+
+        const instagramScale =
+            1 + Math.sin(
+                instagramProgress * Math.PI * 2
+            ) * 0.055;
+
+        whatsapp.style.setProperty(
+            "transform",
+            `scale(${whatsappScale})`,
+            "important"
+        );
+
+        instagram.style.setProperty(
+            "transform",
+            `scale(${instagramScale})`,
+            "important"
+        );
+
+        requestAnimationFrame(breathe);
+    }
+
+    requestAnimationFrame(breathe);
+
+})();
+</script>
+
+
+<!-- Modern Sınav Takvimi Pop-Up -->
+<div id="sinavModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5, 4, 10, 0.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 999999; justify-content: center; align-items: center; padding: 20px;">
+    
+    <div style="background: linear-gradient(145deg, rgba(26, 21, 46, 0.95), rgba(15, 12, 28, 0.98)); border: 1px solid rgba(168, 85, 247, 0.25); width: 100%; max-width: 720px; max-height: 85vh; border-radius: 24px; padding: 28px; color: #ffffff; box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(168, 85, 247, 0.15); display: flex; flex-direction: column; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+        
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 18px; margin-bottom: 22px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="width: 10px; height: 10px; background-color: #a855f7; border-radius: 50%; box-shadow: 0 0 12px #a855f7; display: inline-block;"></span>
+                <h3 style="margin: 0; font-size: 21px; font-weight: 700; color: #ffffff; letter-spacing: -0.3px;">Sınav Takvimi & Canlı Sayaç</h3>
+            </div>
+            <span id="modalKapat" style="font-size: 24px; cursor: pointer; color: #94a3b8; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255, 255, 255, 0.05); transition: 0.2s;" onmouseover="this.style.color='#fff'; this.style.background='rgba(255,255,255,0.1)';" onmouseout="this.style.color='#94a3b8'; this.style.background='rgba(255,255,255,0.05)';">&times;</span>
+        </div>
+
+        <!-- Body / Sınav Kartları -->
+        <div style="overflow-y: auto; padding-right: 6px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px;">
+            
+            <!-- YKS -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">YKS (TYT-AYT)</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">19 Haziran 2027</span>
+                </div>
+                <div id="timer-yks" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- LGS -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">LGS</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">6 Haziran 2027</span>
+                </div>
+                <div id="timer-lgs" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- KPSS Lisans -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">KPSS Lisans</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">18 Temmuz 2027</span>
+                </div>
+                <div id="timer-kpss-lisans" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- KPSS Ön Lisans -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">KPSS Ön Lisans</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">4 Ekim 2026</span>
+                </div>
+                <div id="timer-kpss-onlisans" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- KPSS Ortaöğretim -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">KPSS Ortaöğretim</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">25 Ekim 2026</span>
+                </div>
+                <div id="timer-kpss-ortaoğretim" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- ALES -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">ALES</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">29 Kasım 2026</span>
+                </div>
+                <div id="timer-ales" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- DGS -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">DGS</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">4 Temmuz 2027</span>
+                </div>
+                <div id="timer-dgs" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+            <!-- AGS -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 16px 18px; transition: 0.3s;" onmouseover="this.style.borderColor='rgba(168, 85, 247, 0.4)'; this.style.background='rgba(168, 85, 247, 0.05)';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.07)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #c084fc; font-size: 16px; font-weight: 700;">AGS</h4>
+                    <span style="font-size: 11px; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px;">12 Eylül 2027</span>
+                </div>
+                <div id="timer-ags" style="display: flex; gap: 6px; justify-content: space-between;"></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- SINAV TAKVİMİ POPUP SCRIPT (GARANTİ ÇÖZÜM) -->
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('sinavModal');
+    const btn = document.getElementById('openExamCalendar');
+    const closeBtn = document.getElementById('modalKapat');
+
+    // Sınav Takvimi butonuna basınca aç
+    if (btn) {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (modal) modal.style.display = 'flex';
+        });
+    }
+
+    // X butonuna basınca kapat
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            if (modal) modal.style.display = 'none';
+        });
+    }
+
+    // Dış siyah alana basınca kapat
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Canlı Sayaç Motoru
+    const sinavTarihleri = {
+        'yks': '2027-06-20T10:15:00',
+        'lgs': '2027-06-06T09:30:00',
+        'kpss-lisans': '2027-07-18T10:15:00',
+        'kpss-onlisans': '2026-10-04T10:15:00',
+        'kpss-ortaoğretim': '2026-10-25T10:15:00',
+        'ales': '2026-11-22T10:15:00',
+        'dgs': '2027-07-04T10:15:00',
+        'ags': '2027-09-12T10:15:00'
+    };
+
+    function sayaciGuncelle() {
+        const simdi = new Date().getTime();
+
+        for (const [key, tarihStr] of Object.entries(sinavTarihleri)) {
+            const hedefTarih = new Date(tarihStr).getTime();
+            const fark = hedefTarih - simdi;
+
+            const el = document.getElementById(`timer-${key}`);
+            if (!el) continue;
+
+            if (fark <= 0) {
+                el.innerHTML = "Sınav Tamamlandı";
+                continue;
+            }
+
+            const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+            const saat = Math.floor((fark % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
+            const saniye = Math.floor((fark % (1000 * 60)) / 1000);
+
+            el.innerHTML = `${gun}g ${saat}s ${dakika}d ${saniye}s`;
+        }
+    }
+
+    setInterval(sayaciGuncelle, 1000);
+    sayaciGuncelle();
+});
+</script>
+<template hidden>
+    <!-- Var olan diğer kodlar... -->
+
+    <style>
+        /* =========================================================
+   ✨ SAYAÇ KUTULARI (1. Fotoğraftaki Stil)
+   ========================================================= */
+.timer-box {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    border-radius: 10px !important;
+    padding: 8px 10px !important;
+    text-align: center !important;
+    flex: 1 !important;
+    min-width: 52px !important;
+}
+
+.timer-value {
+    color: #c084fc !important; /* Canlı mor renk */
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    font-variant-numeric: tabular-nums;
+}
+
+.timer-label {
+    color: #94a3b8 !important;
+    font-size: 9px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    margin-top: 2px !important;
+}
+    
+    </style>
+    
+</head>
+<body>
+
+    <!-- Sayfanın diğer kodları... -->
+
+    <!-- 1. ADIMDAKİ HTML KODUNU BURAYA (</body> BİTİMİNDEN HEMEN ÖNCE) YAPIŞTIR -->
+    <div id="sinavModal" ...>
+        ...
+    </div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('sinavModal');
+    const btn = document.getElementById('openExamCalendar');
+    const closeBtn = document.getElementById('modalKapat');
+
+    if (btn) {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (modal) modal.style.display = 'flex';
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            if (modal) modal.style.display = 'none';
+        });
+    }
+
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    const sinavTarihleri = {
+        'yks': '2027-06-19T10:00:00',
+        'lgs': '2027-06-06T09:30:00',
+        'kpss-lisans': '2027-07-18T10:15:00',
+        'kpss-onlisans': '2026-10-04T10:15:00',
+        'kpss-ortaoğretim': '2026-10-25T10:15:00',
+        'ales': '2026-11-29T10:15:00',
+        'dgs': '2027-07-04T10:15:00',
+        'ags': '2027-09-12T10:15:00'
+    };
+
+    function kutuOlustur(deger, etiket) {
+        return `
+            <div class="timer-box">
+                <div class="timer-value">${deger}</div>
+                <div class="timer-label">${etiket}</div>
+            </div>
+        `;
+    }
+
+    function sayaciGuncelle() {
+        const simdi = new Date().getTime();
+
+        for (const [key, tarihStr] of Object.entries(sinavTarihleri)) {
+            const hedefTarih = new Date(tarihStr).getTime();
+            const fark = hedefTarih - simdi;
+
+            const el = document.getElementById(`timer-${key}`);
+            if (!el) continue;
+
+            if (fark <= 0) {
+                el.innerHTML = `<div style="width:100%; text-align:center; color:#94a3b8; font-size:13px; padding:8px;">Sınav Tamamlandı</div>`;
+                continue;
+            }
+
+            const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+            const saat = Math.floor((fark % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
+            const saniye = Math.floor((fark % (1000 * 60)) / 1000);
+
+            el.innerHTML = 
+                kutuOlustur(gun, 'GÜN') +
+                kutuOlustur(saat < 10 ? '0' + saat : saat, 'SAAT') +
+                kutuOlustur(dakika < 10 ? '0' + dakika : dakika, 'DK') +
+                kutuOlustur(saniye < 10 ? '0' + saniye : saniye, 'SN');
+        }
+    }
+
+    setInterval(sayaciGuncelle, 1000);
+    sayaciGuncelle();
+});
+
+</script>
+
+
+</body>
+</body>
+
+</template>
+</body>
+</html>

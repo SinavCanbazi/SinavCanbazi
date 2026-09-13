@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sınav Canbazı - Süre Tut</title>
+    <link rel="icon" type="image/png" href="fav.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #06040d;
+            --panel-bg: rgba(26, 18, 51, 0.7);
+            --border-color: rgba(90, 60, 160, 0.25);
+            --border-hover: rgba(112, 66, 228, 0.8);
+            --text-color: #f8f6fc;
+            --subtext-color: #9d91c5;
+            --accent-color: #7042e4;
+            --accent-glow: rgba(112, 66, 228, 0.35);
+            --input-bg: rgba(0, 0, 0, 0.25);
+            --orange-color: #ff6b00;
+            --card-bg: #130d24;
+            --card-text: #f8f6fc;
+            --active-card-bg: rgba(255, 107, 0, 0.12);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f3f0fb;
+            --panel-bg: rgba(255, 255, 255, 0.85);
+            --border-color: rgba(215, 205, 235, 0.8);
+            --border-hover: rgba(108, 60, 233, 0.6);
+            --text-color: #140b2b;
+            --subtext-color: #62538c;
+            --accent-color: #6c3ce9;
+            --accent-glow: rgba(108, 60, 233, 0.15);
+            --input-bg: rgba(0, 0, 0, 0.04);
+            --orange-color: #e65100;
+            --card-bg: #eadefc;
+            --card-text: #140b2b;
+            --active-card-bg: rgba(230, 81, 0, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            min-height: 100vh; 
+            padding: 40px 20px; 
+            transition: background-color 0.4s ease, color 0.4s ease;
+            background-image: radial-gradient(circle at 15% 15%, var(--accent-glow) 0%, transparent 40%),
+                              radial-gradient(circle at 85% 85%, var(--accent-glow) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; max-width: 1140px; margin-left: auto; margin-right: auto; }
+        
+        .back-btn, .theme-toggle-btn { 
+            color: var(--text-color); 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 14px; 
+            background: var(--panel-bg); 
+            padding: 10px 18px; 
+            border-radius: 30px; 
+            border: 1px solid var(--border-color); 
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .back-btn:hover, .theme-toggle-btn:hover { 
+            border-color: var(--accent-color); 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        .main-container { display: grid; grid-template-columns: 340px 1fr; gap: 24px; max-width: 1140px; margin: 0 auto; }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
+
+        .panel { 
+            background: var(--panel-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 20px; 
+            padding: 28px; 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Sol Ayarlar */
+        .panel-header { font-size: 20px; font-weight: 800; margin-bottom: 4px; color: var(--text-color); }
+        .panel-sub { font-size: 13px; color: var(--subtext-color); margin-bottom: 20px; font-weight: 500; }
+
+        .mode-switcher { display: flex; background: var(--input-bg); padding: 4px; border-radius: 14px; margin-bottom: 24px; gap: 4px; border: 1px solid var(--border-color); }
+        .mode-btn { flex: 1; padding: 10px; border: none; background: transparent; color: var(--subtext-color); font-weight: 600; font-size: 13px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: 0.2s; }
+        .mode-btn.active { background: rgba(255, 107, 0, 0.15); color: var(--orange-color); border: 1px solid var(--orange-color); }
+
+        .section-title { font-size: 12px; font-weight: 700; color: var(--subtext-color); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+
+        .preset-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .preset-card { background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 14px 16px; cursor: pointer; transition: 0.2s; }
+        .preset-card:hover { border-color: var(--accent-color); }
+        .preset-card.active { border-color: var(--orange-color); background: var(--active-card-bg); }
+        .preset-val { font-size: 15px; font-weight: 700; color: var(--orange-color); }
+        .preset-lbl { font-size: 12px; color: var(--subtext-color); margin-top: 2px; font-weight: 500; }
+
+        .custom-input-box { display: none; margin-top: 10px; }
+        .custom-input-box input { width: 100%; padding: 10px 14px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-color); outline: none; font-size: 14px; }
+        .custom-input-box input:focus { border-color: var(--accent-color); box-shadow: 0 0 10px var(--accent-glow); }
+
+        .info-note { font-size: 12px; color: var(--orange-color); font-weight: 600; margin-top: 12px; }
+
+        /* Sağ Sayaç */
+        .timer-panel { display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-height: 520px; }
+        .timer-top { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+
+        /* FLIP CLOCK TASARIMI */
+        .flip-clock-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 40px 0;
+            perspective: 1000px;
+        }
+        .flip-group { display: flex; gap: 6px; }
+        .flip-card {
+            width: 70px;
+            height: 120px;
+            background: var(--card-bg);
+            color: var(--card-text);
+            border-radius: 12px;
+            font-size: 72px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-color);
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+
+        @keyframes flipFold {
+            0% { transform: rotateX(0deg); box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
+            50% { transform: rotateX(-90deg); box-shadow: 0 2px 5px rgba(0,0,0,0.03); filter: brightness(0.8); }
+            100% { transform: rotateX(0deg); box-shadow: 0 10px 20px rgba(0,0,0,0.06); filter: brightness(1); }
+        }
+
+        .flip-card.animate {
+            animation: flipFold 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .flip-colon {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--subtext-color);
+            margin: 0 4px;
+        }
+
+        .timer-status { font-size: 13px; color: var(--subtext-color); margin-bottom: 24px; font-weight: 600; }
+
+        /* Alt Butonlar */
+        .control-btns { display: flex; gap: 14px; width: 100%; max-width: 440px; }
+        .btn-ctrl { flex: 1; padding: 14px; border: none; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
+        .btn-start { background: var(--orange-color); color: #ffffff; }
+        .btn-start:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-reset { background: var(--input-bg); color: var(--text-color); border: 1px solid var(--border-color); }
+        .btn-reset:hover { border-color: var(--text-color); }
+
+        .brand-footer { margin-top: 20px; font-size: 13px; font-weight: 800; color: var(--accent-color); letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="index.html" class="back-btn">← Ana Sayfaya Dön</a>
+        <button class="theme-toggle-btn" id="theme-toggle">
+            <span id="theme-icon">🌙</span> <span id="theme-text">Koyu Mod</span>
+        </button>
+    </div>
+
+    <div class="main-container">
+        <!-- Sol Panel: Ayarlar -->
+        <div class="panel">
+            <div class="panel-header">Ayarlar</div>
+            <div class="panel-sub">Mod ve süre şablonu</div>
+
+            <div class="mode-switcher">
+                <button class="mode-btn active" id="btnModeCountdown" onclick="setMode('countdown')">⏳ Geri sayım</button>
+                <button class="mode-btn" id="btnModeStopwatch" onclick="setMode('stopwatch')">⏱️ Kronometre</button>
+            </div>
+
+            <div class="section-title">Süre Şablonu</div>
+            <div class="preset-list" id="presetList">
+                <div class="preset-card active" onclick="selectPreset(165, this)">
+                    <div class="preset-val">165 dk</div>
+                    <div class="preset-lbl">TYT genel deneme</div>
+                </div>
+                <div class="preset-card" onclick="selectPreset(180, this)">
+                    <div class="preset-val">180 dk</div>
+                    <div class="preset-lbl">AYT genel deneme</div>
+                </div>
+                <div class="preset-card" onclick="selectPreset('custom', this)">
+                    <div class="preset-val">Özel</div>
+                    <div class="preset-lbl">Kendi sürenizi girin</div>
+                </div>
+            </div>
+
+            <div class="custom-input-box" id="customInputBox">
+                <input type="number" id="customMinutes" placeholder="Dakika giriniz (örn: 45)" oninput="applyCustomTime()">
+            </div>
+
+            <div class="info-note" id="infoNote">Standart TYT süresi: 2 saat 45 dakika</div>
+        </div>
+
+        <!-- Sağ Panel: Sayaç Ekranı -->
+        <div class="panel timer-panel">
+            <div class="timer-top">
+                <div>
+                    <div class="panel-header">Sayaç</div>
+                    <div class="panel-sub">Sayaç ve kontroller</div>
+                </div>
+            </div>
+
+            <!-- FLIP CLOCK EKRANI -->
+            <div class="flip-clock-wrap">
+                <div class="flip-group">
+                    <div class="flip-card" id="h1">0</div>
+                    <div class="flip-card" id="h2">2</div>
+                </div>
+                <div class="flip-colon">:</div>
+                <div class="flip-group">
+                    <div class="flip-card" id="m1">4</div>
+                    <div class="flip-card" id="m2">5</div>
+                </div>
+                <div class="flip-colon">:</div>
+                <div class="flip-group">
+                    <div class="flip-card" id="s1">0</div>
+                    <div class="flip-card" id="s2">0</div>
+                </div>
+            </div>
+
+            <div class="timer-status" id="timerStatus">Hazır — başlat</div>
+
+            <div class="control-btns">
+                <button class="btn-ctrl btn-start" id="startBtn" onclick="toggleTimer()">▶ Başlat</button>
+                <button class="btn-ctrl btn-reset" onclick="resetTimer()">❚❚ Durdur / Sıfırla</button>
+            </div>
+
+            <div class="brand-footer">SINAV CANBAZI</div>
+        </div>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.innerText = '☀️';
+            themeText.innerText = 'Gündüz Modu';
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.innerText = '🌙';
+                themeText.innerText = 'Koyu Mod';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeIcon.innerText = '☀️';
+                themeText.innerText = 'Gündüz Modu';
+            }
+        });
+
+        let mode = 'countdown';
+        let totalSeconds = 165 * 60;
+        let initialSeconds = 165 * 60;
+        let timerInterval = null;
+        let isRunning = false;
+
+        function updateCard(id, newValue) {
+            const card = document.getElementById(id);
+            if (card && card.innerText !== newValue) {
+                card.innerText = newValue;
+                card.classList.remove('animate');
+                void card.offsetWidth; 
+                card.classList.add('animate');
+            }
+        }
+
+        function updateDisplay() {
+            let hrs = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
+            let mins = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
+            let secs = (totalSeconds % 60).toString().padStart(2, '0');
+
+            updateCard('h1', hrs[0]);
+            updateCard('h2', hrs[1]);
+            updateCard('m1', mins[0]);
+            updateCard('m2', mins[1]);
+            updateCard('s1', secs[0]);
+            updateCard('s2', secs[1]);
+        }
+
+        function setMode(newMode) {
+            mode = newMode;
+            document.getElementById('btnModeCountdown').classList.toggle('active', mode === 'countdown');
+            document.getElementById('btnModeStopwatch').classList.toggle('active', mode === 'stopwatch');
+            
+            document.getElementById('presetList').style.display = mode === 'countdown' ? 'flex' : 'none';
+            document.getElementById('infoNote').style.display = mode === 'countdown' ? 'block' : 'none';
+            document.getElementById('customInputBox').style.display = 'none';
+
+            resetTimer();
+            if (mode === 'stopwatch') {
+                totalSeconds = 0;
+                document.getElementById('timerStatus').innerText = "Kronometre Hazır";
+            }
+            updateDisplay();
+        }
+
+        function selectPreset(val, el) {
+            document.querySelectorAll('.preset-card').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+
+            const customBox = document.getElementById('customInputBox');
+            const infoNote = document.getElementById('infoNote');
+
+            if (val === 'custom') {
+                customBox.style.display = 'block';
+                infoNote.innerText = "Kendi sürenizi yukarıya dakika olarak girin.";
+            } else {
+                customBox.style.display = 'none';
+                initialSeconds = val * 60;
+                infoNote.innerText = val === 165 ? "Standart TYT süresi: 2 saat 45 dakika" : "Standart AYT süresi: 3 saat 00 dakika";
+                resetTimer();
+            }
+        }
+
+        function applyCustomTime() {
+            let mins = parseInt(document.getElementById('customMinutes').value) || 0;
+            initialSeconds = mins * 60;
+            resetTimer();
+        }
+
+        function toggleTimer() {
+            const startBtn = document.getElementById('startBtn');
+            const statusText = document.getElementById('timerStatus');
+
+            if (isRunning) {
+                clearInterval(timerInterval);
+                startBtn.innerText = '▶ Devam Et';
+                statusText.innerText = 'Duraklatıldı';
+                isRunning = false;
+            } else {
+                isRunning = true;
+                startBtn.innerText = '❚❚ Durdur';
+                statusText.innerText = 'Devam ediyor...';
+
+                timerInterval = setInterval(() => {
+                    if (mode === 'countdown') {
+                        if (totalSeconds > 0) {
+                            totalSeconds--;
+                        } else {
+                            clearInterval(timerInterval);
+                            statusText.innerText = 'Süre Doldu!';
+                            alert('Süre doldu!');
+                        }
+                    } else {
+                        totalSeconds++;
+                    }
+                    updateDisplay();
+                }, 1000);
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            document.getElementById('startBtn').innerText = '▶ Başlat';
+            document.getElementById('timerStatus').innerText = 'Hazır — başlat';
+            totalSeconds = mode === 'countdown' ? initialSeconds : 0;
+            updateDisplay();
+        }
+
+        updateDisplay();
+    </script>
+</body>
+</html>
