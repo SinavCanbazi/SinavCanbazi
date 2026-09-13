@@ -3,64 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sınav Canbazı - YKS Puan ve Sıralama Hesaplama</title>
+    <title>Sınav Canbazı - YKS Puan Hesaplama</title>
     <link rel="icon" type="image/png" href="fav.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0d0a18;
-            --panel-bg: #141026;
-            --border-color: rgba(168, 85, 247, 0.2);
-            --text-color: #ffffff;
-            --subtext-color: #a78bfa;
-            --accent-color: #a855f7;
-            --accent-hover: #9333ea;
+            --bg-color: #06040d;
+            --panel-bg: rgba(26, 18, 51, 0.7);
+            --border-color: rgba(90, 60, 160, 0.25);
+            --border-hover: rgba(112, 66, 228, 0.8);
+            --text-color: #f8f6fc;
+            --subtext-color: #9d91c5;
+            --accent-color: #7042e4;
+            --accent-glow: rgba(112, 66, 228, 0.35);
             --input-bg: rgba(0, 0, 0, 0.25);
+            --orange-color: #ff6b00;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
-        body { background: var(--bg-color); color: var(--text-color); min-height: 100vh; padding: 24px 4%; }
+        [data-theme="light"] {
+            --bg-color: #f3f0fb;
+            --panel-bg: rgba(255, 255, 255, 0.85);
+            --border-color: rgba(215, 205, 235, 0.8);
+            --border-hover: rgba(108, 60, 233, 0.6);
+            --text-color: #140b2b;
+            --subtext-color: #62538c;
+            --accent-color: #6c3ce9;
+            --accent-glow: rgba(108, 60, 233, 0.15);
+            --input-bg: rgba(0, 0, 0, 0.04);
+            --orange-color: #e65100;
+        }
 
-        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; max-width: 1200px; margin-left: auto; margin-right: auto; }
-        .back-btn { color: var(--text-color); text-decoration: none; font-weight: 600; font-size: 14px; background: var(--panel-bg); padding: 10px 18px; border-radius: 12px; border: 1px solid var(--border-color); display: inline-flex; align-items: center; gap: 8px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            min-height: 100vh; 
+            padding: 40px 20px; 
+            transition: background-color 0.4s ease, color 0.4s ease;
+            background-image: radial-gradient(circle at 15% 15%, var(--accent-glow) 0%, transparent 40%),
+                              radial-gradient(circle at 85% 85%, var(--accent-glow) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
 
-        .main-container { display: grid; grid-template-columns: 1fr 360px; gap: 24px; max-width: 1200px; margin: 0 auto; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; max-width: 1140px; margin-left: auto; margin-right: auto; }
+        
+        .back-btn, .theme-toggle-btn { 
+            color: var(--text-color); 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 14px; 
+            background: var(--panel-bg); 
+            padding: 10px 18px; 
+            border-radius: 30px; 
+            border: 1px solid var(--border-color); 
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .back-btn:hover, .theme-toggle-btn:hover { 
+            border-color: var(--accent-color); 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        .main-container { display: grid; grid-template-columns: 1fr 360px; gap: 24px; max-width: 1140px; margin: 0 auto; }
         @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
 
-        .panel { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 24px; }
+        .panel { 
+            background: var(--panel-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 20px; 
+            padding: 28px; 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
         
-        .header-title { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
-        .header-sub { font-size: 13px; color: var(--subtext-color); margin-bottom: 20px; line-height: 1.5; }
+        .header-title { font-size: 22px; font-weight: 800; margin-bottom: 8px; color: var(--text-color); }
+        .header-sub { font-size: 13px; color: var(--subtext-color); margin-bottom: 20px; font-weight: 500; }
 
-        /* Puan Türü Tabları */
-        .tab-group { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-        .tab-btn { padding: 8px 16px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--input-bg); color: var(--subtext-color); font-weight: 600; font-size: 13px; cursor: pointer; transition: 0.2s; }
-        .tab-btn.active { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+        .tab-group { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+        .tab-btn { padding: 9px 18px; border-radius: 12px; border: 1px solid var(--border-color); background: var(--input-bg); color: var(--subtext-color); font-weight: 600; font-size: 13px; cursor: pointer; transition: 0.2s; }
+        .tab-btn.active { background: rgba(255, 107, 0, 0.15); color: var(--orange-color); border-color: var(--orange-color); }
 
-        .section-tag { font-size: 14px; font-weight: 700; color: var(--accent-color); margin: 20px 0 12px 0; border-left: 3px solid var(--accent-color); padding-left: 8px; }
+        .section-tag { font-size: 15px; font-weight: 700; color: var(--accent-color); margin: 20px 0 12px 0; border-left: 3px solid var(--accent-color); padding-left: 8px; }
 
-        .subject-row { display: grid; grid-template-columns: 1fr 70px 70px 80px; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
-        .subject-name { font-size: 14px; font-weight: 600; }
-        .input-box { background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px; color: #fff; text-align: center; font-size: 14px; outline: none; width: 100%; }
-        .input-box:focus { border-color: var(--accent-color); }
+        .subject-row { display: grid; grid-template-columns: 1fr 75px 75px 80px; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border-color); }
+        .subject-name { font-size: 14px; font-weight: 600; color: var(--text-color); }
+        .input-box { background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 9px; color: var(--text-color); text-align: center; font-size: 14px; outline: none; width: 100%; transition: 0.2s; }
+        .input-box:focus { border-color: var(--accent-color); box-shadow: 0 0 10px var(--accent-glow); }
         .net-val { text-align: right; font-weight: 700; color: var(--subtext-color); font-size: 13px; }
 
-        /* OBP Field Style */
-        .obp-container { margin-top: 24px; position: relative; }
-        .obp-fieldset { border: 1px solid var(--border-color); border-radius: 12px; padding: 0 12px; position: relative; }
-        .obp-legend { font-size: 12px; color: var(--subtext-color); padding: 0 6px; margin-left: 8px; }
-        .obp-input { width: 100%; background: transparent; border: none; outline: none; color: #fff; font-size: 16px; font-weight: 600; padding: 10px 6px; }
-        .obp-sub { font-size: 11px; color: var(--subtext-color); margin-top: 4px; display: block; margin-left: 4px; }
+        .obp-container { margin-top: 24px; }
+        .obp-fieldset { border: 1px solid var(--border-color); border-radius: 12px; padding: 0 12px; position: relative; background: var(--input-bg); }
+        .obp-legend { font-size: 12px; color: var(--subtext-color); padding: 0 6px; margin-left: 8px; font-weight: 600; }
+        .obp-input { width: 100%; background: transparent; border: none; outline: none; color: var(--text-color); font-size: 16px; font-weight: 600; padding: 10px 6px; }
+        .obp-sub { font-size: 11px; color: var(--subtext-color); margin-top: 6px; display: block; font-weight: 500; }
 
-        /* Action Buttons */
         .action-btns { display: flex; gap: 12px; margin-top: 24px; }
-        .btn-calc { flex: 2; padding: 14px; background: var(--accent-color); color: #fff; border: none; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
-        .btn-calc:hover { background: var(--accent-hover); }
+        .btn-calc { flex: 2; padding: 14px; background: var(--orange-color); color: #fff; border: none; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
+        .btn-calc:hover { opacity: 0.9; transform: translateY(-1px); }
         .btn-clear { flex: 1; padding: 14px; background: transparent; color: var(--text-color); border: 1px solid var(--border-color); border-radius: 12px; font-weight: 600; font-size: 14px; cursor: pointer; transition: 0.2s; }
-        .btn-clear:hover { background: rgba(255,255,255,0.05); }
+        .btn-clear:hover { border-color: var(--text-color); }
 
-        /* Sonuç Kartları */
-        .res-card { background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
-        .res-title { font-size: 12px; color: var(--subtext-color); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .res-card { background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+        .res-title { font-size: 11px; color: var(--subtext-color); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
         .res-score { font-size: 26px; font-weight: 800; color: var(--accent-color); margin-top: 4px; }
     </style>
 </head>
@@ -68,39 +120,36 @@
 
     <div class="top-bar">
         <a href="index.html" class="back-btn">← Ana Sayfaya Dön</a>
+        <button class="theme-toggle-btn" id="theme-toggle">
+            <span id="theme-icon">🌙</span> <span id="theme-text">Koyu Mod</span>
+        </button>
     </div>
 
     <div class="main-container">
-        <!-- Sol: Net Giriş Formu -->
         <div class="panel">
-            <div class="header-title">YKS Puan ve Sıralama Hesaplama</div>
-            <div class="header-sub">TYT ve AYT netlerinizi girin; ham ve yerleştirme puanlarınızı hesaplayın.</div>
-
-            <!-- Puan Türü Seçimi -->
-            <div style="font-size: 12px; font-weight: 700; color: var(--subtext-color); margin-bottom: 8px;">Puan türü</div>
+            <div style="font-size: 13px; font-weight: 700; color: var(--text-color); margin-bottom: 10px;">Puan türü</div>
             <div class="tab-group">
-                <button class="tab-btn" onclick="selectTab(this)">TYT</button>
-                <button class="tab-btn active" onclick="selectTab(this)">✓ Sayısal</button>
-                <button class="tab-btn" onclick="selectTab(this)">Eşit Ağırlık</button>
-                <button class="tab-btn" onclick="selectTab(this)">Sözel</button>
-                <button class="tab-btn" onclick="selectTab(this)">Dil</button>
+                <button class="tab-btn active" onclick="selectTab('tyt', this)">✓ TYT</button>
+                <button class="tab-btn" onclick="selectTab('say', this)">Sayısal</button>
+                <button class="tab-btn" onclick="selectTab('ea', this)">Eşit Ağırlık</button>
+                <button class="tab-btn" onclick="selectTab('soz', this)">Sözel</button>
+                <button class="tab-btn" onclick="selectTab('dil', this)">Dil</button>
             </div>
 
             <!-- TYT NETLERİ -->
             <div class="section-tag">TYT Netleri</div>
-            <div class="subject-row"><span class="subject-name">Türkçe</span><input type="number" class="input-box in-d" placeholder="D"><input type="number" class="input-box in-y" placeholder="Y"><span class="net-val">0 Net</span></div>
-            <div class="subject-row"><span class="subject-name">Sosyal Bilimler</span><input type="number" class="input-box in-d" placeholder="D"><input type="number" class="input-box in-y" placeholder="Y"><span class="net-val">0 Net</span></div>
-            <div class="subject-row"><span class="subject-name">Temel Matematik</span><input type="number" class="input-box in-d" placeholder="D"><input type="number" class="input-box in-y" placeholder="Y"><span class="net-val">0 Net</span></div>
-            <div class="subject-row"><span class="subject-name">Fen Bilimleri</span><input type="number" class="input-box in-d" placeholder="D"><input type="number" class="input-box in-y" placeholder="Y"><span class="net-val">0 Net</span></div>
+            <div class="subject-row"><span class="subject-name">Türkçe</span><input type="number" id="tyt_tr_d" class="input-box" placeholder="D"><input type="number" id="tyt_tr_y" class="input-box" placeholder="Y"><span class="net-val" id="tyt_tr_n">0.00 Net</span></div>
+            <div class="subject-row"><span class="subject-name">Sosyal Bilimler</span><input type="number" id="tyt_sos_d" class="input-box" placeholder="D"><input type="number" id="tyt_sos_y" class="input-box" placeholder="Y"><span class="net-val" id="tyt_sos_n">0.00 Net</span></div>
+            <div class="subject-row"><span class="subject-name">Temel Matematik</span><input type="number" id="tyt_mat_d" class="input-box" placeholder="D"><input type="number" id="tyt_mat_y" class="input-box" placeholder="Y"><span class="net-val" id="tyt_mat_n">0.00 Net</span></div>
+            <div class="subject-row"><span class="subject-name">Fen Bilimleri</span><input type="number" id="tyt_fen_d" class="input-box" placeholder="D"><input type="number" id="tyt_fen_y" class="input-box" placeholder="Y"><span class="net-val" id="tyt_fen_n">0.00 Net</span></div>
 
-            <!-- AYT NETLERİ -->
-            <div class="section-tag">AYT Netleri</div>
-            <div class="subject-row"><span class="subject-name">Matematik</span><input type="number" class="input-box in-d" placeholder="D"><input type="number" class="input-box in-y" placeholder="Y"><span class="net-val">0 Net</span></div>
-            <div class="subject-row"><span class="subject-name">Fizik</span><input type="number" class="input-box in-d" placeholder="D"><input type="number" class="input-box in-y" placeholder="Y"><span class="net-val">0 Net</span></div>
-            <div class="subject-row"><span class="subject-name">Kimya</span><input type="number" class="input-box in-d" placeholder="D"><input type="number" class="input-box in-y" placeholder="Y"><span class="net-val">0 Net</span></div>
-            <div class="subject-row"><span class="subject-name">Biyoloji</span><input type="number" class="input-box in-d" placeholder="D"><input type="number" class="input-box in-y" placeholder="Y"><span class="net-val">0 Net</span></div>
+            <!-- AYT NETLERİ (Varsayılan Olarak Gizli) -->
+            <div id="aytContainer" style="display: none;">
+                <div class="section-tag">AYT Netleri</div>
+                <div id="aytFields"></div>
+            </div>
 
-            <!-- OBP FIELD -->
+            <!-- OBP ALANI -->
             <div class="obp-container">
                 <fieldset class="obp-fieldset">
                     <legend class="obp-legend">Diploma notu (OBP)</legend>
@@ -116,7 +165,7 @@
             </div>
         </div>
 
-        <!-- Sağ: Sonuç Paneli -->
+        <!-- Sağ: Sonuç Kartı -->
         <div class="panel">
             <div class="header-title" style="font-size: 20px;">Hesaplama Sonucu</div>
             <div class="header-sub" id="infoBox">Puan türünü seçin, netlerinizi girin ve Hesapla'ya basın.</div>
@@ -132,56 +181,130 @@
             </div>
 
             <div class="res-card">
-                <div class="res-title">Sayısal Yerleştirme Puanı</div>
-                <div class="res-score" id="resSayPuan">100.00</div>
+                <div class="res-title" id="resFinalLabel">TYT Yerleştirme Puanı</div>
+                <div class="res-score" id="resFinalPuan">100.00</div>
             </div>
         </div>
     </div>
 
     <script>
-        function selectTab(btn) {
+        const toggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.innerText = '☀️';
+            themeText.innerText = 'Gündüz Modu';
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.innerText = '🌙';
+                themeText.innerText = 'Koyu Mod';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeIcon.innerText = '☀️';
+                themeText.innerText = 'Gündüz Modu';
+            }
+        });
+
+        let currentMode = 'tyt';
+
+        function selectTab(mode, btn) {
+            currentMode = mode;
             document.querySelectorAll('.tab-btn').forEach(b => {
                 b.classList.remove('active');
                 b.innerText = b.innerText.replace('✓ ', '');
             });
             btn.classList.add('active');
             btn.innerText = '✓ ' + btn.innerText;
+
+            const aytContainer = document.getElementById('aytContainer');
+            const aytFields = document.getElementById('aytFields');
+            const resFinalLabel = document.getElementById('resFinalLabel');
+
+            if (mode === 'tyt') {
+                aytContainer.style.display = 'none';
+                resFinalLabel.innerText = 'TYT Yerleştirme Puanı';
+            } else {
+                aytContainer.style.display = 'block';
+                let html = '';
+
+                if (mode === 'say') {
+                    resFinalLabel.innerText = 'Sayısal Yerleştirme Puanı';
+                    html = renderRow('ayt_mat', 'Matematik') + renderRow('ayt_fiz', 'Fizik') + renderRow('ayt_kim', 'Kimya') + renderRow('ayt_biyo', 'Biyoloji');
+                } else if (mode === 'ea') {
+                    resFinalLabel.innerText = 'Eşit Ağırlık Yerleştirme Puanı';
+                    html = renderRow('ayt_mat', 'Matematik') + renderRow('ayt_edb', 'Edebiyat') + renderRow('ayt_tar1', 'Tarih-1') + renderRow('ayt_cog1', 'Coğrafya-1');
+                } else if (mode === 'soz') {
+                    resFinalLabel.innerText = 'Sözel Yerleştirme Puanı';
+                    html = renderRow('ayt_edb', 'Edebiyat') + renderRow('ayt_tar1', 'Tarih-1') + renderRow('ayt_cog1', 'Coğrafya-1') + renderRow('ayt_tar2', 'Tarih-2') + renderRow('ayt_cog2', 'Coğrafya-2') + renderRow('ayt_fel', 'Felsefe Grubu') + renderRow('ayt_din', 'DKAB / İlave Felsefe');
+                } else if (mode === 'dil') {
+                    resFinalLabel.innerText = 'Dil Yerleştirme Puanı';
+                    html = renderRow('ayt_ydil', 'Yabancı Dil');
+                }
+                aytFields.innerHTML = html;
+            }
+        }
+
+        function renderRow(prefix, name) {
+            return `<div class="subject-row"><span class="subject-name">${name}</span><input type="number" id="${prefix}_d" class="input-box" placeholder="D"><input type="number" id="${prefix}_y" class="input-box" placeholder="Y"><span class="net-val" id="${prefix}_n">0.00 Net</span></div>`;
+        }
+
+        function getNet(dId, yId, nId) {
+            let dElem = document.getElementById(dId);
+            let yElem = document.getElementById(yId);
+            if (!dElem || !yElem) return 0;
+            let d = parseFloat(dElem.value) || 0;
+            let y = parseFloat(yElem.value) || 0;
+            let net = Math.max(0, d - (y * 0.25));
+            let nElem = document.getElementById(nId);
+            if (nElem) nElem.innerText = net.toFixed(2) + " Net";
+            return net;
         }
 
         function calculate() {
-            let rows = document.querySelectorAll('.subject-row');
-            let tytNetSum = 0;
+            let tytTr = getNet('tyt_tr_d', 'tyt_tr_y', 'tyt_tr_n');
+            let tytSos = getNet('tyt_sos_d', 'tyt_sos_y', 'tyt_sos_n');
+            let tytMat = getNet('tyt_mat_d', 'tyt_mat_y', 'tyt_mat_n');
+            let tytFen = getNet('tyt_fen_d', 'tyt_fen_y', 'tyt_fen_n');
 
-            rows.forEach((row, index) => {
-                let d = parseFloat(row.querySelector('.in-d').value) || 0;
-                let y = parseFloat(row.querySelector('.in-y').value) || 0;
-                let net = Math.max(0, d - (y * 0.25));
-                row.querySelector('.net-val').innerText = net.toFixed(2) + " Net";
+            let totalTytNet = tytTr + tytSos + tytMat + tytFen;
+            document.getElementById('resTytNet').innerText = totalTytNet.toFixed(2);
 
-                if(index < 4) tytNetSum += net;
-            });
+            let tytHam = 100 + (tytTr * 3.3) + (tytSos * 3.4) + (tytMat * 3.3) + (tytFen * 3.4);
+            document.getElementById('resTytPuan').innerText = tytHam.toFixed(2);
 
-            document.getElementById('resTytNet').innerText = tytNetSum.toFixed(2);
-            
             let obp = parseFloat(document.getElementById('obpVal').value) || 0;
             let obpPuan = obp * 0.6;
 
-            let tytPuan = 100 + (tytNetSum * 3.3);
-            document.getElementById('resTytPuan').innerText = tytPuan.toFixed(2);
+            let finalPuan = tytHam + obpPuan;
 
-            let sayPuan = tytPuan + obpPuan;
-            document.getElementById('resSayPuan').innerText = sayPuan.toFixed(2);
+            if (currentMode === 'say') {
+                let aMat = getNet('ayt_mat_d', 'ayt_mat_y', 'ayt_mat_n');
+                let aFiz = getNet('ayt_fiz_d', 'ayt_fiz_y', 'ayt_fiz_n');
+                let aKim = getNet('ayt_kim_d', 'ayt_kim_y', 'ayt_kim_n');
+                let aBiyo = getNet('ayt_biyo_d', 'ayt_biyo_y', 'ayt_biyo_n');
+                finalPuan = 100 + (tytHam * 0.4) + (aMat * 3.0) + (aFiz * 2.8) + (aKim * 2.8) + (aBiyo * 2.8) + obpPuan;
+            }
 
-            document.getElementById('infoBox').innerText = "Hesaplama başarıyla tamamlandı.";
+            document.getElementById('resFinalPuan').innerText = finalPuan.toFixed(2);
+            document.getElementById('infoBox').innerText = "Hesaplama tamamlandı.";
         }
 
         function clearAll() {
-            document.querySelectorAll('.input-box').forEach(input => input.value = '');
-            document.querySelectorAll('.net-val').forEach(label => label.innerText = '0 Net');
+            document.querySelectorAll('.input-box').forEach(i => i.value = '');
+            document.querySelectorAll('.net-val').forEach(n => n.innerText = '0.00 Net');
             document.getElementById('obpVal').value = '80';
             document.getElementById('resTytNet').innerText = '0.00';
             document.getElementById('resTytPuan').innerText = '100.00';
-            document.getElementById('resSayPuan').innerText = '100.00';
+            document.getElementById('resFinalPuan').innerText = '100.00';
             document.getElementById('infoBox').innerText = "Puan türünü seçin, netlerinizi girin ve Hesapla'ya basın.";
         }
     </script>

@@ -5008,3 +5008,1153 @@ body.light-mode .timer-value,
 body.light-mode .timer-label,
 [data-theme="light"] .timer-label,
 .light .timer-label { color: #64748b !important; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  padding: 30px 16px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  background-color: #231f1e;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-info .icon {
+  font-size: 20px;
+  background: #383331;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.tag {
+  font-size: 10px;
+  color: #a1a1aa;
+  letter-spacing: 1px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.header h1 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.count-badge {
+  background: #000000;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Filtre Alanı */
+.filter-box {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.filter-box h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+.input-field {
+  position: relative;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  font-size: 15px;
+  color: #6b7280;
+  pointer-events: none;
+}
+
+.input-field input, 
+.input-field select {
+  width: 100%;
+  padding: 14px 16px 14px 44px;
+  border: 1px solid #f3f4f6;
+  background-color: #f9fafb;
+  border-radius: 14px;
+  font-size: 14px;
+  outline: none;
+  color: #374151;
+  transition: all 0.2s;
+  appearance: none;
+}
+
+.input-field input:focus, 
+.input-field select:focus {
+  background-color: #ffffff;
+  border-color: #e5e7eb;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.03);
+}
+
+.filter-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.flex-1 {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 0;
+}
+
+.checkbox-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #f9fafb;
+  padding: 14px 20px;
+  border-radius: 14px;
+  border: 1px solid #f3f4f6;
+  color: #111827;
+  user-select: none;
+}
+
+.checkbox-box input {
+  width: 18px;
+  height: 18px;
+  accent-color: #111827;
+}
+
+/* Liste & Kartlar */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  position: relative;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.uni-icon {
+  width: 48px;
+  height: 48px;
+  background: #f3f4f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.card-title h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.uni-name {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.badges {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+}
+
+.badge.vakif { background: #10b981; color: #fff; }
+.badge.burslu { background: #f97316; color: #fff; }
+.badge.devlet { background: #3b82f6; color: #fff; }
+
+.type-badge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: #fff7ed;
+  color: #f97316;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* Tablo */
+.table-wrapper {
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.table th {
+  font-size: 11px;
+  color: #9ca3af;
+  padding-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  padding: 8px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.table .puan { color: #111827; font-weight: 700; font-style: italic; }
+.table .year { background: #e5e7eb; padding: 2px 10px; border-radius: 8px; font-size: 12px; color: #374151; }
+/* ÜST BAŞLIK BAR & TEMA BUTONU */
+        .top-header {
+            display: flex;
+            justify-content: flex-end; /* Butonu sağa sabitlemek için */
+            align-items: center;
+            margin-bottom: 45px;
+            position: relative; /* Başlığı ortalamak için referans */
+            min-height: 48px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0;
+            color: var(--text-main);
+            position: absolute; /* Butondan bağımsız olarak... */
+            left: 50%;          /* ...tam ortaya konumlandırır */
+            transform: translateX(-50%);
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--text-main) 60%, var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            width: 100%;
+            pointer-events: none; /* Başlık tıklamaları engellemesin diye */
+            z-index: 1;
+        }
+
+        .theme-toggle-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 10px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            z-index: 2; /* Buton başlığın üzerinde, tıklanabilir kalmalı */
+        }
+        /* =========================================================
+   ✨ 1. FOTOĞRAFKİ MODERN & KOYU TEMA KART TASARIMLARI
+   ========================================================= */
+
+/* Tüm kartların genel yapısını 1. fotoğraftakine benzer pürüzsüz koyu/açık uyumlu hale getirelim */
+.about-card, 
+.skill-card, 
+.on-gorusme-card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 20px !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* 1. Fotoğraftaki kartların üzerine gelince (hover) oluşan şık parlama ve kalkma efekti */
+.about-card:hover, 
+.skill-card:hover, 
+.on-gorusme-card:hover {
+    transform: translateY(-6px) !important;
+    border-color: rgba(155, 125, 255, 0.45) !important;
+    box-shadow: 
+        0 20px 45px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(126, 87, 255, 0.12) !important;
+}
+
+/* Kartların içindeki ikon kutuları (1. fotoğraftaki küçük mor ikon alanları gibi) */
+.skill-icon, 
+.about-card i {
+    background: var(--primary-soft) !important;
+    color: var(--primary) !important;
+    border-radius: 14px !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.skill-card:hover .skill-icon {
+    transform: scale(1.1) rotate(3deg);
+    box-shadow: 0 8px 20px rgba(126, 87, 255, 0.3);
+}
+
+/* Navbar (Üst Menü - 2. Fotoğraftaki Alan) için 1. Fotoğrafın Havasına Uygun Ekstra Şıklık */
+.navbar {
+    background: rgba(13, 17, 28, 0.85) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+body:not(.dark-mode) .navbar {
+    background: rgba(255, 255, 255, 0.85) !important;
+}
+
+.nav-links a {
+    position: relative;
+    padding: 6px 0;
+}
+
+/* Menü linklerinin altına 1. fotoğraftaki modern siteler gibi şık bir hover çizgisi ekleyelim */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* --- HERO KART TASARIMI (BOZulmaları Engelleyen Tam Uyumlu Kod) --- */
+.hero-card-container {
+    background: linear-gradient(135deg, rgba(26, 15, 46, 0.95) 0%, rgba(15, 10, 30, 0.98) 100%) !important;
+    border: 1px solid rgba(168, 85, 247, 0.25) !important;
+    border-radius: 24px !important;
+    padding: 40px !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    max-width: 1050px !important;
+    margin: 40px auto !important;
+    box-sizing: border-box !important;
+}
+
+.hero-card-container .hero-content {
+    flex: 1 !important;
+    z-index: 2 !important;
+    padding-right: 20px !important;
+}
+
+.hero-card-container h1 {
+    font-size: 2.7rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    line-height: 1.2 !important;
+    margin-bottom: 20px !important;
+}
+
+.hero-card-container h1 span {
+    color: #c084fc !important;
+}
+
+.hero-card-container p {
+    color: rgba(255, 255, 255, 0.75) !important;
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 30px !important;
+}
+
+.hero-card-container .hero-buttons {
+    display: flex !important;
+    gap: 15px !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+}
+
+.hero-card-container .hero-button.primary {
+    background: #ffffff !important;
+    color: #0f0a1e !important;
+    padding: 12px 24px !important;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: 0.3s !important;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2) !important;
+}
+
+.hero-card-container .hero-button.primary:hover {
+    background: #f0f0f0 !important;
+    transform: translateY(-2px) !important;
+}
+
+.hero-card-container .hero-button.secondary {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+    padding: 12px 24px !important;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: 0.3s !important;
+}
+
+.hero-card-container .hero-button.secondary:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Sağ Görsel Alanı Sabitleme */
+.hero-card-container .hero-visual {
+    position: relative !important;
+    width: 300px !important;
+    height: 300px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+}
+.hero-visual{
+
+    position:absolute;
+    right:70px;
+    top:50%;
+    transform:translateY(-50%);
+
+    width:340px;
+    height:340px;
+}
+
+.orbit{
+
+    position:absolute;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.orbit1{ inset:0;}
+.orbit2{ inset:35px;}
+.orbit3{ inset:70px;}
+
+.glow-circle{
+
+    position:absolute;
+    border-radius:50%;
+    filter:blur(1px);
+}
+
+.glow-big{
+
+    width:120px;
+    height:120px;
+    top:10px;
+    right:10px;
+    background:#8B5CF6;
+    opacity:.8;
+}
+
+.glow-mid{
+
+    width:80px;
+    height:80px;
+    bottom:20px;
+    right:100px;
+    background:#B7F34D;
+}
+
+.glow-small{
+
+    width:45px;
+    height:45px;
+    left:20px;
+    top:90px;
+    background:#44C7FF;
+}
+
+.center-core{
+
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#A855F7,#6D28D9);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    font-size:34px;
+
+    box-shadow:0 0 45px #8B5CF688;
+}
+/* =========================================================
+   ✨ TÜM SAYFA GENELİ - ANA & HAKKINDA & ÇALIŞMA ALANLARI & FORM
+   ========================================================= */
+
+/* 1. Ana Karşılama (Hero) Kutusu */
+.hero-section, .hero-box, .welcome-card, header.main-hero {
+    background: linear-gradient(145deg, #120e26 0%, #070510 100%) !important;
+    border: 1px solid rgba(139, 92, 246, 0.25) !important;
+    border-radius: 28px !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 92, 246, 0.12) !important;
+}
+
+/* 2. Hakkımda ve Çalışma Alanları Kartları */
+.about-card, .service-card, .card, .calisma-kutu {
+    background: linear-gradient(145deg, rgba(26, 21, 46, 0.95), rgba(15, 12, 28, 0.98)) !important;
+    border: 1px solid rgba(139, 92, 246, 0.2) !important;
+    border-radius: 22px !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.about-card:hover, .service-card:hover, .card:hover, .calisma-kutu:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(168, 85, 247, 0.45) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(168, 85, 247, 0.15) !important;
+}
+
+/* 3. Ücretsiz Ön Görüşme Form Alanı ve Kapsayıcısı */
+form, .form-container, .contact-modal, .appointment-box {
+    background: linear-gradient(145deg, #120e26 0%, #070510 100%) !important;
+    border: 1px solid rgba(139, 92, 246, 0.25) !important;
+    border-radius: 24px !important;
+    padding: 32px !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 92, 246, 0.12) !important;
+    color: #ffffff !important;
+}
+
+/* Form İçi Input ve Seçim Kutuları */
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    color: #ffffff !important;
+    padding: 12px 16px !important;
+    transition: 0.3s ease !important;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: rgba(168, 85, 247, 0.5) !important;
+    background: rgba(168, 85, 247, 0.04) !important;
+    outline: none !important;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.15) !important;
+}
+
+/* Form Gönder Butonu */
+button[type="submit"], .btn-gonder {
+    background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%) !important;
+    border: none !important;
+    border-radius: 14px !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    transition: 0.3s ease !important;
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4) !important;
+}
+
+button[type="submit"]:hover, .btn-gonder:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 25px rgba(168, 85, 247, 0.6) !important;
+}
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body, body.dark-mode {
+            font-family: "Inter", sans-serif;
+            background: #070510 !important;
+            color: #eaf1f8 !important;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        /* NAVBAR */
+        .navbar, body.dark-mode .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            background: rgba(18, 14, 38, 0.9) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15) !important;
+            z-index: 10000;
+        }
+
+        .logo {
+            text-decoration: none;
+            font-family: "Poppins", sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -.03em;
+            color: #fff;
+        }
+
+        .logo span {
+            color: #a855f7 !important;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: .92rem;
+            font-weight: 600;
+            opacity: .78;
+            transition: .25s;
+            color: #fff;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: #a855f7 !important;
+        }
+
+        .theme-toggle, body.dark-mode .theme-toggle {
+            border: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            background: rgba(168, 85, 247, 0.1) !important;
+            color: #a855f7 !important;
+            transition: .25s;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 130px 7% 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(168,85,247,.15), transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(124,58,237,.12), transparent 28%),
+                linear-gradient(145deg, #120e26 0%, #070510 100%) !important;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero-image {
+            width: 145px;
+            height: 145px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(168,85,247,.3) !important;
+            box-shadow: 0 20px 60px rgba(0,0,0,.6), 0 0 30px rgba(168,85,247,.2);
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-family: "Poppins", sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5.4rem);
+            line-height: 1.03;
+            letter-spacing: -.055em;
+            margin-bottom: 18px;
+            color: #fff;
+        }
+
+        .hero h1 span {
+            color: #a855f7 !important;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 32px;
+            font-size: 1.05rem;
+            opacity: .75;
+            color: #d8b4fe !important;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 22px;
+            border-radius: 13px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: .25s;
+        }
+
+        .hero-button.primary {
+            background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%) !important;
+            color: #fff !important;
+            border: none !important;
+            box-shadow: 0 10px 30px rgba(168,85,247,.4);
+        }
+
+        .hero-button.secondary, body.dark-mode .hero-button.secondary {
+            background: rgba(26, 21, 46, 0.8) !important;
+            color: #fff !important;
+            border: 1px solid rgba(168, 85, 247, 0.25) !important;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 100px 7%;
+        }
+
+        /* ABOUT & YETENEKLER */
+        .about-section, .skills-section, body.dark-mode .about-section, body.dark-mode .skills-section {
+            background: #070510 !important;
+        }
+
+        .about-container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .about-header {
+            max-width: 760px;
+            margin-bottom: 55px;
+        }
+
+        .about-label {
+            color: #a855f7 !important;
+            font-size: .8rem;
+            font-weight: 800;
+            letter-spacing: .16em;
+        }
+
+        .about-header h2, .section-heading h2 {
+            font-family: "Poppins", sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            line-height: 1.08;
+            letter-spacing: -.045em;
+            margin: 12px 0 20px;
+            color: #fff;
+        }
+
+        .about-header h2 span {
+            color: #a855f7 !important;
+        }
+
+        .about-intro, .section-heading p {
+            font-size: 1.08rem;
+            opacity: .72;
+            color: #d8b4fe !important;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .about-text p {
+            margin-bottom: 18px;
+            opacity: .76;
+            color: #eaf1f8;
+        }
+
+        .about-cards, .skills-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .skills-grid {
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .about-card, .skill-card, body.dark-mode .about-card, body.dark-mode .skill-card {
+            padding: 30px;
+            border-radius: 22px !important;
+            background: linear-gradient(145deg, rgba(26, 21, 46, 0.95), rgba(15, 12, 28, 0.98)) !important;
+            border: 1px solid rgba(139, 92, 246, 0.2) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+            transition: .25s;
+        }
+
+        .about-card:hover, .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(168, 85, 247, 0.45) !important;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(168, 85, 247, 0.15) !important;
+        }
+
+        .about-card i, .skill-card i {
+            color: #a855f7 !important;
+        }
+
+        .skill-card i {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: rgba(168,85,247,.15) !important;
+            font-size: 1.3rem;
+            margin-bottom: 18px;
+        }
+
+        .about-card h3, .skill-card h3 {
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .about-card p, .skill-card p {
+            opacity: .68;
+            font-size: .92rem;
+            color: #d8b4fe !important;
+        }
+
+        .about-bottom, body.dark-mode .about-bottom {
+            margin-top: 55px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(139, 92, 246, 0.15) !important;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .about-bottom p {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .about-bottom i {
+            color: #a855f7 !important;
+        }
+
+        .about-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            color: #a855f7 !important;
+            white-space: nowrap;
+        }
+
+        /* ÖN GÖRÜŞME */
+        .on-gorusme-section, body.dark-mode .on-gorusme-section {
+            background: #070510 !important;
+        }
+
+        .on-gorusme-card, body.dark-mode .on-gorusme-card {
+            width: min(650px, 100%);
+            margin: auto;
+            padding: 42px;
+            border-radius: 28px !important;
+            background: linear-gradient(145deg, #120e26 0%, #070510 100%) !important;
+            border: 1px solid rgba(139, 92, 246, 0.25) !important;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 92, 246, 0.12) !important;
+        }
+
+        .on-gorusme-card h2 {
+            font-family: "Poppins", sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            letter-spacing: -.04em;
+            margin-bottom: 28px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .on-form-group {
+            margin-bottom: 16px;
+        }
+
+        .on-form-group input,
+        .on-form-group select,
+        body.dark-mode .on-form-group input,
+        body.dark-mode .on-form-group select {
+            width: 100%;
+            height: 54px;
+            padding: 0 16px;
+            border: 1px solid rgba(139, 92, 246, 0.2) !important;
+            border-radius: 13px !important;
+            outline: none;
+            background: rgba(255, 255, 255, 0.03) !important;
+            color: #fff !important;
+            transition: .2s;
+        }
+
+        .on-form-group input:focus,
+        .on-form-group select:focus {
+            border-color: rgba(168, 85, 247, 0.6) !important;
+            background: rgba(168, 85, 247, 0.05) !important;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+        }
+
+        .on-form-group label {
+            display: block;
+            font-size: .85rem;
+            font-weight: 700;
+            margin: 0 0 7px 2px;
+            color: #eaf1f8;
+        }
+
+        .on-form-group small {
+            display: block;
+            margin: 7px 2px 0;
+            font-size: .76rem;
+            color: #d8b4fe !important;
+        }
+
+        .on-radio-group {
+            display: flex;
+            gap: 22px;
+            margin: 20px 2px;
+            flex-wrap: wrap;
+        }
+
+        .on-radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: .9rem;
+            color: #fff;
+        }
+
+        .on-radio-group input, .on-kvkk input {
+            accent-color: #a855f7 !important;
+        }
+
+        .on-kvkk {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            margin: 20px 2px;
+            font-size: .84rem;
+            line-height: 1.5;
+            cursor: pointer;
+            color: #d8b4fe;
+        }
+
+        .on-kvkk a {
+            color: #a855f7 !important;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .on-gorusme-form button {
+            width: 100%;
+            height: 54px;
+            border: 0;
+            border-radius: 13px !important;
+            background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%) !important;
+            color: #fff !important;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .25s;
+            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+        }
+
+        .on-gorusme-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(168, 85, 247, 0.6);
+        }
+
+        /* FOOTER */
+        footer, body.dark-mode footer {
+            padding: 35px 7%;
+            text-align: center;
+            background: #040308 !important;
+            color: #d8b4fe !important;
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        footer p {
+            font-size: .85rem;
+            opacity: .65;
+        }
+
+        /* MODALLAR & DİĞERLERİ */
+        .kvkk-modal, body.dark-mode .kvkk-modal, #cookie-overlay, body.dark-mode #cookie-overlay, .success-toast {
+            background: #120e26 !important;
+            color: #eaf1f8 !important;
+            border: 1px solid rgba(139, 92, 246, 0.25) !important;
+        }
+
+        #preloader, body.dark-mode #preloader {
+            background: #070510 !important;
+        }
+
+        .loader {
+            width: 44px;
+            height: 44px;
+            border: 4px solid rgba(139, 92, 246, 0.15);
+            border-top-color: #a855f7 !important;
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 850px) {
+            .navbar { padding: 0 4%; }
+            .nav-links { gap: 14px; }
+            .about-content, .skills-grid { grid-template-columns: 1fr; }
+            .about-bottom { flex-direction: column; align-items: flex-start; }
+        }
+
+        @media (max-width: 600px) {
+            .navbar { height: 68px; }
+            .nav-links { display: none; }
+            section { padding: 78px 5%; }
+            .hero { padding: 105px 5% 70px; }
+            .on-gorusme-card { padding: 25px 18px; }
+        }
+        /* Varsayılan (Koyu Mod) */
+body {
+    font-family: "Inter", sans-serif;
+    background: #070510;
+    color: #eaf1f8;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Gündüz Modu Sınıfı */
+body.light-mode {
+    background: #f4f4f9 !important;
+    color: #1f2937 !important;
+}
+
+body.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .logo, 
+body.light-mode .nav-links a,
+body.light-mode h1, body.light-mode h2, body.light-mode h3 {
+    color: #111827 !important;
+}
+
+body.light-mode .about-card, 
+body.light-mode .skill-card, 
+body.light-mode .on-gorusme-card {
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}

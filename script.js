@@ -547,3 +547,120 @@ window.addEventListener('DOMContentLoaded', () => {
     setInterval(sayaciGuncelle, 1000);
     sayaciGuncelle();
 });
+// script.js dosyandaki fonksiyonu bu kodla değiştir
+function filterData() {
+    const uniArama = document.getElementById('searchUni').value.toLowerCase().trim();
+    const deptArama = document.getElementById('searchDept').value.toLowerCase().trim();
+    const hizliArama = document.getElementById('searchQuick').value.toLowerCase().trim();
+
+    const filtrelenmis = tumVeriler.filter(item => {
+        const uniUyum = item.uni.toLowerCase().includes(uniArama);
+        const deptUyum = item.dept.toLowerCase().includes(deptArama);
+        
+        // Hızlı arama hem üniversite hem bölüm adında arar
+        const hizliUyum = item.uni.toLowerCase().includes(hizliArama) || 
+                          item.dept.toLowerCase().includes(hizliArama);
+
+        return uniUyum && deptUyum && hizliUyum;
+    });
+
+    // Kartları ve geçmiş yılların tablosunu çizen fonksiyon
+function listeyiCiz(liste) {
+    const resultBadge = document.getElementById('resultCount');
+    if (resultBadge) {
+        resultBadge.innerText = `${liste.length} sonuç`;
+    }
+
+    const container = document.getElementById('uniContainer');
+    if (!container) return;
+    
+    container.innerHTML = '';
+
+    if (liste.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:20px; color:#6b7280;">Aramanıza uygun sonuç bulunamadı.</div>';
+        return;
+    }
+
+    liste.forEach(item => {
+        // Geçmiş yılların tablosunu oluştur
+        let tabloSatirlari = '';
+        if (item.history && item.history.length > 0) {
+            tabloSatirlari = item.history.map(h => `
+                <tr>
+                    <td style="padding: 8px; border-bottom: 1px solid #e5e7eb; font-weight:600;">${h.year}</td>
+                    <td style="padding: 8px; border-bottom: 1px solid #e5e7eb; color:#f95700; font-weight:bold;">${h.puan || '-'}</td>
+                    <td style="padding: 8px; border-bottom: 1px solid #e5e7eb;">${h.sira ? h.sira.toLocaleString('tr-TR') : '-'}</td>
+                    <td style="padding: 8px; border-bottom: 1px solid #e5e7eb;">${h.ky || '-'}</td>
+                </tr>
+            `).join('');
+        }
+
+        const kartHtml = `
+            <div class="uni-kart" style="background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:18px; margin-bottom:16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                <div style="display:flex; justify-between; align-items:center; margin-bottom:8px;">
+                    <h3 style="font-size:16px; color:#1f2937; margin:0;">${item.uni}</h3>
+                    <span style="background:#ffe8d6; color:#f95700; padding:2px 8px; border-radius:6px; font-weight:bold; font-size:12px;">${item.type}</span>
+                </div>
+                
+                <p style="font-size:15px; font-weight:600; color:#374151; margin-bottom:6px;">${item.dept}</p>
+                
+                <div style="margin-bottom:12px;">
+                    <span style="background:#f3f4f6; color:#4b5563; padding:2px 6px; border-radius:4px; font-size:12px; margin-right:4px;">
+                        ${item.isVakif ? 'Vakıf' : 'Devlet'}
+                    </span>
+                    <span style="background:#f3f4f6; color:#4b5563; padding:2px 6px; border-radius:4px; font-size:12px;">
+                        ${item.isBurslu ? 'Burslu' : 'Ücretli / Devlet'}
+                    </span>
+                </div>
+
+                <!-- Taban Puan Geçmiş Tablosu -->
+                <table style="width:100%; text-align:left; border-collapse:collapse; font-size:13px; margin-top:10px;">
+                    <thead>
+                        <tr style="background:#f9fafb; color:#6b7280;">
+                            <th style="padding: 6px 8px;">Yıl</th>
+                            <th style="padding: 6px 8px;">Taban Puan</th>
+                            <th style="padding: 6px 8px;">Başarı Sırası</th>
+                            <th style="padding: 6px 8px;">Kontenjan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${tabloSatirlari}
+                    </tbody>
+                </table>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforeend', kartHtml);
+    });
+}
+}
+
+
+const themeToggleBtn = document.querySelector('.theme-toggle'); // Butonunun sınıfı veya ID'si neyse
+
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        
+        // Butonun üzerindeki yazıyı veya ikonunu değiştirmek istersen:
+        if (document.body.classList.contains('light-mode')) {
+            themeToggleBtn.innerHTML = '🌙 Gece Modu';
+        } else {
+            themeToggleBtn.innerHTML = '☀️ Gündüz Modu';
+        }
+    });
+}
+<script>
+    const themeToggleBtn = document.querySelector('.theme-toggle');
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            
+            if (document.body.classList.contains('light-mode')) {
+                themeToggleBtn.innerHTML = '🌙 Gece Modu';
+            } else {
+                themeToggleBtn.innerHTML = '☀️ Gündüz Modu';
+            }
+        });
+    }
+</script>
