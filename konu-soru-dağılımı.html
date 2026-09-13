@@ -423,7 +423,12 @@
                 /* style.css'ten gelen absolute konumlandırmayı ezerek çakışmayı önler. */
                 position: static !important;
                 inset: auto !important;
+                left: auto !important;
+                right: auto !important;
+                transform: none !important;
                 width: 100% !important;
+                max-width: 100% !important;
+                min-width: 0 !important;
                 order: -1;
                 margin: 0 !important;
                 padding: 14px 12px !important;
@@ -432,6 +437,7 @@
                 text-align: center !important;
                 white-space: normal !important;
                 overflow-wrap: anywhere;
+                word-break: normal !important;
             }
 
             .back-btn, .theme-toggle-btn {
