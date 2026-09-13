@@ -2620,6 +2620,7 @@ section h2:hover {
     }
 
     .mobile-menu-overlay {
+        display: block;
         position: fixed;
         inset: 0;
         z-index: 20000;
@@ -2714,6 +2715,63 @@ section h2:hover {
         text-align: center;
     }
 
+    .mobile-tools summary {
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 17px;
+        border: 1px solid var(--border);
+        border-radius: 17px;
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-weight: 700;
+        cursor: pointer;
+        list-style: none;
+    }
+
+    .mobile-tools summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .mobile-tools summary span {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .mobile-tools summary > i {
+        color: var(--primary);
+        transition: transform .2s ease;
+    }
+
+    .mobile-tools[open] summary > i {
+        transform: rotate(180deg);
+    }
+
+    .mobile-tools-panel {
+        display: grid;
+        gap: 9px;
+        margin: 10px 0 2px;
+        padding: 10px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--bg-main);
+    }
+
+    .mobile-menu-links .mobile-tools-panel a {
+        min-height: 48px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 11px;
+        background: transparent;
+        font-size: .91rem;
+    }
+
+    .mobile-menu-links .mobile-tools-panel a:hover {
+        background: var(--primary-soft);
+    }
+
     .mobile-theme-button {
         margin-top: 20px;
         font-family: inherit;
@@ -2724,11 +2782,6 @@ section h2:hover {
 
     body.mobile-menu-open {
         overflow: hidden;
-    }
-}
-@media (max-width: 650px) {
-    .mobile-menu-overlay {
-        display: block;
     }
 }
 </style>
@@ -2879,8 +2932,20 @@ section h2:hover {
             <li><a href="#hakkimda"><i class="fa-solid fa-user"></i> Hakkımda</a></li>
             <li><a href="#yetenekler"><i class="fa-solid fa-graduation-cap"></i> Çalışma Alanlarım</a></li>
             <li><a href="#on-gorusme"><i class="fa-solid fa-phone"></i> Ücretsiz Ön Görüşme</a></li>
-            <li><a href="sayac.html"><i class="fa-solid fa-stopwatch"></i> Süre Tut</a></li>
-            <li><a href="yks-hesaplama.html"><i class="fa-solid fa-calculator"></i> YKS Puan Hesaplama</a></li>
+            <li class="mobile-tools">
+                <details>
+                    <summary>
+                        <span><i class="fa-solid fa-grip"></i> Ücretsiz Araçlar</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="mobile-tools-panel">
+                        <a href="sayac.html"><i class="fa-solid fa-stopwatch"></i> Süre Tut</a>
+                        <a href="yks-hesaplama.html"><i class="fa-solid fa-calculator"></i> YKS Puan Hesaplama</a>
+                        <a href="#" data-open-exam-calendar><i class="fa-solid fa-calendar-days"></i> Sınav Takvimi</a>
+                        <a href="konu-soru-dağılımı.html"><i class="fa-solid fa-list-check"></i> Konu-Soru Dağılımı</a>
+                    </div>
+                </details>
+            </li>
         </ul>
 
         <button class="mobile-theme-button" type="button">
@@ -2927,6 +2992,15 @@ section h2:hover {
 
         document.addEventListener("keydown", function (event) {
             if (event.key === "Escape") closeMobileMenu();
+        });
+
+        document.querySelectorAll("[data-open-exam-calendar]").forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                closeMobileMenu();
+                const examModal = document.getElementById("sinavModal");
+                if (examModal) examModal.style.display = "flex";
+            });
         });
 
         if (mobileThemeButton) {
