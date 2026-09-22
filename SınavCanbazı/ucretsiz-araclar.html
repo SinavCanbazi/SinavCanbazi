@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ücretsiz Araçlar</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f8fafc;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 25px;
+    }
+
+    /* KARTLARIN DİZİLECEĞİ GRID (IZGARA) YAPISI */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    /* FOTOĞRAFTAKİNE BENZER KART TASARIMI */
+    .tool-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 220px;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      border-top: 4px solid #4f46e5; /* Kartın üstündeki renkli çizgi */
+    }
+
+    /* Kart Üzerine Gelince Efekt */
+    .tool-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    /* Sol Üst İkon Kutusu */
+    .icon-box {
+      width: 44px;
+      height: 44px;
+      background-color: #eef2ff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    /* Sağ Üst Etiket (TYT / YKS / YENİ vb.) */
+    .tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: #6366f1;
+      letter-spacing: 0.5px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 15px;
+    }
+
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .info-text {
+      font-size: 13px;
+      color: #f97316;
+      font-weight: 600;
+    }
+
+    /* Sağ Alt Yönlendirme Oku (↗) */
+    .arrow-icon {
+      font-size: 18px;
+      color: #f97316;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="page-title">🛠️ Ücretsiz Araçlar</h1>
+
+    <div class="tools-grid">
+
+      <!-- KART 1: Üniversite Taban Puanları (Tıklanınca yeni sayfaya gider) -->
+      <a href="universite-taban-puanlari.html" class="tool-card">
+        <div>
+          <div class="card-top">
+            <div class="icon-box">🎓</div>
+            <span class="tag">YKS</span>
+          </div>
+          <h3 class="card-title">Üniversite Taban Puanları</h3>
+        </div>
+        <div class="card-bottom">
+          <span class="info-text">3817 program</span>
+          <span class="arrow-icon">↗</span>
+        </div>
+      </a>
+
+      <!-- KART 2: Örnek Başka Bir Araç -->
+      <a href="tyt-matematik.html" class="tool-card" style="border-top-color: #06b6d4;">
+        <div>
+          <div class="card-top">
+            <div class="icon-box">➗</div>
+            <span class="tag">TYT</span>
+          </div>
+          <h3 class="card-title">TYT Matematik Konuları</h3>
+        </div>
+        <div class="card-bottom">
+          <span class="info-text">31 konu · 11 yıl</span>
+          <span class="arrow-icon">↗</span>
+        </div>
+      </a>
+
+      <!-- KART 3: Örnek Başka Bir Araç -->
+      <a href="puan-hesaplama.html" class="tool-card" style="border-top-color: #10b981;">
+        <div>
+          <div class="card-top">
+            <div class="icon-box">📊</div>
+            <span class="tag">HESAPLAMA</span>
+          </div>
+          <h3 class="card-title">YKS Puan Hesaplama</h3>
+        </div>
+        <div class="card-bottom">
+          <span class="info-text">Güncel katsayılar</span>
+          <span class="arrow-icon">↗</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,2309 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ders Notları - Sınav Canbazı</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* MODERN VE UYUMLU RENK DEĞİŞKENLERİ */
+        :root {
+            /* KOYU MOD (Varsayılan) */
+            --bg-color: #0d0b18;
+            --bg-gradient-1: rgba(139, 92, 246, 0.15);
+            --bg-gradient-2: rgba(217, 70, 239, 0.1);
+            --card-bg: rgba(22, 18, 38, 0.85);
+            --card-border: rgba(139, 92, 246, 0.25);
+            --card-border-hover: rgba(139, 92, 246, 0.5);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-purple: #a855f7;
+            --badge-bg: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --badge-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+            --item-bg: rgba(255, 255, 255, 0.04);
+            --item-hover-bg: rgba(139, 92, 246, 0.12);
+            --table-header-bg: #1e1b4b;
+            --sticky-bg: #130f26;
+            --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+            --input-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        /* GÜNDÜZ MODU */
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --bg-gradient-1: rgba(124, 58, 237, 0.08);
+            --bg-gradient-2: rgba(217, 70, 239, 0.05);
+            --card-bg: #ffffff;
+            --card-border: rgba(226, 232, 240, 0.9);
+            --card-border-hover: rgba(124, 58, 237, 0.3);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent-purple: #7c3aed;
+            --badge-bg: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --badge-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+            --item-bg: #f1f5f9;
+            --item-hover-bg: #e2e8f0;
+            --table-header-bg: #f1f5f9;
+            --sticky-bg: #ffffff;
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06);
+            --input-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color) !important;
+            background-image: 
+                radial-gradient(circle at 15% 15%, var(--bg-gradient-1) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, var(--bg-gradient-2) 0%, transparent 40%) !important;
+            background-attachment: fixed;
+            color: var(--text-main) !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 36px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        /* ÜST BAR */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            color: var(--text-main) !important;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            border-color: var(--card-border-hover);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 10px 20px;
+            border-radius: 99px;
+            cursor: pointer;
+            font-size: 13.5px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(12px);
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--card-border-hover);
+            transform: translateY(-2px);
+        }
+
+        /* ARAMA ÇUBUĞU TASARIMI */
+        .search-container {
+            position: relative;
+            margin-bottom: 32px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 20px 14px 48px;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 14.5px;
+            font-weight: 500;
+            outline: none;
+            backdrop-filter: blur(16px);
+            box-shadow: var(--shadow);
+            transition: all 0.2s ease;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.15);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        /* KART TASARIMI */
+        .card {
+            background: var(--card-bg) !important;
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid var(--card-border) !important;
+            box-shadow: var(--shadow);
+            margin-bottom: 32px;
+            backdrop-filter: blur(16px);
+            transition: all 0.3s ease;
+        }
+
+        .section-tag {
+            display: inline-block;
+            color: var(--accent-purple) !important;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            margin: 0;
+            color: var(--text-main) !important;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .card-desc {
+            color: var(--text-muted) !important;
+            font-size: 14px;
+            margin-top: 6px;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* KONU LİSTESİ GRID */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .topic-card {
+            background: var(--item-bg) !important;
+            border: 1px solid var(--card-border) !important;
+            border-radius: 14px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .topic-card:hover {
+            background: var(--item-hover-bg) !important;
+            border-color: var(--card-border-hover) !important;
+            transform: translateY(-2px);
+        }
+
+        .topic-number {
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: var(--accent-purple);
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+            margin-right: 14px;
+        }
+
+        .topic-name {
+            color: var(--text-main) !important;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* TABLO TASARIMI */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 24px;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            background: transparent;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 13.5px;
+            white-space: nowrap;
+        }
+
+        th {
+            background-color: var(--table-header-bg) !important;
+            color: var(--text-main) !important;
+            padding: 16px 12px;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        th:first-child {
+            text-align: left;
+            padding-left: 20px;
+            position: sticky;
+            left: 0;
+            z-index: 2;
+            background-color: var(--table-header-bg) !important;
+            border-right: 1px solid var(--card-border);
+        }
+
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--card-border);
+            color: var(--text-main) !important;
+            background: var(--card-bg) !important;
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td:first-child {
+            text-align: left;
+            font-weight: 600;
+            padding: 12px 20px;
+            font-size: 13.5px;
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background: var(--sticky-bg) !important;
+            border-right: 1px solid var(--card-border);
+        }
+
+        .table-topic-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .table-topic-num {
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            border-radius: 7px;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: var(--accent-purple);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* SORU BALONCUKLARI */
+        .count-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            line-height: 1;
+            border-radius: 99px;
+            font-weight: 700;
+            font-size: 12px;
+            background: var(--badge-bg);
+            color: #ffffff !important;
+            box-shadow: var(--badge-shadow);
+            margin: auto;
+        }
+
+        .empty-cell {
+            color: var(--text-muted) !important;
+            opacity: 0.3;
+            display: inline-block;
+            line-height: 26px;
+            font-weight: 600;
+        }
+
+        .table-container td.empty-cell {
+            display: table-cell;
+        }
+
+        /* MOBİLDE YILLARA GÖRE SORU DAĞILIMI KARTLARI */
+        .mobile-distribution {
+            display: none;
+        }
+
+        @media (max-width: 700px) {
+            .table-container {
+                display: none;
+            }
+
+            .mobile-distribution {
+                display: grid;
+                gap: 14px;
+                margin-top: 22px;
+            }
+
+            .distribution-topic {
+                padding: 18px;
+                border: 1px solid var(--card-border);
+                border-radius: 17px;
+                background: var(--item-bg);
+            }
+
+            .distribution-topic-name {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin: 0 0 15px;
+                color: var(--text-main);
+                font-size: 1rem;
+                font-weight: 800;
+                line-height: 1.3;
+            }
+
+            .distribution-topic-number {
+                width: 26px;
+                height: 26px;
+                flex: 0 0 26px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 8px;
+                background: rgba(139, 92, 246, .16);
+                color: var(--accent-purple);
+                font-size: .76rem;
+            }
+
+            .year-count-grid {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 10px;
+            }
+
+            .year-count {
+                min-height: 65px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                border: 1px solid var(--card-border);
+                border-radius: 13px;
+                background: var(--card-bg);
+            }
+
+            .year-count-year {
+                color: var(--text-muted);
+                font-size: .63rem;
+                font-weight: 800;
+                letter-spacing: .12em;
+            }
+
+            .year-count-value {
+                color: var(--text-muted);
+                font-size: 1rem;
+                font-weight: 800;
+            }
+
+            .year-count.has-question {
+                border-color: rgba(139, 92, 246, .40);
+                background: rgba(139, 92, 246, .17);
+            }
+
+            .year-count.has-question .year-count-value {
+                color: var(--accent-purple);
+                font-size: 1.2rem;
+            }
+        }
+
+        /* DERS KONTROL GİZLEME SINIFLARI */
+        .fizik-only, .kimya-only, .biyoloji-only, .matematik-only, .geometri-only, .turkce-only, .tarih-only, .cografya-only, .felsefe-only, .din-only, .ayt-matematik-only, .ayt-geometri-only, .ayt-fizik-only, .ayt-kimya-only, .ayt-biyoloji-only, .ayt-edebiyat-only, .ayt-tarih-only, .ayt-cografya-only, .ayt-felsefe-only, .ayt-din-only {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Üst Bar -->
+        <div class="top-bar">
+            <a href="javascript:history.back()" class="back-btn">← Konu Dağılımlarına Dön</a>
+            <button class="theme-toggle-btn" id="theme-toggle">
+                <span id="theme-icon">🌙</span> <span id="theme-text">Koyu Mod</span>
+            </button>
+        </div>
+
+        <!-- Arama Çubuğu -->
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="topic-search" class="search-input" placeholder="Konu başlığı veya soru arayın...">
+        </div>
+
+        
+        <!-- ================= TYT FİZİK ================= -->
+        <div class="card fizik-only">
+            <div class="section-tag">KONU LİSTESİ</div>
+            <h2 class="card-title">TYT Fizik Konuları</h2>
+            <p class="card-desc">Sorumlu olduğunuz güncel müfredat konu başlıkları:</p>
+
+            <div class="topics-grid">
+                <div class="topic-card"><span class="topic-number">1</span><span class="topic-name">Fizik Bilimine Giriş</span></div>
+                <div class="topic-card"><span class="topic-number">2</span><span class="topic-name">Madde Ve Özellikleri</span></div>
+                <div class="topic-card"><span class="topic-number">3</span><span class="topic-name">Sıvıların Kaldırma Kuvveti</span></div>
+                <div class="topic-card"><span class="topic-number">4</span><span class="topic-name">Basınç</span></div>
+                <div class="topic-card"><span class="topic-number">5</span><span class="topic-name">Isı, Sıcaklık ve Genleşme</span></div>
+                <div class="topic-card"><span class="topic-number">6</span><span class="topic-name">Hareket ve Kuvvet</span></div>
+                <div class="topic-card"><span class="topic-number">7</span><span class="topic-name">Dinamik</span></div>
+                <div class="topic-card"><span class="topic-number">8</span><span class="topic-name">İş, Güç ve Enerji</span></div>
+                <div class="topic-card"><span class="topic-number">9</span><span class="topic-name">Elektrostatik</span></div>
+                <div class="topic-card"><span class="topic-number">10</span><span class="topic-name">Elektrik Akımı ve Devreler</span></div>
+                <div class="topic-card"><span class="topic-number">11</span><span class="topic-name">Elektriksel Enerji ve Güç</span></div>
+                <div class="topic-card"><span class="topic-number">12</span><span class="topic-name">Optik</span></div>
+                <div class="topic-card"><span class="topic-number">13</span><span class="topic-name">Manyetizma</span></div>
+                <div class="topic-card"><span class="topic-number">14</span><span class="topic-name">Dalgalar</span></div>
+            </div>
+        </div>
+
+        <div class="card fizik-only">
+            <div class="section-tag">SORU DAĞILIMI</div>
+            <h2 class="card-title">Yıllara Göre Soru Dağılımları</h2>
+            <p class="card-desc">ÖSYM'nin 2015 - 2025 yılları arasında sorduğu tüm soru sayıları:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>KONU</th>
+                            <th>2025</th>
+                            <th>2024</th>
+                            <th>2023</th>
+                            <th>2022</th>
+                            <th>2021</th>
+                            <th>2020</th>
+                            <th>2019</th>
+                            <th>2018</th>
+                            <th>2017</th>
+                            <th>2016</th>
+                            <th>2015</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">1</span><span>Fizik Bilimine Giriş</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">2</span><span>Madde Ve Özellikleri</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">3</span><span>Sıvıların Kaldırma Kuvveti</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">4</span><span>Basınç</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">5</span><span>Isı, Sıcaklık ve Genleşme</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">6</span><span>Hareket ve Kuvvet</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">7</span><span>Dinamik</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">8</span><span>İş, Güç ve Enerji</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">9</span><span>Elektrostatik</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">10</span><span>Elektrik Akımı ve Devreler</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">11</span><span>Elektriksel Enerji ve Güç</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">12</span><span>Optik</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">13</span><span>Manyetizma</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">14</span><span>Dalgalar</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- ================= TYT KİMYA ================= -->
+        <div class="card kimya-only">
+            <div class="section-tag">KONU LİSTESİ</div>
+            <h2 class="card-title">TYT Kimya Konuları</h2>
+            <p class="card-desc">Sorumlu olduğunuz güncel müfredat konu başlıkları:</p>
+
+            <div class="topics-grid">
+                <div class="topic-card"><span class="topic-number">1</span><span class="topic-name">Kimya Bilimi</span></div>
+                <div class="topic-card"><span class="topic-number">2</span><span class="topic-name">Atom ve Periyodik Sistem</span></div>
+                <div class="topic-card"><span class="topic-number">3</span><span class="topic-name">Kimyasal Türler Arası Etkileşimler</span></div>
+                <div class="topic-card"><span class="topic-number">4</span><span class="topic-name">Maddenin Halleri</span></div>
+                <div class="topic-card"><span class="topic-number">5</span><span class="topic-name">Doğa ve Kimya</span></div>
+                <div class="topic-card"><span class="topic-number">6</span><span class="topic-name">Kimyanın Temel Kanunları ve Kimyasal Hesaplamalar</span></div>
+                <div class="topic-card"><span class="topic-number">7</span><span class="topic-name">Karışımlar</span></div>
+                <div class="topic-card"><span class="topic-number">8</span><span class="topic-name">Asit, Baz ve Tuz</span></div>
+                <div class="topic-card"><span class="topic-number">9</span><span class="topic-name">Kimya Her Yerde</span></div>
+            </div>
+        </div>
+
+        <div class="card kimya-only">
+            <div class="section-tag">SORU DAĞILIMI</div>
+            <h2 class="card-title">TYT Kimya Soru Dağılımı</h2>
+            <p class="card-desc">ÖSYM'nin 2015 - 2025 yılları arasında sorduğu tüm soru sayıları:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>KONU</th>
+                            <th>2025</th>
+                            <th>2024</th>
+                            <th>2023</th>
+                            <th>2022</th>
+                            <th>2021</th>
+                            <th>2020</th>
+                            <th>2019</th>
+                            <th>2018</th>
+                            <th>2017</th>
+                            <th>2016</th>
+                            <th>2015</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">1</span><span>Kimya Bilimi</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">3</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">2</span><span>Atomun Yapısı</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">3</span><span>Periyodik Tablo</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">4</span><span>Maddenin Halleri</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">5</span><span>Kimyasal Türler Arası Etkileşimler</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">5</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">6</span><span>Kimyasal Hesaplamalar</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">7</span><span>Kimyanın Temel Kanunları</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">8</span><span>Asit, Baz ve Tuz</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">9</span><span>Karışımlar</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">10</span><span>Kimya Her Yerde</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- ================= TYT TÜRKÇE ================= -->
+        <div class="card turkce-only">
+            <div class="section-tag">KONU LİSTESİ</div>
+            <h2 class="card-title">TYT Türkçe Konuları</h2>
+            <p class="card-desc">Sorumlu olduğunuz güncel müfredat konu başlıkları:</p>
+
+            <div class="topics-grid">
+                <div class="topic-card"><span class="topic-number">1</span><span class="topic-name">Sözcükte Anlam</span></div>
+                <div class="topic-card"><span class="topic-number">2</span><span class="topic-name">Söz Yorumu</span></div>
+                <div class="topic-card"><span class="topic-number">3</span><span class="topic-name">Deyim ve Atasözü</span></div>
+                <div class="topic-card"><span class="topic-number">4</span><span class="topic-name">Cümlede Anlam</span></div>
+                <div class="topic-card"><span class="topic-number">5</span><span class="topic-name">Paragraf</span></div>
+                <div class="topic-card"><span class="topic-number">6</span><span class="topic-name">Paragrafta Anlatım Teknikleri</span></div>
+                <div class="topic-card"><span class="topic-number">7</span><span class="topic-name">Paragrafta Düşünceyi Geliştirme Yolları</span></div>
+                <div class="topic-card"><span class="topic-number">8</span><span class="topic-name">Paragrafta Yapı</span></div>
+                <div class="topic-card"><span class="topic-number">9</span><span class="topic-name">Paragrafta Konu-Ana Düşünce</span></div>
+                <div class="topic-card"><span class="topic-number">10</span><span class="topic-name">Paragrafta Yardımcı Düşünce</span></div>
+                <div class="topic-card"><span class="topic-number">11</span><span class="topic-name">Ses Bilgisi</span></div>
+                <div class="topic-card"><span class="topic-number">12</span><span class="topic-name">Yazım Kuralları</span></div>
+                <div class="topic-card"><span class="topic-number">13</span><span class="topic-name">Noktalama İşaretleri</span></div>
+                <div class="topic-card"><span class="topic-number">14</span><span class="topic-name">Sözcükte Yapı/Ekler</span></div>
+                <div class="topic-card"><span class="topic-number">15</span><span class="topic-name">Sözcük Türleri</span></div>
+                <div class="topic-card"><span class="topic-number">16</span><span class="topic-name">İsimler</span></div>
+                <div class="topic-card"><span class="topic-number">17</span><span class="topic-name">Zamirler</span></div>
+                <div class="topic-card"><span class="topic-number">18</span><span class="topic-name">Sıfatlar</span></div>
+                <div class="topic-card"><span class="topic-number">19</span><span class="topic-name">Zarflar</span></div>
+                <div class="topic-card"><span class="topic-number">20</span><span class="topic-name">Edat - Bağlaç - Ünlem</span></div>
+                <div class="topic-card"><span class="topic-number">21</span><span class="topic-name">Fiiller</span></div>
+                <div class="topic-card"><span class="topic-number">22</span><span class="topic-name">Fiilde Anlam (Kip-Kişi-Yapı)</span></div>
+                <div class="topic-card"><span class="topic-number">23</span><span class="topic-name">Ek Fiil</span></div>
+                <div class="topic-card"><span class="topic-number">24</span><span class="topic-name">Fiilimsi</span></div>
+                <div class="topic-card"><span class="topic-number">25</span><span class="topic-name">Fiilde Çatı</span></div>
+                <div class="topic-card"><span class="topic-number">26</span><span class="topic-name">Sözcük Grupları</span></div>
+                <div class="topic-card"><span class="topic-number">27</span><span class="topic-name">Cümlenin Ögeleri</span></div>
+                <div class="topic-card"><span class="topic-number">28</span><span class="topic-name">Cümle Türleri</span></div>
+                <div class="topic-card"><span class="topic-number">29</span><span class="topic-name">Anlatım Bozukluğu</span></div>
+            </div>
+        </div>
+
+        <div class="card turkce-only">
+            <div class="section-tag">SORU DAĞILIMI</div>
+            <h2 class="card-title">TYT Türkçe Soru Dağılımı</h2>
+            <p class="card-desc">ÖSYM'nin 2015 - 2025 yılları arasında sorduğu tüm soru sayıları:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>KONU</th>
+                            <th>2025</th>
+                            <th>2024</th>
+                            <th>2023</th>
+                            <th>2022</th>
+                            <th>2021</th>
+                            <th>2020</th>
+                            <th>2019</th>
+                            <th>2018</th>
+                            <th>2017</th>
+                            <th>2016</th>
+                            <th>2015</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">1</span><span>Ses Bilgisi</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">2</span><span>Dil Bilgisi</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">3</span><span>Noktalama İşaretleri</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">4</span><span>Yazım Kuralları</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">5</span><span>Anlatım Bozukluğu</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">6</span><span>Paragraf</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">26</span></td>
+                            <td><span class="count-badge">26</span></td>
+                            <td><span class="count-badge">26</span></td>
+                            <td><span class="count-badge">26</span></td>
+                            <td><span class="count-badge">25</span></td>
+                            <td><span class="count-badge">26</span></td>
+                            <td><span class="count-badge">22</span></td>
+                            <td><span class="count-badge">22</span></td>
+                            <td><span class="count-badge">22</span></td>
+                            <td><span class="count-badge">22</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">7</span><span>Cümlede Anlam</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">5</span></td>
+                            <td><span class="count-badge">4</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">6</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">7</span></td>
+                            <td><span class="count-badge">7</span></td>
+                            <td><span class="count-badge">7</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">8</span><span>Sözcükte Anlam</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">4</span></td>
+                            <td><span class="count-badge">5</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">4</span></td>
+                            <td><span class="count-badge">5</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">3</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ================= TYT TARİH ================= -->
+        <div class="card tarih-only">
+            <div class="section-tag">KONU LİSTESİ</div>
+            <h2 class="card-title">TYT Tarih Konuları</h2>
+            <p class="card-desc">İşte 2027 yılında TYT Tarih testinde sorumlu olduğunuz konu başlıkları:</p>
+            <div class="topics-grid">
+                <div class="topic-card"><span class="topic-number">1</span><span class="topic-name">Tarih ve Zaman</span></div>
+                <div class="topic-card"><span class="topic-number">2</span><span class="topic-name">İnsanlığın İlk Dönemleri</span></div>
+                <div class="topic-card"><span class="topic-number">3</span><span class="topic-name">Ortaçağ'da Dünya</span></div>
+                <div class="topic-card"><span class="topic-number">4</span><span class="topic-name">İlk ve Orta Çağlarda Türk Dünyası</span></div>
+                <div class="topic-card"><span class="topic-number">5</span><span class="topic-name">İslam Medeniyetinin Doğuşu</span></div>
+                <div class="topic-card"><span class="topic-number">6</span><span class="topic-name">İlk Türk İslam Devletleri</span></div>
+                <div class="topic-card"><span class="topic-number">7</span><span class="topic-name">Yerleşme ve Devletleşme Sürecinde Selçuklu Türkiyesi</span></div>
+                <div class="topic-card"><span class="topic-number">8</span><span class="topic-name">Beylikten Devlete Osmanlı Siyaseti (1300-1453)</span></div>
+                <div class="topic-card"><span class="topic-number">9</span><span class="topic-name">Dünya Gücü Osmanlı Devleti (1453-1600)</span></div>
+                <div class="topic-card"><span class="topic-number">10</span><span class="topic-name">Yeni Çağ Avrupa Tarihi</span></div>
+                <div class="topic-card"><span class="topic-number">11</span><span class="topic-name">Yakın Çağ Avrupa Tarihi</span></div>
+                <div class="topic-card"><span class="topic-number">12</span><span class="topic-name">Osmanlı Devletinde Arayış Yılları</span></div>
+                <div class="topic-card"><span class="topic-number">13</span><span class="topic-name">18. Yüzyılda Değişim ve Diplomasi</span></div>
+                <div class="topic-card"><span class="topic-number">14</span><span class="topic-name">En Uzun Yüzyıl</span></div>
+                <div class="topic-card"><span class="topic-number">15</span><span class="topic-name">Osmanlı Kültür ve Medeniyeti</span></div>
+                <div class="topic-card"><span class="topic-number">16</span><span class="topic-name">20. Yüzyılda Osmanlı Devleti</span></div>
+                <div class="topic-card"><span class="topic-number">17</span><span class="topic-name">I. Dünya Savaşı</span></div>
+                <div class="topic-card"><span class="topic-number">18</span><span class="topic-name">Mondros Ateşkesi, İşgaller ve Cemiyetler</span></div>
+                <div class="topic-card"><span class="topic-number">19</span><span class="topic-name">Kurtuluş Savaşına Hazırlık Dönemi</span></div>
+                <div class="topic-card"><span class="topic-number">20</span><span class="topic-name">I. TBMM Dönemi</span></div>
+                <div class="topic-card"><span class="topic-number">21</span><span class="topic-name">Kurtuluş Savaşı ve Antlaşmalar</span></div>
+                <div class="topic-card"><span class="topic-number">22</span><span class="topic-name">II. TBMM Dönemi ve Çok Partili Hayata Geçiş</span></div>
+                <div class="topic-card"><span class="topic-number">23</span><span class="topic-name">Türk İnkılabı</span></div>
+                <div class="topic-card"><span class="topic-number">24</span><span class="topic-name">Atatürk İlkeleri</span></div>
+                <div class="topic-card"><span class="topic-number">25</span><span class="topic-name">Atatürk Dönemi Türk Dış Politikası</span></div>
+            </div>
+        </div>
+
+        <div class="card tarih-only">
+            <div class="section-tag">SORU DAĞILIMI</div>
+            <h2 class="card-title">TYT Tarih Soru Dağılımı</h2>
+            <p class="card-desc">ÖSYM'nin 2015 - 2025 yılları arasında sorduğu soru sayıları:</p>
+            <div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody>
+                <tr><td><div class="table-topic-cell"><span class="table-topic-num">1</span><span>Tarih ve Zaman</span></div></td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td></tr>
+                <tr><td><div class="table-topic-cell"><span class="table-topic-num">2</span><span>İlk ve Orta Çağlarda Türk Dünyası</span></div></td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td></tr>
+                <tr><td><div class="table-topic-cell"><span class="table-topic-num">3</span><span>İslam Medeniyetinin Doğuşu</span></div></td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td></tr>
+                <tr><td><div class="table-topic-cell"><span class="table-topic-num">4</span><span>Türklerin İslamiyeti Kabulü ve İlk Türk İslam Devletleri</span></div></td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td></tr>
+                <tr><td><div class="table-topic-cell"><span class="table-topic-num">5</span><span>Beylikten Devlete Osmanlı</span></div></td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td class="empty-cell">-</td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">2</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td></tr>
+                <tr><td><div class="table-topic-cell"><span class="table-topic-num">6</span><span>Dünya Gücü Osmanlı</span></div></td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td></tr>
+                <tr><td><div class="table-topic-cell"><span class="table-topic-num">7</span><span>Değişim Çağında Avrupa ve Osmanlı</span></div></td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td class="empty-cell">-</td></tr>
+                <tr><td><div class="table-topic-cell"><span class="table-topic-num">8</span><span>Uluslararası İlişkilerde Denge Stratejisi</span></div></td><td class="empty-cell">-</td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">2</span></td></tr>
+                <tr><td><div class="table-topic-cell"><span class="table-topic-num">9</span><span>XX. Yüzyıl Başlarında Osmanlı Devleti ve Dünya</span></div></td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td><span class="count-badge">2</span></td><td><span class="count-badge">2</span></td><td><span class="count-badge">2</span></td></tr>
+                <tr><td><div class="table-topic-cell"><span class="table-topic-num">10</span><span>Milli Mücadele</span></div></td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td><span class="count-badge">2</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td><span class="count-badge">2</span></td><td class="empty-cell">-</td></tr>
+                <tr><td><div class="table-topic-cell"><span class="table-topic-num">11</span><span>Atatürkçülük ve Türk İnkılabı</span></div></td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td><span class="count-badge">1</span></td><td class="empty-cell">-</td><td><span class="count-badge">1</span></td><td class="empty-cell">-</td><td><span class="count-badge">4</span></td><td><span class="count-badge">3</span></td><td><span class="count-badge">5</span></td></tr>
+            </tbody></table></div>
+        </div>
+
+        <!-- ================= TYT COĞRAFYA ================= -->
+        <div class="card cografya-only"><div class="section-tag">KONU LİSTESİ</div><h2 class="card-title">TYT Coğrafya Konuları</h2><p class="card-desc">İşte 2027 yılında TYT Coğrafya testinde sorumlu olduğunuz konu başlıkları:</p><div class="topics-grid">
+        <div class="topic-card"><span class="topic-number">1</span><span class="topic-name">Doğa ve İnsan</span></div><div class="topic-card"><span class="topic-number">2</span><span class="topic-name">Dünya'nın Şekli ve Hareketleri</span></div><div class="topic-card"><span class="topic-number">3</span><span class="topic-name">Coğrafi Konum</span></div><div class="topic-card"><span class="topic-number">4</span><span class="topic-name">Harita Bilgisi</span></div><div class="topic-card"><span class="topic-number">5</span><span class="topic-name">Atmosfer ve Sıcaklık</span></div><div class="topic-card"><span class="topic-number">6</span><span class="topic-name">İklimler</span></div><div class="topic-card"><span class="topic-number">7</span><span class="topic-name">Basınç ve Rüzgarlar</span></div><div class="topic-card"><span class="topic-number">8</span><span class="topic-name">Nem, Yağış ve Buharlaşma</span></div><div class="topic-card"><span class="topic-number">9</span><span class="topic-name">İç Kuvvetler / Dış Kuvvetler</span></div><div class="topic-card"><span class="topic-number">10</span><span class="topic-name">Su – Toprak ve Bitkiler</span></div><div class="topic-card"><span class="topic-number">11</span><span class="topic-name">Nüfus</span></div><div class="topic-card"><span class="topic-number">12</span><span class="topic-name">Göç</span></div><div class="topic-card"><span class="topic-number">13</span><span class="topic-name">Yerleşme</span></div><div class="topic-card"><span class="topic-number">14</span><span class="topic-name">Türkiye'nin Yer Şekilleri</span></div><div class="topic-card"><span class="topic-number">15</span><span class="topic-name">Ekonomik Faaliyetler</span></div><div class="topic-card"><span class="topic-number">16</span><span class="topic-name">Bölgeler</span></div><div class="topic-card"><span class="topic-number">17</span><span class="topic-name">Uluslararası Ulaşım Hatları</span></div><div class="topic-card"><span class="topic-number">18</span><span class="topic-name">Çevre ve Toplum</span></div><div class="topic-card"><span class="topic-number">19</span><span class="topic-name">Doğal Afetler</span></div></div></div>
+        <div class="card cografya-only"><div class="section-tag">SORU DAĞILIMI</div><h2 class="card-title">TYT Coğrafya Soru Dağılımı</h2><p class="card-desc">ÖSYM'nin 2015 - 2025 yılları arasında sorduğu soru sayıları:</p><div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody id="cografya-table"></tbody></table></div></div>
+
+        <!-- ================= TYT FELSEFE ================= -->
+        <div class="card felsefe-only"><div class="section-tag">KONU LİSTESİ</div><h2 class="card-title">TYT Felsefe Konuları</h2><p class="card-desc">İşte 2027 yılında TYT Felsefe testinde sorumlu olduğunuz konu başlıkları:</p><div class="topics-grid">
+        <div class="topic-card"><span class="topic-number">1</span><span class="topic-name">Felsefenin Konusu</span></div><div class="topic-card"><span class="topic-number">2</span><span class="topic-name">Bilgi Felsefesi</span></div><div class="topic-card"><span class="topic-number">3</span><span class="topic-name">Varlık Felsefesi</span></div><div class="topic-card"><span class="topic-number">4</span><span class="topic-name">Din, Kültür ve Medeniyet</span></div><div class="topic-card"><span class="topic-number">5</span><span class="topic-name">Ahlak Felsefesi</span></div><div class="topic-card"><span class="topic-number">6</span><span class="topic-name">Sanat Felsefesi</span></div><div class="topic-card"><span class="topic-number">7</span><span class="topic-name">Din Felsefesi</span></div><div class="topic-card"><span class="topic-number">8</span><span class="topic-name">Siyaset Felsefesi</span></div><div class="topic-card"><span class="topic-number">9</span><span class="topic-name">Bilim Felsefesi</span></div></div></div>
+        <div class="card felsefe-only"><div class="section-tag">SORU DAĞILIMI</div><h2 class="card-title">TYT Felsefe Soru Dağılımı</h2><p class="card-desc">ÖSYM'nin 2015 - 2025 yılları arasında sorduğu soru sayıları:</p><div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody id="felsefe-table"></tbody></table></div></div>
+
+        <!-- ================= TYT DİN KÜLTÜRÜ VE AHLAK BİLGİSİ ================= -->
+        <div class="card din-only"><div class="section-tag">KONU LİSTESİ</div><h2 class="card-title">TYT Din Kültürü ve Ahlak Bilgisi Konuları</h2><p class="card-desc">İşte 2027 yılında TYT Din Kültürü ve Ahlak Bilgisi testinde sorumlu olduğunuz konu başlıkları:</p><div class="topics-grid">
+        <div class="topic-card"><span class="topic-number">1</span><span class="topic-name">İnanç</span></div><div class="topic-card"><span class="topic-number">2</span><span class="topic-name">İbadet</span></div><div class="topic-card"><span class="topic-number">3</span><span class="topic-name">Ahlak ve Değerler</span></div><div class="topic-card"><span class="topic-number">4</span><span class="topic-name">Din, Kültür ve Medeniyet</span></div><div class="topic-card"><span class="topic-number">5</span><span class="topic-name">Hz. Muhammed (S.A.V.)</span></div><div class="topic-card"><span class="topic-number">6</span><span class="topic-name">Vahiy ve Akıl</span></div><div class="topic-card"><span class="topic-number">7</span><span class="topic-name">Dünya ve Ahiret</span></div><div class="topic-card"><span class="topic-number">8</span><span class="topic-name">Kur’an’a göre Hz. Muhammed (S.A.V.)</span></div><div class="topic-card"><span class="topic-number">9</span><span class="topic-name">İnançla İlgili Meseleler</span></div><div class="topic-card"><span class="topic-number">10</span><span class="topic-name">Yahudilik ve Hristiyanlık</span></div><div class="topic-card"><span class="topic-number">11</span><span class="topic-name">İslam ve Bilim</span></div><div class="topic-card"><span class="topic-number">12</span><span class="topic-name">Anadolu'da İslam</span></div><div class="topic-card"><span class="topic-number">13</span><span class="topic-name">İslam Düşüncesinde Tasavvufi Yorumlar</span></div><div class="topic-card"><span class="topic-number">14</span><span class="topic-name">Güncel Dini Meseleler</span></div><div class="topic-card"><span class="topic-number">15</span><span class="topic-name">Hint ve Çin Dinleri</span></div></div></div>
+        <div class="card din-only"><div class="section-tag">SORU DAĞILIMI · 2015-2025</div><h2 class="card-title">TYT Din Kültürü ve Ahlak Bilgisi Soru Dağılımı</h2><p class="card-desc">Son yılların soru dağılımını inceleyin; hangi konudan kaç soru geldiğini görün.</p><div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody id="din-table"></tbody></table></div></div>
+
+        <!-- ================= AYT MATEMATİK ================= -->
+        <div class="card ayt-matematik-only"><div class="section-tag">KONU LİSTESİ</div><h2 class="card-title">AYT Matematik Konuları</h2><p class="card-desc">İşte 2027 yılında AYT Matematik testinde sorumlu olduğunuz konu başlıkları:</p><div class="topics-grid" id="ayt-matematik-konular"></div></div>
+        <div class="card ayt-matematik-only"><div class="section-tag">SORU DAĞILIMI · 2015-2025</div><h2 class="card-title">AYT Matematik Soru Dağılımı</h2><p class="card-desc">Son yılların AYT Matematik soru dağılımını inceleyin; hangi konudan kaç soru geldiğini görün.</p><div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody id="ayt-matematik-table"></tbody></table></div></div>
+
+        <!-- ================= AYT GEOMETRİ ================= -->
+        <div class="card ayt-geometri-only"><div class="section-tag">KONU LİSTESİ</div><h2 class="card-title">AYT Geometri Konuları</h2><p class="card-desc">İşte 2027 yılında AYT Geometri testinde sorumlu olduğunuz konu başlıkları:</p><div class="topics-grid" id="ayt-geometri-konular"></div></div>
+        <div class="card ayt-geometri-only"><div class="section-tag">SORU DAĞILIMI · 2015-2025</div><h2 class="card-title">AYT Geometri Soru Dağılımı</h2><p class="card-desc">Son yılların AYT Geometri soru dağılımını inceleyin.</p><div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody id="ayt-geometri-table"></tbody></table></div></div>
+
+        <!-- ================= AYT FİZİK ================= -->
+        <div class="card ayt-fizik-only"><div class="section-tag">KONU LİSTESİ</div><h2 class="card-title">AYT Fizik Konuları</h2><p class="card-desc">İşte 2027 yılında AYT Fizik testinde sorumlu olduğunuz konu başlıkları:</p><div class="topics-grid" id="ayt-fizik-konular"></div></div>
+        <div class="card ayt-fizik-only"><div class="section-tag">SORU DAĞILIMI · 2015-2025</div><h2 class="card-title">AYT Fizik Soru Dağılımı</h2><p class="card-desc">Son yılların AYT Fizik soru dağılımını inceleyin; hangi konudan kaç soru geldiğini görün.</p><div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody id="ayt-fizik-table"></tbody></table></div></div>
+
+        <!-- ================= AYT KİMYA ================= -->
+        <div class="card ayt-kimya-only"><div class="section-tag">KONU LİSTESİ</div><h2 class="card-title">AYT Kimya Konuları</h2><p class="card-desc">İşte 2027 yılında AYT Kimya testinde sorumlu olduğunuz konu başlıkları:</p><div class="topics-grid" id="ayt-kimya-konular"></div></div>
+        <div class="card ayt-kimya-only"><div class="section-tag">SORU DAĞILIMI · 2015-2025</div><h2 class="card-title">AYT Kimya Soru Dağılımı</h2><p class="card-desc">Son yılların AYT Kimya soru dağılımını inceleyin; hangi konudan kaç soru geldiğini görün.</p><div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody id="ayt-kimya-table"></tbody></table></div></div>
+
+        <!-- ================= AYT BİYOLOJİ ================= -->
+        <div class="card ayt-biyoloji-only"><div class="section-tag">KONU LİSTESİ</div><h2 class="card-title">AYT Biyoloji Konuları</h2><p class="card-desc">İşte 2027 yılında AYT Biyoloji testinde sorumlu olduğunuz konu başlıkları:</p><div class="topics-grid" id="ayt-biyoloji-konular"></div></div>
+        <div class="card ayt-biyoloji-only"><div class="section-tag">SORU DAĞILIMI · 2015-2025</div><h2 class="card-title">AYT Biyoloji Soru Dağılımı</h2><p class="card-desc">Son yılların AYT Biyoloji soru dağılımını inceleyin; hangi konudan kaç soru geldiğini görün.</p><div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody id="ayt-biyoloji-table"></tbody></table></div></div>
+
+        <!-- ================= AYT EDEBİYAT ================= -->
+        <div class="card ayt-edebiyat-only"><div class="section-tag">KONU LİSTESİ</div><h2 class="card-title">AYT Edebiyat Konuları</h2><p class="card-desc">İşte 2027 yılında AYT Edebiyat testinde sorumlu olduğunuz konu başlıkları:</p><div class="topics-grid" id="ayt-edebiyat-konular"></div></div>
+        <div class="card ayt-edebiyat-only"><div class="section-tag">SORU DAĞILIMI · 2015-2025</div><h2 class="card-title">AYT Edebiyat Soru Dağılımı</h2><p class="card-desc">Son yılların AYT Edebiyat soru dağılımını inceleyin.</p><div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody id="ayt-edebiyat-table"></tbody></table></div></div>
+
+        <!-- ================= AYT TARİH ================= -->
+        <div class="card ayt-tarih-only"><div class="section-tag">KONU LİSTESİ</div><h2 class="card-title">AYT Tarih Konuları</h2><p class="card-desc">İşte 2027 yılında AYT Tarih testinde sorumlu olduğunuz konu başlıkları:</p><div class="topics-grid" id="ayt-tarih-konular"></div></div>
+        <div class="card ayt-tarih-only"><div class="section-tag">SORU DAĞILIMI · 2015-2025</div><h2 class="card-title">AYT Tarih Soru Dağılımı</h2><p class="card-desc">Son yılların AYT Tarih soru dağılımını inceleyin.</p><div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody id="ayt-tarih-table"></tbody></table></div></div>
+
+        <!-- ================= AYT COĞRAFYA ================= -->
+        <div class="card ayt-cografya-only"><div class="section-tag">KONU LİSTESİ</div><h2 class="card-title">AYT Coğrafya Konuları</h2><p class="card-desc">İşte 2027 yılında AYT Coğrafya testinde sorumlu olduğunuz konu başlıkları:</p><div class="topics-grid" id="ayt-cografya-konular"></div></div>
+        <div class="card ayt-cografya-only"><div class="section-tag">SORU DAĞILIMI · 2015-2025</div><h2 class="card-title">AYT Coğrafya Soru Dağılımı</h2><p class="card-desc">Son yılların AYT Coğrafya soru dağılımını inceleyin.</p><div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody id="ayt-cografya-table"></tbody></table></div></div>
+
+        <!-- ================= AYT FELSEFE ================= -->
+        <div class="card ayt-felsefe-only"><div class="section-tag">KONU LİSTESİ</div><h2 class="card-title">AYT Felsefe Konuları</h2><p class="card-desc">İşte 2027 yılında AYT Felsefe testinde sorumlu olduğunuz konu başlıkları:</p><div class="topics-grid" id="ayt-felsefe-konular"></div></div>
+        <div class="card ayt-felsefe-only"><div class="section-tag">SORU DAĞILIMI · 2015-2025</div><h2 class="card-title">AYT Felsefe Soru Dağılımı</h2><p class="card-desc">Son yılların AYT Felsefe soru dağılımını inceleyin.</p><div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody id="ayt-felsefe-table"></tbody></table></div></div>
+
+        <!-- ================= AYT DİN KÜLTÜRÜ VE AHLAK BİLGİSİ ================= -->
+        <div class="card ayt-din-only"><div class="section-tag">KONU LİSTESİ</div><h2 class="card-title">AYT Din Kültürü ve Ahlak Bilgisi Konuları</h2><p class="card-desc">İşte 2027 yılında AYT Din Kültürü ve Ahlak Bilgisi testinde sorumlu olduğunuz konu başlıkları:</p><div class="topics-grid" id="ayt-din-konular"></div></div>
+        <div class="card ayt-din-only"><div class="section-tag">SORU DAĞILIMI · 2015-2025</div><h2 class="card-title">AYT Din Kültürü ve Ahlak Bilgisi Soru Dağılımı</h2><p class="card-desc">Son yılların AYT Din Kültürü ve Ahlak Bilgisi soru dağılımını inceleyin.</p><div class="table-container"><table><thead><tr><th>KONU</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th><th>2015</th></tr></thead><tbody id="ayt-din-table"></tbody></table></div></div>
+
+        <!-- ================= TYT BİYOLOJİ ================= -->
+        <div class="card biyoloji-only">
+            <div class="section-tag">KONU LİSTESİ</div>
+            <h2 class="card-title">TYT Biyoloji Konuları</h2>
+            <p class="card-desc">Sorumlu olduğunuz güncel müfredat konu başlıkları:</p>
+
+            <div class="topics-grid">
+                <div class="topic-card"><span class="topic-number">1</span><span class="topic-name">Canlıların Ortak Özellikleri</span></div>
+                <div class="topic-card"><span class="topic-number">2</span><span class="topic-name">Canlıların Temel Bileşenleri</span></div>
+                <div class="topic-card"><span class="topic-number">3</span><span class="topic-name">Hücre ve Organeller – Madde Geçişleri</span></div>
+                <div class="topic-card"><span class="topic-number">4</span><span class="topic-name">Canlıların Sınıflandırılması</span></div>
+                <div class="topic-card"><span class="topic-number">5</span><span class="topic-name">Hücrede Bölünme – Üreme</span></div>
+                <div class="topic-card"><span class="topic-number">6</span><span class="topic-name">Kalıtım</span></div>
+                <div class="topic-card"><span class="topic-number">7</span><span class="topic-name">Bitki Biyolojisi</span></div>
+                <div class="topic-card"><span class="topic-number">8</span><span class="topic-name">Ekosistem</span></div>
+            </div>
+        </div>
+
+        <div class="card biyoloji-only">
+            <div class="section-tag">SORU DAĞILIMI</div>
+            <h2 class="card-title">TYT Biyoloji Soru Dağılımı</h2>
+            <p class="card-desc">ÖSYM'nin 2015 - 2025 yılları arasında sorduğu tüm soru sayıları:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>KONU</th>
+                            <th>2025</th>
+                            <th>2024</th>
+                            <th>2023</th>
+                            <th>2022</th>
+                            <th>2021</th>
+                            <th>2020</th>
+                            <th>2019</th>
+                            <th>2018</th>
+                            <th>2017</th>
+                            <th>2016</th>
+                            <th>2015</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">1</span><span>Canlıların Ortak Özellikleri</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">2</span><span>Canlıların Temel Bileşenleri</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">3</span><span>Hücre ve Organelleri</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">4</span><span>Madde Geçişleri</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">5</span><span>Canlıların Sınıflandırılması</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">6</span><span>Hücre Bölünmeleri ve Üreme</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">7</span><span>Kalıtım</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">8</span><span>Ekosistem Ekoloji</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">9</span><span>Bitkiler Biyolojisi</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ================= TYT MATEMATİK ================= -->
+        <div class="card matematik-only">
+            <div class="section-tag">KONU LİSTESİ</div>
+            <h2 class="card-title">TYT Matematik Konuları</h2>
+            <p class="card-desc">Sorumlu olduğunuz güncel müfredat konu başlıkları:</p>
+
+            <div class="topics-grid">
+                <div class="topic-card"><span class="topic-number">1</span><span class="topic-name">Temel Kavramlar</span></div>
+                <div class="topic-card"><span class="topic-number">2</span><span class="topic-name">Sayı Basamakları</span></div>
+                <div class="topic-card"><span class="topic-number">3</span><span class="topic-name">Bölme ve Bölünebilme</span></div>
+                <div class="topic-card"><span class="topic-number">4</span><span class="topic-name">OBEB – OKEK</span></div>
+                <div class="topic-card"><span class="topic-number">5</span><span class="topic-name">Rasyonel Sayılar</span></div>
+                <div class="topic-card"><span class="topic-number">6</span><span class="topic-name">Basit Eşitsizlikler</span></div>
+                <div class="topic-card"><span class="topic-number">7</span><span class="topic-name">Mutlak Değer</span></div>
+                <div class="topic-card"><span class="topic-number">8</span><span class="topic-name">Üslü Sayılar</span></div>
+                <div class="topic-card"><span class="topic-number">9</span><span class="topic-name">Köklü Sayılar</span></div>
+                <div class="topic-card"><span class="topic-number">10</span><span class="topic-name">Çarpanlara Ayırma</span></div>
+                <div class="topic-card"><span class="topic-number">11</span><span class="topic-name">Oran Orantı</span></div>
+                <div class="topic-card"><span class="topic-number">12</span><span class="topic-name">Denklem Çözme</span></div>
+                <div class="topic-card"><span class="topic-number">13</span><span class="topic-name">Problemler</span></div>
+                <div class="topic-card"><span class="topic-number">14</span><span class="topic-name">Sayı Problemleri</span></div>
+                <div class="topic-card"><span class="topic-number">15</span><span class="topic-name">Kesir Problemleri</span></div>
+                <div class="topic-card"><span class="topic-number">16</span><span class="topic-name">Yaş Problemleri</span></div>
+                <div class="topic-card"><span class="topic-number">17</span><span class="topic-name">Hareket Hız Problemleri</span></div>
+                <div class="topic-card"><span class="topic-number">18</span><span class="topic-name">İşçi Emek Problemleri</span></div>
+                <div class="topic-card"><span class="topic-number">19</span><span class="topic-name">Yüzde Problemleri</span></div>
+                <div class="topic-card"><span class="topic-number">20</span><span class="topic-name">Kar Zarar Problemleri</span></div>
+                <div class="topic-card"><span class="topic-number">21</span><span class="topic-name">Karışım Problemleri</span></div>
+                <div class="topic-card"><span class="topic-number">22</span><span class="topic-name">Grafik Problemleri</span></div>
+                <div class="topic-card"><span class="topic-number">23</span><span class="topic-name">Rutin Olmayan Problemler</span></div>
+                <div class="topic-card"><span class="topic-number">24</span><span class="topic-name">Kümeler – Kartezyen Çarpım</span></div>
+                <div class="topic-card"><span class="topic-number">25</span><span class="topic-name">Mantık</span></div>
+                <div class="topic-card"><span class="topic-number">26</span><span class="topic-name">Fonksiyonlar</span></div>
+                <div class="topic-card"><span class="topic-number">27</span><span class="topic-name">Polinomlar</span></div>
+                <div class="topic-card"><span class="topic-number">28</span><span class="topic-name">2.Dereceden Denklemler</span></div>
+                <div class="topic-card"><span class="topic-number">29</span><span class="topic-name">Permütasyon ve Kombinasyon</span></div>
+                <div class="topic-card"><span class="topic-number">30</span><span class="topic-name">Olasılık</span></div>
+                <div class="topic-card"><span class="topic-number">31</span><span class="topic-name">Veri – İstatistik</span></div>
+            </div>
+        </div>
+
+        <div class="card matematik-only">
+            <div class="section-tag">SORU DAĞILIMI</div>
+            <h2 class="card-title">TYT Matematik Soru Dağılımı</h2>
+            <p class="card-desc">ÖSYM'nin 2015 - 2025 yılları arasında sorduğu tüm soru sayıları:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>KONU</th>
+                            <th>2025</th>
+                            <th>2024</th>
+                            <th>2023</th>
+                            <th>2022</th>
+                            <th>2021</th>
+                            <th>2020</th>
+                            <th>2019</th>
+                            <th>2018</th>
+                            <th>2017</th>
+                            <th>2016</th>
+                            <th>2015</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">1</span><span>Temel Kavramlar</span></div></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">4</span></td>
+                            <td><span class="count-badge">4</span></td>
+                            <td><span class="count-badge">4</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">2</span><span>Sayı Basamakları</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">3</span><span>Bölünebilme Kuralları</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">4</span><span>OBEB-OKEK</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">5</span><span>Rasyonel Sayılar</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">6</span><span>Basit Eşitsizlikler</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">7</span><span>Mutlak Değer</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">8</span><span>Üslü Sayılar</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">9</span><span>Köklü Sayılar</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">10</span><span>Çarpanlara Ayırma</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">11</span><span>Oran – Orantı</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">12</span><span>Denklem Çözme</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">13</span><span>Problemler</span></div></td>
+                            <td><span class="count-badge">12</span></td>
+                            <td><span class="count-badge">11</span></td>
+                            <td><span class="count-badge">10</span></td>
+                            <td><span class="count-badge">13</span></td>
+                            <td><span class="count-badge">11</span></td>
+                            <td><span class="count-badge">13</span></td>
+                            <td><span class="count-badge">12</span></td>
+                            <td><span class="count-badge">11</span></td>
+                            <td><span class="count-badge">11</span></td>
+                            <td><span class="count-badge">13</span></td>
+                            <td><span class="count-badge">10</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">14</span><span>Kümeler – Kartezyen Çarpım</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">15</span><span>Mantık</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">16</span><span>Fonksiyonlar</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">17</span><span>Polinomlar</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">18</span><span>Permütasyon – Kombinasyon</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">19</span><span>Olasılık</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">20</span><span>Veri – İstatistik</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ================= TYT GEOMETRİ ================= -->
+        <div class="card geometri-only">
+            <div class="section-tag">KONU LİSTESİ</div>
+            <h2 class="card-title">TYT Geometri Konuları</h2>
+            <p class="card-desc">Sorumlu olduğunuz güncel müfredat konu başlıkları:</p>
+
+            <div class="topics-grid">
+                <div class="topic-card"><span class="topic-number">1</span><span class="topic-name">Temel Kavramlar</span></div>
+                <div class="topic-card"><span class="topic-number">2</span><span class="topic-name">Doğruda Açılar</span></div>
+                <div class="topic-card"><span class="topic-number">3</span><span class="topic-name">Üçgende Açılar</span></div>
+                <div class="topic-card"><span class="topic-number">4</span><span class="topic-name">Özel Üçgenler</span></div>
+                <div class="topic-card"><span class="topic-number">5</span><span class="topic-name">Dik Üçgen</span></div>
+                <div class="topic-card"><span class="topic-number">6</span><span class="topic-name">İkizkenar Üçgen</span></div>
+                <div class="topic-card"><span class="topic-number">7</span><span class="topic-name">Eşkenar Üçgen</span></div>
+                <div class="topic-card"><span class="topic-number">8</span><span class="topic-name">Açıortay</span></div>
+                <div class="topic-card"><span class="topic-number">9</span><span class="topic-name">Kenarortay</span></div>
+                <div class="topic-card"><span class="topic-number">10</span><span class="topic-name">Eşlik ve Benzerlik</span></div>
+                <div class="topic-card"><span class="topic-number">11</span><span class="topic-name">Üçgende Alan</span></div>
+                <div class="topic-card"><span class="topic-number">12</span><span class="topic-name">Üçgende Benzerlik</span></div>
+                <div class="topic-card"><span class="topic-number">13</span><span class="topic-name">Açı Kenar Bağıntıları</span></div>
+                <div class="topic-card"><span class="topic-number">14</span><span class="topic-name">Çokgenler</span></div>
+                <div class="topic-card"><span class="topic-number">15</span><span class="topic-name">Özel Dörtgenler</span></div>
+                <div class="topic-card"><span class="topic-number">16</span><span class="topic-name">Dörtgenler</span></div>
+                <div class="topic-card"><span class="topic-number">17</span><span class="topic-name">Deltoid</span></div>
+                <div class="topic-card"><span class="topic-number">18</span><span class="topic-name">Paralelkenar</span></div>
+                <div class="topic-card"><span class="topic-number">19</span><span class="topic-name">Eşkenar Dörtgen</span></div>
+                <div class="topic-card"><span class="topic-number">20</span><span class="topic-name">Dikdörtgen</span></div>
+                <div class="topic-card"><span class="topic-number">21</span><span class="topic-name">Kare</span></div>
+                <div class="topic-card"><span class="topic-number">22</span><span class="topic-name">Yamuk</span></div>
+                <div class="topic-card"><span class="topic-number">23</span><span class="topic-name">Çember ve Daire</span></div>
+                <div class="topic-card"><span class="topic-number">24</span><span class="topic-name">Çemberde Açı</span></div>
+                <div class="topic-card"><span class="topic-number">25</span><span class="topic-name">Çemberde Uzunluk</span></div>
+                <div class="topic-card"><span class="topic-number">26</span><span class="topic-name">Dairede Çevre ve Alan</span></div>
+                <div class="topic-card"><span class="topic-number">27</span><span class="topic-name">Analitik Geometri</span></div>
+                <div class="topic-card"><span class="topic-number">28</span><span class="topic-name">Noktanın Analitiği</span></div>
+                <div class="topic-card"><span class="topic-number">29</span><span class="topic-name">Doğrunun Analitiği</span></div>
+                <div class="topic-card"><span class="topic-number">30</span><span class="topic-name">Dönüşüm Geometrisi</span></div>
+                <div class="topic-card"><span class="topic-number">31</span><span class="topic-name">Katı Cisimler</span></div>
+                <div class="topic-card"><span class="topic-number">32</span><span class="topic-name">Prizmalar</span></div>
+                <div class="topic-card"><span class="topic-number">33</span><span class="topic-name">Küp</span></div>
+                <div class="topic-card"><span class="topic-number">34</span><span class="topic-name">Silindir</span></div>
+                <div class="topic-card"><span class="topic-number">35</span><span class="topic-name">Piramit</span></div>
+                <div class="topic-card"><span class="topic-number">36</span><span class="topic-name">Koni</span></div>
+                <div class="topic-card"><span class="topic-number">37</span><span class="topic-name">Küre</span></div>
+                <div class="topic-card"><span class="topic-number">38</span><span class="topic-name">Çemberin Analitiği</span></div>
+            </div>
+        </div>
+
+        <div class="card geometri-only">
+            <div class="section-tag">SORU DAĞILIMI</div>
+            <h2 class="card-title">TYT Geometri Soru Dağılımı</h2>
+            <p class="card-desc">ÖSYM'nin 2015 - 2025 yılları arasında sorduğu tüm soru sayıları:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>KONU</th>
+                            <th>2025</th>
+                            <th>2024</th>
+                            <th>2023</th>
+                            <th>2022</th>
+                            <th>2021</th>
+                            <th>2020</th>
+                            <th>2019</th>
+                            <th>2018</th>
+                            <th>2017</th>
+                            <th>2016</th>
+                            <th>2015</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">1</span><span>Açılar ve Üçgenler</span></div></td>
+                            <td><span class="count-badge">4</span></td>
+                            <td><span class="count-badge">5</span></td>
+                            <td><span class="count-badge">5</span></td>
+                            <td><span class="count-badge">4</span></td>
+                            <td><span class="count-badge">4</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">3</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">2</span><span>Çokgenler</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">3</span><span>Yamuk</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">4</span><span>Eşkenar Dörtgen</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">5</span><span>Deltoid</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">6</span><span>Kare</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">7</span><span>Dikdörtgen</span></div></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">8</span><span>Çember ve Daire</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">9</span><span>Analitik Geometri</span></div></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="empty-cell">-</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">1</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="table-topic-cell"><span class="table-topic-num">10</span><span>Katı Cisimler</span></div></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                            <td><span class="count-badge">2</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    
+
+    <script>
+        function formatParam(text) {
+            if (!text) return "";
+            return decodeURIComponent(text)
+                .replace(/İ/g, "i")
+                .replace(/I/g, "i")
+                .replace(/ı/g, "i")
+                .replace(/Ç/g, "c")
+                .replace(/ç/g, "c")
+                .replace(/Ğ/g, "g")
+                .replace(/ğ/g, "g")
+                .replace(/Ö/g, "o")
+                .replace(/ö/g, "o")
+                .replace(/Ş/g, "s")
+                .replace(/ş/g, "s")
+                .replace(/Ü/g, "u")
+                .replace(/ü/g, "u")
+                .toLowerCase()
+                .replace(/[^a-z0-9]/g, "");
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const ders = urlParams.get('ders');
+        const formattedDers = formatParam(ders);
+
+        const cografyaRows = [
+            ['Doğa ve İnsan', ['-','-','-','-','-','-',1,1,1,'-',1]],
+            ["Dünya'nın Şekli ve Hareketleri", ['-','-','-','-',1,'-','-','-','-','-',1]],
+            ['Coğrafi Konum', ['-','-','-','-','-','-','-','-','-',1,1]],
+            ['Harita Bilgisi', ['-',1,'-',1,'-',1,'-',1,1,1,'-']],
+            ['Atmosfer ve Sıcaklık', ['-','-',1,'-','-',1,'-','-','-','-','-']],
+            ['İklim Bilgisi', ['-',1,1,1,1,'-',1,1,3,2,1]],
+            ['İç ve Dış Kuvvetler', ['-','-','-',1,1,1,'-','-',1,1,2]],
+            ['Nüfus ve Yerleşme', ['-',1,2,'-',1,1,2,1,2,3,2]],
+            ["Türkiye'nin Yer Şekilleri", ['-','-','-','-','-','-','-','-',1,'-','-']],
+            ['Ekonomik Faaliyetler', ['-','-','-',1,'-','-','-','-',1,'-',1]],
+            ['Bölgeler', ['-',1,'-',1,1,'-','-','-',1,2,1]],
+            ['Uluslararası Ulaşım Hatları', ['-','-','-','-','-','-','-','-','-',1,1]],
+            ['Doğal Afetler', ['-',1,1,1,'-','-',1,1,1,1,1]]
+        ];
+
+        const cografyaTable = document.getElementById('cografya-table');
+        cografyaTable.innerHTML = cografyaRows.map((row, index) => {
+            const cells = row[1].map(value => value === '-' ? '<td><span class="empty-cell">-</span></td>' : '<td><span class="count-badge">' + value + '</span></td>').join('');
+            return '<tr><td><div class="table-topic-cell"><span class="table-topic-num">' + (index + 1) + '</span><span>' + row[0] + '</span></div></td>' + cells + '</tr>';
+        }).join('');
+
+        const felsefeRows = [
+            ['Felsefenin Alanı', ['-',1,2,1,2,'-',1,'-',1,'-',1]],
+            ['Bilgi Felsefesi', ['-',1,2,2,'-',1,1,2,2,2,1]],
+            ['Bilim Felsefesi', ['-','-','-','-','-','-',1,'-',1,'-',1]],
+            ['Varlık Felsefesi', ['-',1,'-',1,1,1,'-',1,1,3,1]],
+            ['Ahlak Felsefesi', ['-',1,1,1,'-',2,1,1,1,1,1]],
+            ['Siyaset Felsefesi', ['-','-','-','-',1,'-',1,'-','-',1,1]],
+            ['Din Felsefesi', ['-',1,'-','-','-',1,'-',1,1,1,1]],
+            ['Sanat Felsefesi', ['-','-','-','-',1,'-','-','-',1,'-',1]]
+        ];
+        const felsefeTable = document.getElementById('felsefe-table');
+        felsefeTable.innerHTML = felsefeRows.map((row, index) => {
+            const cells = row[1].map(value => value === '-' ? '<td><span class="empty-cell">-</span></td>' : '<td><span class="count-badge">' + value + '</span></td>').join('');
+            return '<tr><td><div class="table-topic-cell"><span class="table-topic-num">' + (index + 1) + '</span><span>' + row[0] + '</span></div></td>' + cells + '</tr>';
+        }).join('');
+
+        const dinRows = [
+            ['Bilgi ve İnanç', ['-',1,1,1,1,1,1,2,1,'-',2]],
+            ['İbadetler', ['-',1,1,1,1,1,'-',1,1,1,1]],
+            ['Ahlak ve Değerler', ['-',1,1,1,1,1,1,1,1,1,'-']],
+            ['Hz. Muhammed (S.A.V)', ['-',1,1,'-','-','-',1,1,1,1,1]],
+            ['Vahiy ve Akıl', ['-','-','-',1,1,1,2,'-',1,1,'-']],
+            ['İslam Düşüncesinde Yorumlar, Mezhepler', ['-',1,1,'-','-','-','-','-', '-',1,'-']],
+            ['Din, Kültür ve Medeniyet', ['-','-','-',1,1,1,'-','-','-','-',1]]
+        ];
+        const dinTable = document.getElementById('din-table');
+        dinTable.innerHTML = dinRows.map((row, index) => {
+            const cells = row[1].map(value => value === '-' ? '<td><span class="empty-cell">-</span></td>' : '<td><span class="count-badge">' + value + '</span></td>').join('');
+            return '<tr><td><div class="table-topic-cell"><span class="table-topic-num">' + (index + 1) + '</span><span>' + row[0] + '</span></div></td>' + cells + '</tr>';
+        }).join('');
+
+        const aytMatematikKonular = ['Temel Kavramlar','Sayı Basamakları','Bölme ve Bölünebilme','EBOB – EKOK','Rasyonel Sayılar','Basit Eşitsizlikler','Mutlak Değer','Üslü Sayılar','Köklü Sayılar','Çarpanlara Ayırma','Oran Orantı','Denklem Çözme','Problemler','Kümeler','Kartezyen Çarpım','Mantık','Fonksiyonlar','Polinomlar','2.Dereceden Denklemler','Permütasyon ve Kombinasyon','Binom ve Olasılık','İstatistik','Karmaşık Sayılar','2.Dereceden Eşitsizlikler','Parabol','Trigonometri','Logaritma','Diziler','Limit','Türev','İntegral'];
+        document.getElementById('ayt-matematik-konular').innerHTML = aytMatematikKonular.map((konu, i) => '<div class="topic-card"><span class="topic-number">' + (i + 1) + '</span><span class="topic-name">' + konu + '</span></div>').join('');
+        const aytMatematikRows = [['Temel Kavramlar',['-',2,4,2,3,2,2,1,3,3,6]],['Sayı Basamakları',['-',1,'-','-','-',3,'-','-',1,'-','-']],['Bölme ve Bölünebilme',['-','-',1,'-','-','-',1,'-',1,1,'-']],['EBOB – EKOK',['-','-','-',1,1,'-','-','-',1,1,1]],['Rasyonel Sayılar',['-','-','-','-','-','-','-','-',1,1,1]],['Basit Eşitsizlikler',['-',1,1,'-',1,1,1,'-',2,1,1]],['Mutlak Değer',['-','-',1,'-','-',1,1,'-',1,1,1]],['Üslü Sayılar',['-','-',1,'-',1,1,'-','-',1,2,1]],['Köklü Sayılar',['-','-','-','-','-','-','-','-',2,1,1]],['Çarpanlara Ayırma',['-',1,'-',1,'-','-','-','-',1,1,1]],['Oran Orantı',['-','-','-','-','-','-','-','-','-',1,1]],['Kümeler ve Kartezyen Çarpım',['-',1,1,1,1,2,1,'-',2,2,2]],['Mantık',['-',1,1,1,1,'-',1,4,1,1,'-']],['Fonksiyonlar',['-',2,2,2,2,2,2,2,2,2,'-']],['Polinomlar',['-','-',2,1,1,2,2,1,3,1,2]],['2.Dereceden Denklemler ve Eşitsizlikler',['-',1,2,2,1,1,'-',1,1,'-',1]],['Parabol',['-',1,1,'-',1,1,1,1,'-',1,'-']],['Permütasyon-Kombinasyon-Olasılık-Binom',['-',3,3,3,2,3,2,2,2,3,2]],['Trigonometri',['-',5,5,4,5,4,3,3,2,4,2]],['Karmaşık Sayılar',['-','-','-','-','-',2,1,1,2,3,3]],['Logaritma',['-',1,3,2,1,3,3,2,3,1,2]],['Diziler',['-',1,2,1,1,2,1,1,2,2,2]],['Limit',['-',2,'-',2,2,'-',2,2,2,2,1]],['Türev',['-',3,'-',4,3,'-',4,4,5,5,7]],['İntegral',['-',5,'-',4,4,'-',4,4,5,6,7]]];
+        document.getElementById('ayt-matematik-table').innerHTML = aytMatematikRows.map((row, i) => '<tr><td><div class="table-topic-cell"><span class="table-topic-num">' + (i + 1) + '</span><span>' + row[0] + '</span></div></td>' + row[1].map(v => v === '-' ? '<td><span class="empty-cell">-</span></td>' : '<td><span class="count-badge">' + v + '</span></td>').join('') + '</tr>').join('');
+
+        const aytGeoKonular = ['Temel Kavramlar','Doğruda Açılar','Üçgende Açılar','Özel Üçgenler','Dik Üçgen','İkizkenar Üçgen','Eşkenar Üçgen','Açıortay','Kenarortay','Üçgende Alan','Üçgende Benzerlik','Açı Kenar Bağıntıları','Çokgenler','Özel Dörtgenler','Dörtgenler','Deltoid','Paralelkenar','Eşkenar Dörtgen','Dikdörtgen','Kare','İkizkenar','Yamuk','Çember ve Daire','Analitik Geometri','Noktanın Analitiği','Doğrunun Analitiği','Dönüşüm Geometrisi','Katı Cisimler (Uzay Geometri)','Dikdörtgenler Prizması','Küp','Silindir','Piramit','Koni','Küre','Çemberin Analitiği'];
+        document.getElementById('ayt-geometri-konular').innerHTML = aytGeoKonular.map((x,i)=>'<div class="topic-card"><span class="topic-number">'+(i+1)+'</span><span class="topic-name">'+x+'</span></div>').join('');
+        const aytGeoRows = [['Doğruda ve Üçgende Açı',['-',1,2,1,'-',1,'-',1,2,2,1]],['Özel Üçgenler',['-','-','-','-','-',2,'-',2,2,6,'-']],['Açıortay – Kenarortay',['-','-','-','-','-','-','-','-','-','-','-']],['Üçgende Alan Benzerlik',['-','-',1,'-','-','-','-','-',3,1,2]],['Açı Kenar Bağıntıları',['-','-','-','-','-','-',1,'-','-','-','-']],['Çokgenler',['-','-','-','-','-',1,2,1,'-',1,3]],['Özel Dörtgenler',['-','-',1,'-','-','-','-',1,4,6,5]],['Çember ve Daire',['-',2,2,2,3,2,2,1,3,3,5]],['Noktanın Analitiği',['-',1,1,1,2,1,'-','-','-',1,2]],['Doğrunun Analitiği',['-',3,'-',1,2,1,1,2,2,4,1]],['Dönüşüm Geometrisi',['-','-','-',1,'-',1,1,1,'-','-','-']],['Katı Cisimler',['-',1,1,2,1,1,1,1,2,2,4]],['Çemberin Analitiği',['-',1,'-',1,1,'-','-', '-',1,2,1]]];
+        document.getElementById('ayt-geometri-table').innerHTML = aytGeoRows.map((r,i)=>'<tr><td><div class="table-topic-cell"><span class="table-topic-num">'+(i+1)+'</span><span>'+r[0]+'</span></div></td>'+r[1].map(v=>v==='-'?'<td><span class="empty-cell">-</span></td>':'<td><span class="count-badge">'+v+'</span></td>').join('')+'</tr>').join('');
+
+        const aytFizikKonular = ['Vektörler','Kuvvet, Tork ve Denge','Kütle Merkezi','Basit Makineler','Hareket',"Newton'un Hareket Yasaları",'İş, Güç ve Enerji II','Atışlar','İtme ve Momentum','Elektrik Alan ve Potansiyel','Paralel Levhalar ve Sığa','Manyetik Alan ve Manyetik Kuvvet','İndüksiyon, Alternatif Akım ve Transformatörler','Çembersel Hareket','Dönme, Yuvarlanma ve Açısal Momentum','Kütle Çekim ve Kepler Yasaları','Basit Harmonik Hareket','Dalga Mekaniği ve Elektromanyetik Dalgalar','Atom Modelleri','Büyük Patlama ve Parçacık Fiziği','Radyoaktivite','Özel Görelilik','Kara Cisim Işıması','Fotoelektrik Olay ve Compton Olayı','Modern Fiziğin Teknolojideki Uygulamaları'];
+        document.getElementById('ayt-fizik-konular').innerHTML = aytFizikKonular.map((konu, i) => '<div class="topic-card"><span class="topic-number">' + (i + 1) + '</span><span class="topic-name">' + konu + '</span></div>').join('');
+        const aytFizikRows = [['Vektörler',['-','-',1,1,'-','-','-','-','-','-','-']],['Hareket',['-',1,1,'-','-',1,1,'-','-','-','-']],["Newton'un Hareket Yasaları",['-',1,1,1,'-',1,'-',1,'-','-','-']],['Bir Boyutta Sabit İvmeli Hareket',['-','-','-','-','-','-','-','-','-','-','-']],['Atışlar',['-',1,'-','-',1,1,1,1,'-','-','-']],['İş, Güç ve Enerji',['-',1,1,'-',1,1,'-','-','-','-','-']],['İtme ve Momentum',['-',1,1,1,'-',1,1,1,'-','-','-']],['Kuvvet, Tork ve Denge',['-','-','-','-',1,1,1,1,'-','-','-']],['Kütle Çekim Merkezi ve Açısal Momentum',['-','-','-','-','-','-','-','-','-','-','-']],['Basit Makineler',['-','-','-',1,'-','-','-','-','-','-','-']],['Elektrik Alan ve Potansiyel',['-',1,1,'-',2,1,1,1,'-','-','-']],['Paralel Levhalar ve Sığa',['-','-','-','-','-','-','-','-','-','-','-']],['Manyetik Alan ve Manyetik Kuvvet',['-',1,1,1,1,'-','-','-','-','-','-']],['İndüksiyon, Alternatif Akım ve Transformatörler',['-',2,2,1,1,2,2,2,'-','-','-']],['Düzgün Çembersel Hareket',['-','-',1,1,1,2,1,1,'-','-','-']],['Dönme, Yuvarlanma ve Açısal Momentum',['-','-',1,1,'-',1,1,'-','-','-','-']],['Kütle Çekim ve Kepler Yasaları',['-','-',1,'-',1,'-','-',1,'-','-','-']],['Basit Harmonik Hareket',['-',1,1,1,1,1,1,1,'-','-','-']],['Dalga Mekaniği ve Elektromanyetik Dalgalar',['-',1,1,1,1,1,1,1,'-','-','-']],['Atom Modelleri',['-','-','-','-','-','-','-','-','-','-','-']],['Büyük Patlama ve Parçacık Fiziği',['-','-',1,'-','-','-','-','-','-','-','-']],['Radyoaktivite',['-','-','-','-',1,'-',1,1,'-','-','-']],['Özel Görelilik',['-',1,'-',1,'-','-','-','-','-','-','-']],['Kara Cisim Işıması',['-','-','-','-','-','-','-','-','-','-','-']],['Fotoelektrik Olay ve Compton Olayı',['-',1,'-',1,1,'-',1,1,'-','-','-']],['Modern Fiziğin Teknolojideki Uygulamaları',['-',1,'-',1,1,'-',1,1,'-','-','-']]];
+        document.getElementById('ayt-fizik-table').innerHTML = aytFizikRows.map((row, i) => '<tr><td><div class="table-topic-cell"><span class="table-topic-num">' + (i + 1) + '</span><span>' + row[0] + '</span></div></td>' + row[1].map(v => v === '-' ? '<td><span class="empty-cell">-</span></td>' : '<td><span class="count-badge">' + v + '</span></td>').join('') + '</tr>').join('');
+
+        const aytKimyaKonular = ['Kimya Bilimi','Atom ve Periyodik Sistem','Kimyasal Türler Arası Etkileşimler','Kimyasal Hesaplamalar','Kimyanın Temel Kanunları','Asit, Baz ve Tuz','Maddenin Halleri','Karışımlar','Doğa ve Kimya','Kimya Her Yerde','Modern Atom Teorisi','Gazlar','Sıvı Çözeltiler','Kimyasal Tepkimelerde Enerji','Kimyasal Tepkimelerde Hız','Kimyasal Tepkimelerde Denge','Asit-Baz Dengesi','Çözünürlük Dengesi','Kimya ve Elektrik','Organik Kimyaya Giriş','Organik Kimya','Enerji Kaynakları ve Bilimsel Gelişmeler'];
+        document.getElementById('ayt-kimya-konular').innerHTML = aytKimyaKonular.map((konu,i) => '<div class="topic-card"><span class="topic-number">' + (i + 1) + '</span><span class="topic-name">' + konu + '</span></div>').join('');
+        const aytKimyaRows = [['Kimya Bilimi',['-','-','-','-','-','-','-','-',4,2,'-']],['Atom ve Yapısı',['-','-','-','-','-','-',1,'-',1,2,2]],['Periyodik Sistem',['-','-','-','-',1,'-','-',1,1,2,2]],['Kimyasal Türler Arası Etkileşim',['-','-','-','-','-','-','-','-',2,3,2]],['Kimyasal Hesaplamalar',['-','-','-','-','-','-',1,1,2,1,1]],['Modern Atom Teorisi',['-',1,1,1,'-',2,'-','-','-','-','-']],['Gazlar',['-',1,2,1,1,1,1,1,2,1,1]],['Sıvı Çözeltiler',['-',2,2,2,2,2,1,1,3,1,1]],['Kimyasal Tepkimelerde Enerji',['-',1,1,1,1,1,1,1,3,2,3]],['Kimyasal Tepkimelerde Hız',['-',1,1,1,1,1,1,1,'-','-',1]],['Kimyasal Tepkimelerde Denge',['-',1,2,1,1,1,'-', '-',1,2,1]],['Asit-Baz Dengesi',['-',1,'-', '-',1,1,2,1,1,'-',1]],['Çözünürlük Dengesi',['-','-','-',1,'-','-','-','-',1,1,1]],['Kimya ve Elektrik',['-',2,3,2,2,3,2,2,3,2,2]],['Organik Kimya',['-',3,1,3,3,1,3,4,6,11,12]]];
+        document.getElementById('ayt-kimya-table').innerHTML = aytKimyaRows.map((row,i) => '<tr><td><div class="table-topic-cell"><span class="table-topic-num">' + (i + 1) + '</span><span>' + row[0] + '</span></div></td>' + row[1].map(v => v === '-' ? '<td><span class="empty-cell">-</span></td>' : '<td><span class="count-badge">' + v + '</span></td>').join('') + '</tr>').join('');
+
+        const aytBiyolojiKonular = ['Sinir Sistemi','Endokrin Sistem ve Hormonlar','Duyu Organları','Destek ve Hareket Sistemi','Sindirim Sistemi','Dolaşım ve Bağışıklık Sistemi','Solunum Sistemi','Üriner Sistem (Boşaltım Sistemi)','Üreme Sistemi ve Embriyonik Gelişim','Komünite Ekolojisi','Popülasyon Ekolojisi','Genden Proteine','Nükleik Asitler','Genetik Şifre ve Protein Sentezi','Canlılarda Enerji Dönüşümleri','Canlılık ve Enerji','Fotosentez','Kemosentez','Hücresel Solunum','Bitki Biyolojisi','Canlılar ve Çevre'];
+        document.getElementById('ayt-biyoloji-konular').innerHTML = aytBiyolojiKonular.map((konu,i) => '<div class="topic-card"><span class="topic-number">' + (i + 1) + '</span><span class="topic-name">' + konu + '</span></div>').join('');
+        const aytBiyolojiRows = [['Sinir Sistemi',['-',1,1,'-','-','-','-',1,'-','-','-']],['Endokrin Sistem',['-',1,2,'-',1,1,1,1,'-','-','-']],['Duyu Organları',['-','-','-',1,'-',1,'-','-','-','-','-']],['Destek ve Hareket Sistemi',['-','-','-',1,1,'-','-',1,'-','-','-']],['Sindirim Sistemi',['-',1,1,'-','-',1,1,'-','-','-','-']],['Dolaşım ve Bağışıklık Sistemi',['-',1,1,1,1,1,1,1,'-','-','-']],['Solunum Sistemi',['-',1,1,1,1,1,1,'-','-','-','-']],['Üriner Sistem',['-','-',1,'-','-',1,1,1,'-','-','-']],['Üreme Sistemi ve Embriyonik Gelişim',['-','-','-',1,'-','-','-','-','-','-','-']],['Komünite ve Popülasyon Ekolojisi',['-',2,2,2,2,2,'-',2,'-','-','-']],['Nükleik Asitler',['-','-','-','-','-',1,1,'-','-','-','-']],['Genetik Şifre ve Protein Sentezi',['-',2,1,2,2,2,1,3,'-','-','-']],['Canlılık ve Enerji',['-',1,'-',1,'-','-','-','-','-','-','-']],['Fotosentez ve Kemosentez',['-',1,1,1,1,1,1,1,'-','-','-']],['Hücresel Solunum',['-','-',1,'-',1,1,1,'-','-','-','-']],['Bitki Biyolojisi',['-',2,'-',2,2,'-',3,2,'-','-','-']],['Canlılar ve Çevre',['-','-',1,'-',1,'-',1,1,'-','-','-']]];
+        document.getElementById('ayt-biyoloji-table').innerHTML = aytBiyolojiRows.map((row,i) => '<tr><td><div class="table-topic-cell"><span class="table-topic-num">' + (i + 1) + '</span><span>' + row[0] + '</span></div></td>' + row[1].map(v => v === '-' ? '<td><span class="empty-cell">-</span></td>' : '<td><span class="count-badge">' + v + '</span></td>').join('') + '</tr>').join('');
+
+        const aytEdebiyatKonular = ['Anlam Bilgisi','Dil Bilgisi','Güzel Sanatlar ve Edebiyat','Metinlerin Sınıflandırılması','Şiir Bilgisi','Edebi Sanatlar','Türk Edebiyatı Dönemleri','İslamiyet Öncesi Türk Edebiyatı ve Geçiş Dönemi','Halk Edebiyatı','Divan Edebiyatı','Tanzimat Edebiyatı','Servet-i Fünun Edebiyatı','Fecr-i Ati Edebiyatı','Milli Edebiyat','Cumhuriyet Dönemi Edebiyatı','Edebiyat Akımları','Dünya Edebiyatı'];
+        document.getElementById('ayt-edebiyat-konular').innerHTML = aytEdebiyatKonular.map((konu,i) => '<div class="topic-card"><span class="topic-number">' + (i + 1) + '</span><span class="topic-name">' + konu + '</span></div>').join('');
+        const aytEdebiyatRows = [['Anlam Bilgisi',['-',6,6,6,3,6,4,4,20,20,18]],['Dil Bilgisi',['-','-','-','-','-','-','-','-',4,5,5]],['Metinlerin Türleri',['-',1,1,'-','-','-','-','-','-',2,2]],['Şiir Bilgisi',['-',2,3,3,2,3,3,3,3,2,2]],['Edebi Sanatlar',['-',2,1,2,2,1,1,1,2,1,2]],['İslamiyet Öncesi Türk Edebiyatı ve Geçiş Dönemi',['-',1,'-',1,1,1,1,'-',1,1,2]],['Halk Edebiyatı',['-',1,2,1,2,2,2,1,3,3,'-']],['Divan Edebiyatı',['-',4,5,4,6,4,3,5,4,4,5]],['Tanzimat Edebiyatı',['-',1,1,1,2,1,2,3,1,3,2]],['Servet-i Fünun ve Fecr-i Ati Edebiyatı',['-',1,1,1,1,2,1,1,3,2,4]],['Milli Edebiyat',['-',1,1,1,1,1,1,1,3,1,1]],['Cumhuriyet Dönemi Edebiyatı',['-',3,2,3,3,2,5,4,11,11,12]],['Edebiyat Akımları',['-',1,1,1,1,1,1,1,1,1,1]]];
+        document.getElementById('ayt-edebiyat-table').innerHTML = aytEdebiyatRows.map((row,i) => '<tr><td><div class="table-topic-cell"><span class="table-topic-num">' + (i + 1) + '</span><span>' + row[0] + '</span></div></td>' + row[1].map(v => v === '-' ? '<td><span class="empty-cell">-</span></td>' : '<td><span class="count-badge">' + v + '</span></td>').join('') + '</tr>').join('');
+
+        const aytTarihKonular = ['Tarih ve Zaman','İnsanlığın İlk Dönemleri',"Orta Çağ'da Dünya",'İlk ve Orta Çağlarda Türk Dünyası','İslam Medeniyetinin Doğuşu',"Türklerin İslamiyet'i Kabulü ve İlk Türk İslam Devletleri",'Yerleşme ve Devletleşme Sürecinde Selçuklu Türkiyesi','Beylikten Devlete Osmanlı Siyaseti','Devletleşme Sürecinde Savaşçılar ve Askerler','Beylikten Devlete Osmanlı Medeniyeti','Dünya Gücü Osmanlı','Sultan ve Osmanlı Merkez Teşkilatı','Klasik Çağda Osmanlı Toplum Düzeni','Değişen Dünya Dengeleri Karşısında Osmanlı Siyaseti','Değişim Çağında Avrupa ve Osmanlı','Uluslararası İlişkilerde Denge Stratejisi (1774-1914)','Devrimler Çağında Değişen Devlet-Toplum İlişkileri','Sermaye ve Emek','XIX. ve XX. Yüzyılda Değişen Gündelik Hayat','XX. Yüzyıl Başlarında Osmanlı Devleti ve Dünya','Milli Mücadele','Atatürkçülük ve Türk İnkılabı','İki Savaş Arasındaki Dönemde Türkiye ve Dünya','II. Dünya Savaşı Sürecinde Türkiye ve Dünya','II. Dünya Savaşı Sonrasında Türkiye ve Dünya','Toplumsal Devrim Çağında Dünya ve Türkiye',"XXI. Yüzyılın Eşiğinde Türkiye ve Dünya"];
+        document.getElementById('ayt-tarih-konular').innerHTML = aytTarihKonular.map((x,i)=>'<div class="topic-card"><span class="topic-number">'+(i+1)+'</span><span class="topic-name">'+x+'</span></div>').join('');
+        const aytTarihRows = [['Tarih ve Zaman',['-',1,1,1,1,1,1,1,2,'-',1]],['İnsanlığın İlk Dönemleri',['-',1,1,1,1,1,1,1,'-',3,2]],["Orta Çağ'da Dünya",['-','-','-','-','-','-','-','-',1,2,'-']],['İlk ve Orta Çağlarda Türk Dünyası',['-',2,2,2,1,2,2,2,3,2,2]],['İslam Medeniyetinin Doğuşu',['-',1,1,1,1,2,1,1,2,2,1]],["Türklerin İslamiyet'i Kabulü ve İlk Türk İslam Devletleri",['-',2,1,1,3,1,1,1,3,1,3]],['Yerleşme ve Devletleşme Sürecinde Selçuklu Türkiyesi',['-','-','-',1,'-','-',1,'-',1,3,2]],['Beylikten Devlete Osmanlı',['-',2,2,3,'-',1,1,2,'-',4,5]],['Devletleşme Sürecinde Savaşçılar ve Askerler',['-','-','-',1,'-',1,'-','-','-','-','-']],['Dünya Gücü Osmanlı',['-','-',2,'-',1,'-',1,2,13,3,1]],['Sultan ve Osmanlı Merkez Teşkilatı',['-','-',1,1,1,'-','-','-','-','-','-']],['Değişen Dünya Dengeleri Karşısında Osmanlı Siyaseti',['-','-','-',1,1,1,'-','-','-',2,1]],['Değişim Çağında Avrupa ve Osmanlı',['-','-',1,'-',1,2,2,'-','-','-',1]],['Uluslararası İlişkilerde Denge Stratejisi',['-',2,1,'-',1,'-', '-',1,'-',4,4]],['Devrimler Çağında Değişen Devlet-Toplum İlişkileri',['-',1,'-', '-',1,'-','-','-','-','-','-']],['Sermaye ve Emek',['-','-','-','-','-',1,1,'-','-','-','-']],['XX. Yüzyıl Başlarında Osmanlı Devleti ve Dünya',['-',3,1,'-',1,2,4,3,1,1,5]],['İnkılap Tarihi Tüm Konular',['-',2,1,'-','-','-','-','-',1,5,7]],['Milli Mücadele',['-',3,5,5,4,4,3,1,4,4,'-']],['Atatürkçülük ve Türk İnkılabı',['-',2,1,1,3,2,2,2,1,2,'-']],['İki Savaş Arasındaki Dönemde Türkiye ve Dünya',['-','-','-',1,'-','-','-',1,'-','-','-']],['II. Dünya Savaşı Sürecinde – Sonrasında Türkiye ve Dünya',['-',1,'-',2,'-','-','-',1,'-',4,3]],["XXI. Yüzyılın Eşiğinde Türkiye ve Dünya",['-','-','-','-','-','-','-',1,'-','-','-']],['Soğuk Savaş Dönemi',['-','-','-','-','-','-','-','-','-',5,4]],['Yumuşama Dönemi',['-','-','-','-','-','-','-','-','-',1,1]],['Küreselleşen Dünya',['-','-','-','-','-','-','-','-','-',1,1]]];
+        document.getElementById('ayt-tarih-table').innerHTML = aytTarihRows.map((r,i)=>'<tr><td><div class="table-topic-cell"><span class="table-topic-num">'+(i+1)+'</span><span>'+r[0]+'</span></div></td>'+r[1].map(v=>v==='-'?'<td><span class="empty-cell">-</span></td>':'<td><span class="count-badge">'+v+'</span></td>').join('')+'</tr>').join('');
+
+        const aytCografyaKonular = ['Ekosistem','Biyoçeşitlilik','Biyomlar','Ekosistemin Unsurları','Enerji Akışı ve Madde Döngüsü','Ekstrem Doğa Olayları','Küresel İklim Değişimi','Nüfus Politikaları',"Türkiye'de Nüfus ve Yerleşme",'Ekonomik Faaliyetler ve Doğal Kaynaklar','Göç ve Şehirleşme','Türkiye Ekonomisi',"Türkiye'nin Ekonomi Politikaları",'Türkiye Ekonomisinin Sektörel Dağılımı',"Türkiye'de Tarım", "Türkiye'de Hayvancılık", "Türkiye'de Madenler ve Enerji Kaynakları", "Türkiye'de Sanayi", "Türkiye'de Ulaşım", "Türkiye'de Ticaret ve Turizm",'Geçmişten Geleceğe Şehir ve Ekonomi',"Türkiye'nin İşlevsel Bölgeleri ve Kalkınma Projeleri",'Hizmet Sektörünün Ekonomideki Yeri','Küresel Ticaret','Bölgeler ve Ülkeler','İlk Uygarlıklar','Kültür Bölgeleri ve Türk Kültürü','Sanayileşme Süreci: Almanya','Tarım ve Ekonomi İlişkisi Fransa – Somali','Ülkeler Arası Etkileşim','Jeopolitik Konum','Çatışma Bölgeleri','Küresel ve Bölgesel Örgütler','Çevre ve Toplum','Çevre Sorunları ve Türleri','Madenler ve Enerji Kaynaklarının Çevreye Etkisi','Doğal Kaynakların Sürdürülebilir Kullanımı','Ekolojik Ayak İzi','Doğal Çevrenin Sınırlılığı','Çevre Politikaları','Çevresel Örgütler','Çevre Anlaşmaları','Doğal Afetler'];
+        document.getElementById('ayt-cografya-konular').innerHTML = aytCografyaKonular.map((x,i)=>'<div class="topic-card"><span class="topic-number">'+(i+1)+'</span><span class="topic-name">'+x+'</span></div>').join('');
+        const aytCografyaRows = [['İklim ve Yer Şekilleri',['-','-','-','-','-',2,1,1,5,2,5]],['Coğrafi Konum',['-','-','-','-','-','-','-',2,'-',1,1]],["Dünya'nın Şekli ve Hareketleri",['-','-','-','-','-','-','-','-',1,'-','-']],['Harita Bilgisi',['-','-','-','-','-','-','-',1,1,'-','-']],['İç ve Dış Kuvvetler',['-','-','-','-','-','-','-',1,'-','-','-']],['Ekosistem',['-',2,4,4,3,3,3,'-',3,3,2]],['Nüfus Politikaları',['-',1,'-','-','-',2,1,1,4,1,3]],["Türkiye'de Nüfus ve Yerleşme",['-',2,1,1,'-','-',1,4,3,1,2]],['Ekonomik Faaliyetler ve Doğal Kaynaklar',['-',1,2,2,1,1,1,1,'-',1,4]],['Göç ve Şehirleşme',['-',1,1,1,'-',1,1,'-','-','-','-']],['Türkiye’de Ekonomi',['-',1,2,2,3,1,2,4,5,5,10]],["Türkiye'nin İşlevsel Bölgeleri ve Kalkınma Projeleri",['-',1,1,1,1,1,'-',1,'-',1,'-']],['Küresel Ticaret',['-',1,1,1,1,'-','-','-',1,1,1]],['Kültür Bölgeleri',['-',1,'-', '-',1,'-',2,'-', '-',1,1]],['Uluslararası Örgütler',['-',1,'-','-',1,1,2,'-','-','-','-']],['Ülkeler Arası Etkileşimler',['-','-','-','-',1,'-',1,'-',1,1,'-']],['Bölgeler ve Ülkeler',['-',1,4,4,2,2,1,1,8,7,3]],['Çevre ve Toplum',['-',4,1,1,3,3,1,'-',6,13,6]]];
+        document.getElementById('ayt-cografya-table').innerHTML = aytCografyaRows.map((r,i)=>'<tr><td><div class="table-topic-cell"><span class="table-topic-num">'+(i+1)+'</span><span>'+r[0]+'</span></div></td>'+r[1].map(v=>v==='-'?'<td><span class="empty-cell">-</span></td>':'<td><span class="count-badge">'+v+'</span></td>').join('')+'</tr>').join('');
+
+        const aytFelsefeKonular = ["Felsefe'nin Konusu",'Bilgi Felsefesi','Varlık Felsefesi','Ahlak Felsefesi','Sanat Felsefesi','Din Felsefesi','Siyaset Felsefesi','Bilim Felsefesi','İlk Çağ Felsefesi','MÖ 6. Yüzyıl – MS 2. Yüzyıl Felsefesi','MS 2. Yüzyıl – MS 15. Yüzyıl Felsefesi','15. Yüzyıl – 17. Yüzyıl Felsefesi','18. Yüzyıl – 19. Yüzyıl Felsefesi','20. Yüzyıl Felsefesi','Mantığa Giriş','Klasik Mantık','Mantık ve Dil','Sembolik Mantık','Psikoloji Bilimini Tanıyalım','Psikolojinin Temel Süreçleri','Öğrenme Bellek Düşünme','Ruh Sağlığının Temelleri','Sosyolojiye Giriş','Birey ve Toplum','Toplumsal Yapı','Toplumsal Değişme ve Gelişme','Toplum ve Kültür','Toplumsal Kurumlar'];
+        document.getElementById('ayt-felsefe-konular').innerHTML = aytFelsefeKonular.map((x,i)=>'<div class="topic-card"><span class="topic-number">'+(i+1)+'</span><span class="topic-name">'+x+'</span></div>').join('');
+        const aytFelsefeRows = [['Felsefe ve Bilim',['-','-','-','-','-','-','-',1,'-','-','-']],['Bilgi Felsefesi',['-',1,1,1,1,'-',2,1,'-','-','-']],['Varlık Felsefesi',['-','-','-','-','-',2,1,1,'-','-','-']],['Ahlak Felsefesi',['-','-',1,1,1,'-','-','-','-','-','-']],['Din Felsefesi',['-',1,'-','-','-',1,'-','-','-','-','-']],['20. Yüzyıl Felsefesi',['-','-',1,1,1,'-','-','-','-','-','-']],['Mantığa Giriş',['-',1,1,1,1,2,1,1,'-','-','-']],['Klasik Mantık',['-',2,1,1,1,1,2,2,'-','-','-']],['Mantık ve Dil',['-','-',1,1,1,'-','-','-','-','-','-']],['Psikoloji Bilimini Tanıyalım',['-',1,'-','-','-',3,1,'-','-','-','-']],['Psikolojinin Temel Süreçleri',['-','-',1,1,1,'-',1,'-','-','-','-']],['Öğrenme Bellek Düşünme',['-',1,1,1,1,'-',1,2,'-','-','-']],['Ruh Sağlığının Temelleri',['-',1,1,1,1,'-','-','-','-','-','-']],['Sosyolojiye Giriş',['-',1,1,1,1,'-',1,'-','-','-','-']],['Birey ve Toplum',['-','-','-','-','-',2,1,1,'-','-','-']],['Toplumsal Yapı',['-',1,'-','-','-',1,'-',1,'-','-','-']],['Toplumsal Değişme ve Gelişme',['-','-',1,1,1,'-','-',1,'-','-','-']],['Toplum ve Kültür',['-',1,'-','-',1,'-',1,'-','-','-','-']],['Toplumsal Kurumlar',['-','-',1,1,'-','-','-',1,'-','-','-']]];
+        document.getElementById('ayt-felsefe-table').innerHTML = aytFelsefeRows.map((r,i)=>'<tr><td><div class="table-topic-cell"><span class="table-topic-num">'+(i+1)+'</span><span>'+r[0]+'</span></div></td>'+r[1].map(v=>v==='-'?'<td><span class="empty-cell">-</span></td>':'<td><span class="count-badge">'+v+'</span></td>').join('')+'</tr>').join('');
+
+        const aytDinKonular = ['Allah, İnsan İlişkisi','Dünya ve Ahiret',"Kur'an'a Göre Hz. Muhammed", "Kur'an'da Bazı Kavramlar", "Kur'an'dan Mesajlar",'İnançla İlgili Meseleler','Yahudilik ve Hristiyanlık','İslam ve Bilim',"Anadolu'da İslam",'İslam Düşüncesinde Tasavvufi Yorumlar ve Mezhepler','Güncel Dini Meseleler','Hint ve Çin Dinleri'];
+        document.getElementById('ayt-din-konular').innerHTML = aytDinKonular.map((x,i)=>'<div class="topic-card"><span class="topic-number">'+(i+1)+'</span><span class="topic-name">'+x+'</span></div>').join('');
+        const aytDinRows = [['Allah, İnsan İlişkisi',['-','-','-','-',1,'-','-','-','-','-','-']],['Dünya ve Ahiret',['-','-','-','-','-','-','-','-','-','-','-']],["Kur'an'a Göre Hz. Muhammed",['-',2,1,'-', '-',1,1,2,'-','-','-']],["Kur'an'da Bazı Kavramlar",['-','-',1,1,1,1,2,1,'-','-','-']],["Kur'an'dan Mesajlar",['-','-','-',1,'-',1,1,1,'-','-','-']],['İnançla İlgili Meseleler',['-',1,'-',1,1,1,'-','-','-','-','-']],['Yahudilik ve Hristiyanlık',['-','-','-',1,'-','-','-','-','-','-','-']],['İslam ve Bilim',['-',1,1,3,1,2,1,'-','-','-','-']],["Anadolu'da İslam",['-','-',2,'-',1,'-','-','-','-','-','-']],['İslam Düşüncesinde Tasavvufi Yorumlar ve Mezhepler',['-',1,'-', '-',1,'-',2,'-','-','-','-']],['Güncel Dini Meseleler',['-','-',1,'-','-','-','-','-','-','-','-']],['Hint ve Çin Dinleri',['-','-','-','-','-','-',1,1,'-','-','-']]];
+        document.getElementById('ayt-din-table').innerHTML = aytDinRows.map((r,i)=>'<tr><td><div class="table-topic-cell"><span class="table-topic-num">'+(i+1)+'</span><span>'+r[0]+'</span></div></td>'+r[1].map(v=>v==='-'?'<td><span class="empty-cell">-</span></td>':'<td><span class="count-badge">'+v+'</span></td>').join('')+'</tr>').join('');
+
+        // Parametreye Göre Kartları Gösterme Mantığı
+        if (!ders || formattedDers === "tytturkce" || formattedDers === "turkce") {
+            if (ders) {
+                document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            }
+            const turkceElements = document.querySelectorAll('.turkce-only');
+            turkceElements.forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "tyttarih" || formattedDers === "tarih") {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            const tarihElements = document.querySelectorAll('.tarih-only');
+            tarihElements.forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "tytcografya" || formattedDers === "cografya") {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            const cografyaElements = document.querySelectorAll('.cografya-only');
+            cografyaElements.forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "tytfelsefe" || formattedDers === "felsefe") {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            const felsefeElements = document.querySelectorAll('.felsefe-only');
+            felsefeElements.forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "tytdinkulturuveahlakbilgisi" || formattedDers === "tytdinkulturu" || formattedDers === "din") {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            const dinElements = document.querySelectorAll('.din-only');
+            dinElements.forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "aytmatematik") {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            document.querySelectorAll('.ayt-matematik-only').forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "aytgeometri") {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            document.querySelectorAll('.ayt-geometri-only').forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "aytfizik") {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            document.querySelectorAll('.ayt-fizik-only').forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "aytkimya") {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            document.querySelectorAll('.ayt-kimya-only').forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "aytbiyoloji") {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            document.querySelectorAll('.ayt-biyoloji-only').forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "aytedebiyat") {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            document.querySelectorAll('.ayt-edebiyat-only').forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "ayttarih") {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            document.querySelectorAll('.ayt-tarih-only').forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "aytcografya") {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            document.querySelectorAll('.ayt-cografya-only').forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "aytfelsefe" || formattedDers.startsWith("aytfelsefe")) {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            document.querySelectorAll('.ayt-felsefe-only').forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "aytdinkulturuveahlakbilgisi" || formattedDers.startsWith("aytdin")) {
+            document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            document.querySelectorAll('.ayt-din-only').forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "tytfizik" || formattedDers === "fizik") {
+            if (ders) {
+                document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            }
+            const fizikElements = document.querySelectorAll('.fizik-only');
+            fizikElements.forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "tytkimya" || formattedDers === "kimya") {
+            if (ders) {
+                document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            }
+            const kimyaElements = document.querySelectorAll('.kimya-only');
+            kimyaElements.forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "tytbiyoloji" || formattedDers === "biyoloji") {
+            if (ders) {
+                document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            }
+            const biyolojiElements = document.querySelectorAll('.biyoloji-only');
+            biyolojiElements.forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "tytmatematik" || formattedDers === "matematik") {
+            if (ders) {
+                document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            }
+            const matematikElements = document.querySelectorAll('.matematik-only');
+            matematikElements.forEach(el => el.style.display = 'block');
+        } else if (formattedDers === "tytgeometri" || formattedDers === "geometri") {
+            if (ders) {
+                document.title = decodeURIComponent(ders) + " - Sınav Canbazı";
+            }
+            const geometriElements = document.querySelectorAll('.geometri-only');
+            geometriElements.forEach(el => el.style.display = 'block');
+        }
+
+        /* TEMA YÖNETİMİ */
+        const toggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+
+        function applyTheme(theme) {
+            if (theme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeIcon.innerText = '☀️';
+                themeText.innerText = 'Gündüz Modu';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.innerText = '🌙';
+                themeText.innerText = 'Koyu Mod';
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        applyTheme(savedTheme);
+
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+
+        /* CANLI ARAMA İŞLEVİ */
+        const searchInput = document.getElementById('topic-search');
+
+        function normalizeTurkish(text) {
+            return text
+                .replace(/İ/g, "i")
+                .replace(/I/g, "ı")
+                .toLowerCase();
+        }
+
+        searchInput.addEventListener('input', function() {
+            const query = normalizeTurkish(this.value.trim());
+
+            // Görünür konu kartlarında arama
+            const activeTopicCards = document.querySelectorAll('.card[style*="display: block"] .topic-card');
+            activeTopicCards.forEach(card => {
+                const text = normalizeTurkish(card.querySelector('.topic-name').textContent);
+                if (text.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Görünür tablo satırlarında arama
+            const activeTableRows = document.querySelectorAll('.card[style*="display: block"] tbody tr');
+            activeTableRows.forEach(row => {
+                const topicText = normalizeTurkish(row.querySelector('td:first-child').textContent);
+                if (topicText.includes(query)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    
+    </script>
+
+    <script>
+        /* Masaüstü tablosundaki verileri mobilde yıl kartlarına dönüştürür. */
+        function buildMobileDistributions() {
+            document.querySelectorAll('.table-container').forEach((container) => {
+                const table = container.querySelector('table');
+                const rows = table ? Array.from(table.querySelectorAll('tbody tr')) : [];
+                if (!table || !rows.length) return;
+
+                const years = Array.from(table.querySelectorAll('thead th'))
+                    .slice(1)
+                    .map((heading) => heading.textContent.trim());
+
+                let mobileView = container.nextElementSibling;
+                if (!mobileView || !mobileView.classList.contains('mobile-distribution')) {
+                    mobileView = document.createElement('div');
+                    mobileView.className = 'mobile-distribution';
+                    container.insertAdjacentElement('afterend', mobileView);
+                }
+
+                /* Tablo verisi daha sonra oluştuğunda eski boş görünümü yeniler. */
+                if (mobileView.dataset.rowCount === String(rows.length)) return;
+                mobileView.innerHTML = '';
+                mobileView.dataset.rowCount = String(rows.length);
+
+                rows.forEach((row) => {
+                    const cells = Array.from(row.querySelectorAll('td'));
+                    if (!cells.length) return;
+
+                    const topicCell = cells[0];
+                    const number = topicCell.querySelector('.table-topic-num')?.textContent.trim() || '';
+                    const topic = topicCell.querySelector('.table-topic-cell span:last-child')?.textContent.trim() || topicCell.textContent.trim();
+
+                    const topicCard = document.createElement('article');
+                    topicCard.className = 'distribution-topic';
+                    topicCard.innerHTML = `
+                        <h3 class="distribution-topic-name">
+                            <span class="distribution-topic-number">${number}</span>
+                            <span>${topic}</span>
+                        </h3>
+                        <div class="year-count-grid"></div>
+                    `;
+
+                    const grid = topicCard.querySelector('.year-count-grid');
+                    cells.slice(1).forEach((cell, index) => {
+                        const value = cell.textContent.trim() || '-';
+                        const hasQuestion = value !== '-';
+                        const yearCard = document.createElement('div');
+                        yearCard.className = `year-count${hasQuestion ? ' has-question' : ''}`;
+                        yearCard.innerHTML = `
+                            <span class="year-count-year">${years[index] || ''}</span>
+                            <span class="year-count-value">${hasQuestion ? value : '•'}</span>
+                        `;
+                        grid.appendChild(yearCard);
+                    });
+
+                    mobileView.appendChild(topicCard);
+                });
+            });
+        }
+
+        buildMobileDistributions();
+        window.addEventListener('load', buildMobileDistributions);
+        setTimeout(buildMobileDistributions, 300);
+        setTimeout(buildMobileDistributions, 1000);
+
+        /* Arama alanı, mobildeki yıl-kutu görünümünü de filtreler. */
+        const mobileDistributionSearch = document.getElementById('topic-search');
+        if (mobileDistributionSearch) {
+            mobileDistributionSearch.addEventListener('input', function () {
+                const query = this.value
+                    .trim()
+                    .replace(/İ/g, 'i')
+                    .replace(/I/g, 'ı')
+                    .toLocaleLowerCase('tr-TR');
+
+                document.querySelectorAll('.mobile-distribution .distribution-topic').forEach((topicCard) => {
+                    const title = topicCard.querySelector('.distribution-topic-name')?.textContent
+                        .replace(/İ/g, 'i')
+                        .replace(/I/g, 'ı')
+                        .toLocaleLowerCase('tr-TR') || '';
+
+                    topicCard.style.display = !query || title.includes(query) ? '' : 'none';
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>
